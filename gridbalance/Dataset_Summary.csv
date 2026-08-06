@@ -1,0 +1,13 @@
+Metric,Value
+"Dataset Shape (Rows, Cols)","1,500 rows x 1,036 cols"
+Total Cells (Dataset Size),"1,554,000"
+Total Features,1036
+Numerical Features,1035
+Categorical/ID Features,1
+Total Missing Values,"31,143"
+Overall Missing Percentage,2.00%
+Duplicate Rows,0
+Duplicate Customer IDs,0
+Memory Usage (MB),11.94 MB
+Memory Usage (GB),0.0117 GB
+Data Types Breakdown,"float64: 1034, str: 1, int64: 1"

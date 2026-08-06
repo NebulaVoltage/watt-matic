@@ -1,0 +1,13 @@
+Feature_Category,Engineered_Features,Mathematical_Formula,Why_It_Helps
+Rolling Mean (7-day & 30-day),"rolling_mean_7d, rolling_mean_30d",Mean of consumption over moving window of 7 and 30 days,Smooths daily high-frequency noise to establish short-term and medium-term baseline consumption levels.
+Rolling Std Dev (7-day & 30-day),"rolling_std_7d, rolling_std_30d",Standard deviation over moving window of 7 and 30 days,Measures short-term load volatility. Theft customers often exhibit artificially suppressed or zero volatility during tampering periods.
+Daily Difference / Change Rate,"daily_diff_mean, daily_diff_max",C(t) - C(t-1) for daily time series,Detects abrupt sudden drops or spikes caused by physical meter bypass installation or removal.
+Consumption Variance & Volatility,"overall_variance, overall_std",Variance of all non-missing daily readings per customer,Captures overall customer load predictability; normal consumers exhibit natural human routine variances whereas bypass theft lowers variance.
+Weekend vs Weekday Ratio,"weekend_mean, weekday_mean, weekend_weekday_ratio",Mean(Weekend kWh) / Mean(Weekday kWh),Captures lifestyle/occupancy behavior. Discrepancies between weekend vs weekday ratios highlight abnormal non-residential or tampered usage.
+Monthly Average & Seasonality,"monthly_mean_Jan..Dec, summer_winter_ratio",Mean(Summer kWh) / Mean(Winter kWh),Electric heating/HVAC drives natural seasonal surges. Theft customers fail to show expected summer/winter peak variations.
+Consumption Growth Rate,"yearly_growth_rate, H2_H1_ratio",(Mean_Year3 - Mean_Year1) / Mean_Year1,Identifies progressive long-term reduction in billed consumption as theft activity intensifies.
+Peak Consumption & Peak-to-Average,"peak_consumption, peak_to_mean_ratio",Max(kWh) / Mean(kWh),Identifies intermittent partial theft where peaks occur briefly but average consumption is severely depressed.
+Consumption Ratios & Zero Count,"zero_count, zero_ratio, min_to_mean_ratio",Count(C(t) == 0) / Total_Days,Directly quantifies complete meter zeroing or shunting. High zero ratios are strong indicators of electricity theft.
+Trend Features (Linear Slope),"trend_slope, trend_intercept",Linear regression slope of C(t) against time index t,Quantifies downward structural trend trajectory in customer usage over time.
+Customer Statistics Summary,"mean_kWh, median_kWh, iqr_kWh, skewness, kurtosis",Standard distributional moments across temporal sequence,Summarizes the overall shape of the customer load distribution into fixed-size ML features.
+Data Availability / Missing Ratio,"missing_count, missing_ratio",Count(NaN) / Total_Days,Meter communication tampering or intentional physical disconnects often manifest as high missing reading rates.
