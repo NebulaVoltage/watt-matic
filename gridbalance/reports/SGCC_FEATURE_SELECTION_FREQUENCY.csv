@@ -1,0 +1,43 @@
+Feature,Selection_Count,Selection_Frequency,Group
+mean_abs_daily_change,5,1.0,Volatility
+missing_streak_count,5,1.0,Missingness
+monthly_mean_10,5,1.0,Temporal/periodic
+monthly_mean_11,5,1.0,Temporal/periodic
+monthly_mean_2,5,1.0,Temporal/periodic
+monthly_std_1,5,1.0,Temporal/periodic
+monthly_std_11,5,1.0,Temporal/periodic
+monthly_std_3,5,1.0,Temporal/periodic
+monthly_std_4,5,1.0,Temporal/periodic
+monthly_std_5,5,1.0,Temporal/periodic
+monthly_std_7,5,1.0,Temporal/periodic
+peak_to_average_ratio,5,1.0,Peak behaviour
+monthly_std_10,4,0.8,Temporal/periodic
+monthly_std_8,4,0.8,Temporal/periodic
+max,3,0.6,Extremes
+missing_count,3,0.6,Missingness
+longest_missing_streak,2,0.4,Missingness
+monthly_mean_8,2,0.4,Temporal/periodic
+monthly_std_12,2,0.4,Temporal/periodic
+monthly_std_9,2,0.4,Temporal/periodic
+zero_ratio,2,0.4,Zero behaviour
+max_abs_daily_change,1,0.2,Volatility
+monthly_mean_1,1,0.2,Temporal/periodic
+monthly_mean_4,1,0.2,Temporal/periodic
+monthly_std_6,1,0.2,Temporal/periodic
+range,1,0.2,Extremes
+zero_count,1,0.2,Zero behaviour
+cv,0,0.0,Variability
+max_missing_gap_days,0,0.0,Missingness
+mean,0,0.0,Central tendency
+median,0,0.0,Central tendency
+min,0,0.0,Extremes
+missing_ratio,0,0.0,Missingness
+monthly_mean_12,0,0.0,Temporal/periodic
+monthly_mean_3,0,0.0,Temporal/periodic
+monthly_mean_5,0,0.0,Temporal/periodic
+monthly_mean_6,0,0.0,Temporal/periodic
+monthly_mean_7,0,0.0,Temporal/periodic
+monthly_mean_9,0,0.0,Temporal/periodic
+monthly_std_2,0,0.0,Temporal/periodic
+std_dev,0,0.0,Variability
+variance,0,0.0,Variability

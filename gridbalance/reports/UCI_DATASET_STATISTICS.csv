@@ -1,0 +1,13 @@
+Metric,Value
+Total Meters,370
+Total 15-min Timestamps,140256
+Hourly Timestamps,35065
+Start Date,2011-01-01 00:15:00
+End Date,2015-01-01 00:00:00
+Sampling Frequency,15-minute / 1-hour resampled
+Missing Values,0
+Zero Values (15-min),10457342
+Negative Values,0
+Duplicate Timestamps,0
+Duplicate Rows,0
+Total Raw Cells,51894720

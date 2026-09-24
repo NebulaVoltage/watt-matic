@@ -1,0 +1,13 @@
+best_model: XGBoost Regressor
+dataset_path: data/processed/uci_hourly_aggregate_load.csv
+feature_count: 29
+hyperparameters:
+  learning_rate: 0.05
+  max_depth: 6
+  n_estimators: 200
+random_seed: 42
+target_col: target_t_plus_1
+temporal_split:
+  test_end: '2014-12-31 23:00:00'
+  train_end: '2013-12-31 23:00:00'
+  val_end: '2014-06-30 23:00:00'
