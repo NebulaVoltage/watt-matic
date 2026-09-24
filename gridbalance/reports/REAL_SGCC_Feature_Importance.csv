@@ -1,0 +1,379 @@
+Feature,Importance,Model,Strategy
+missing_count,0.02637321384815757,Decision Tree,Original
+missing_ratio,0.02397948181359911,Decision Tree,Original
+longest_missing_streak,0.013305886344554253,Decision Tree,Original
+missing_streak_count,0.022492744861662965,Decision Tree,Original
+max_missing_gap_days,0.01925762991567749,Decision Tree,Original
+mean,0.015528031262038357,Decision Tree,Original
+median,0.007933641674719005,Decision Tree,Original
+std_dev,0.017969559810734153,Decision Tree,Original
+variance,0.014842354495598379,Decision Tree,Original
+cv,0.024994423162110778,Decision Tree,Original
+min,0.019428775936195204,Decision Tree,Original
+max,0.012284838382693572,Decision Tree,Original
+range,0.013992411836370473,Decision Tree,Original
+zero_count,0.013330805781059392,Decision Tree,Original
+zero_ratio,0.021277157995479516,Decision Tree,Original
+mean_abs_daily_change,0.02210519264364364,Decision Tree,Original
+max_abs_daily_change,0.025845334247912577,Decision Tree,Original
+monthly_mean_1,0.020913727334928845,Decision Tree,Original
+monthly_std_1,0.025612673600888855,Decision Tree,Original
+monthly_mean_2,0.018871586798273457,Decision Tree,Original
+monthly_std_2,0.028955099885256325,Decision Tree,Original
+monthly_mean_3,0.021553977224129564,Decision Tree,Original
+monthly_std_3,0.053848024215818815,Decision Tree,Original
+monthly_mean_4,0.018289449261976565,Decision Tree,Original
+monthly_std_4,0.09071545311610592,Decision Tree,Original
+monthly_mean_5,0.014340447681350576,Decision Tree,Original
+monthly_std_5,0.03306006416141541,Decision Tree,Original
+monthly_mean_6,0.028165166054518038,Decision Tree,Original
+monthly_std_6,0.026775657905592117,Decision Tree,Original
+monthly_mean_7,0.010706981506338586,Decision Tree,Original
+monthly_std_7,0.030289079658457504,Decision Tree,Original
+monthly_mean_8,0.01585961874649366,Decision Tree,Original
+monthly_std_8,0.028775113539365627,Decision Tree,Original
+monthly_mean_9,0.015939709515736734,Decision Tree,Original
+monthly_std_9,0.03216681537576006,Decision Tree,Original
+monthly_mean_10,0.025746345949150897,Decision Tree,Original
+monthly_std_10,0.036103951412509945,Decision Tree,Original
+monthly_mean_11,0.015593226256787388,Decision Tree,Original
+monthly_std_11,0.024290756125682402,Decision Tree,Original
+monthly_mean_12,0.011098340463262257,Decision Tree,Original
+monthly_std_12,0.028765366676477146,Decision Tree,Original
+peak_to_average_ratio,0.02862188352151684,Decision Tree,Original
+missing_count,0.023993462912934187,Random Forest,Original
+missing_ratio,0.02421422774563315,Random Forest,Original
+longest_missing_streak,0.020043630884939153,Random Forest,Original
+missing_streak_count,0.019506186890052984,Random Forest,Original
+max_missing_gap_days,0.019972976244153024,Random Forest,Original
+mean,0.01985822019235254,Random Forest,Original
+median,0.018384899279747527,Random Forest,Original
+std_dev,0.0262200133427273,Random Forest,Original
+variance,0.029213028182711324,Random Forest,Original
+cv,0.023575357665774,Random Forest,Original
+min,0.013050454550935356,Random Forest,Original
+max,0.024081283776849954,Random Forest,Original
+range,0.023309257981820576,Random Forest,Original
+zero_count,0.014914282868695655,Random Forest,Original
+zero_ratio,0.015053156270055464,Random Forest,Original
+mean_abs_daily_change,0.027679122724720173,Random Forest,Original
+max_abs_daily_change,0.024476378082455518,Random Forest,Original
+monthly_mean_1,0.021698537121515864,Random Forest,Original
+monthly_std_1,0.030360194788259555,Random Forest,Original
+monthly_mean_2,0.02249699416063841,Random Forest,Original
+monthly_std_2,0.025646445240199576,Random Forest,Original
+monthly_mean_3,0.021660337843176034,Random Forest,Original
+monthly_std_3,0.03867528887405209,Random Forest,Original
+monthly_mean_4,0.021299015840717347,Random Forest,Original
+monthly_std_4,0.044120368294044955,Random Forest,Original
+monthly_mean_5,0.0204286502249415,Random Forest,Original
+monthly_std_5,0.03644411286862093,Random Forest,Original
+monthly_mean_6,0.022462534535417092,Random Forest,Original
+monthly_std_6,0.02684444507154466,Random Forest,Original
+monthly_mean_7,0.020540973763138175,Random Forest,Original
+monthly_std_7,0.026937608596829126,Random Forest,Original
+monthly_mean_8,0.021304412667080913,Random Forest,Original
+monthly_std_8,0.027029625174431637,Random Forest,Original
+monthly_mean_9,0.022044460311934147,Random Forest,Original
+monthly_std_9,0.024640381240319007,Random Forest,Original
+monthly_mean_10,0.025605217023043175,Random Forest,Original
+monthly_std_10,0.034852898525852626,Random Forest,Original
+monthly_mean_11,0.016086632747694906,Random Forest,Original
+monthly_std_11,0.02223093726413066,Random Forest,Original
+monthly_mean_12,0.015729050946988506,Random Forest,Original
+monthly_std_12,0.020562251935861097,Random Forest,Original
+peak_to_average_ratio,0.02275268534301008,Random Forest,Original
+missing_count,0.03141741827130318,XGBoost,Original
+missing_ratio,0.0,XGBoost,Original
+longest_missing_streak,0.04324529692530632,XGBoost,Original
+missing_streak_count,0.042445484548807144,XGBoost,Original
+max_missing_gap_days,0.0,XGBoost,Original
+mean,0.025159521028399467,XGBoost,Original
+median,0.022241268306970596,XGBoost,Original
+std_dev,0.02768963947892189,XGBoost,Original
+variance,0.0,XGBoost,Original
+cv,0.02386733703315258,XGBoost,Original
+min,0.019608555361628532,XGBoost,Original
+max,0.02272770181298256,XGBoost,Original
+range,0.022584496065974236,XGBoost,Original
+zero_count,0.01691499724984169,XGBoost,Original
+zero_ratio,0.015071142464876175,XGBoost,Original
+mean_abs_daily_change,0.02550973743200302,XGBoost,Original
+max_abs_daily_change,0.0191511157900095,XGBoost,Original
+monthly_mean_1,0.016706936061382294,XGBoost,Original
+monthly_std_1,0.01803424023091793,XGBoost,Original
+monthly_mean_2,0.019330764189362526,XGBoost,Original
+monthly_std_2,0.015610548667609692,XGBoost,Original
+monthly_mean_3,0.018665971234440804,XGBoost,Original
+monthly_std_3,0.04445265978574753,XGBoost,Original
+monthly_mean_4,0.020313939079642296,XGBoost,Original
+monthly_std_4,0.09192001074552536,XGBoost,Original
+monthly_mean_5,0.017751723527908325,XGBoost,Original
+monthly_std_5,0.03992681950330734,XGBoost,Original
+monthly_mean_6,0.022850224748253822,XGBoost,Original
+monthly_std_6,0.022794511169195175,XGBoost,Original
+monthly_mean_7,0.022569257766008377,XGBoost,Original
+monthly_std_7,0.020621638745069504,XGBoost,Original
+monthly_mean_8,0.021226389333605766,XGBoost,Original
+monthly_std_8,0.01874646544456482,XGBoost,Original
+monthly_mean_9,0.019374020397663116,XGBoost,Original
+monthly_std_9,0.018691755831241608,XGBoost,Original
+monthly_mean_10,0.024069994688034058,XGBoost,Original
+monthly_std_10,0.03374914824962616,XGBoost,Original
+monthly_mean_11,0.02340572141110897,XGBoost,Original
+monthly_std_11,0.02635292336344719,XGBoost,Original
+monthly_mean_12,0.02121036872267723,XGBoost,Original
+monthly_std_12,0.024333244189620018,XGBoost,Original
+peak_to_average_ratio,0.01965697854757309,XGBoost,Original
+missing_count,0.021984572535267338,Decision Tree,Weighted
+missing_ratio,0.01741109966397038,Decision Tree,Weighted
+longest_missing_streak,0.023625569981948733,Decision Tree,Weighted
+missing_streak_count,0.05768101023504619,Decision Tree,Weighted
+max_missing_gap_days,0.026581092555792423,Decision Tree,Weighted
+mean,0.012926243220268793,Decision Tree,Weighted
+median,0.00666237818030241,Decision Tree,Weighted
+std_dev,0.010945600398885433,Decision Tree,Weighted
+variance,0.010109620322622227,Decision Tree,Weighted
+cv,0.02977509120265558,Decision Tree,Weighted
+min,0.012365418571560371,Decision Tree,Weighted
+max,0.027987814829534777,Decision Tree,Weighted
+range,0.01997407547122536,Decision Tree,Weighted
+zero_count,0.008204377965600706,Decision Tree,Weighted
+zero_ratio,0.00909992759721325,Decision Tree,Weighted
+mean_abs_daily_change,0.022541468292256023,Decision Tree,Weighted
+max_abs_daily_change,0.018344111048038358,Decision Tree,Weighted
+monthly_mean_1,0.012785401292193936,Decision Tree,Weighted
+monthly_std_1,0.027058367502024297,Decision Tree,Weighted
+monthly_mean_2,0.01643295690448792,Decision Tree,Weighted
+monthly_std_2,0.02553527043716477,Decision Tree,Weighted
+monthly_mean_3,0.011437125491671257,Decision Tree,Weighted
+monthly_std_3,0.026781303312509577,Decision Tree,Weighted
+monthly_mean_4,0.019731962045032046,Decision Tree,Weighted
+monthly_std_4,0.1478342212132361,Decision Tree,Weighted
+monthly_mean_5,0.012820981435230016,Decision Tree,Weighted
+monthly_std_5,0.029529654124531818,Decision Tree,Weighted
+monthly_mean_6,0.02253121471894565,Decision Tree,Weighted
+monthly_std_6,0.02330750519466926,Decision Tree,Weighted
+monthly_mean_7,0.012368206283677968,Decision Tree,Weighted
+monthly_std_7,0.025434387345770037,Decision Tree,Weighted
+monthly_mean_8,0.012553526847942763,Decision Tree,Weighted
+monthly_std_8,0.026153012052641044,Decision Tree,Weighted
+monthly_mean_9,0.018193849473936177,Decision Tree,Weighted
+monthly_std_9,0.02573888646415198,Decision Tree,Weighted
+monthly_mean_10,0.01938687248007545,Decision Tree,Weighted
+monthly_std_10,0.04950612429482138,Decision Tree,Weighted
+monthly_mean_11,0.006922388127997229,Decision Tree,Weighted
+monthly_std_11,0.02432142431373022,Decision Tree,Weighted
+monthly_mean_12,0.014300922178204396,Decision Tree,Weighted
+monthly_std_12,0.018249158620029512,Decision Tree,Weighted
+peak_to_average_ratio,0.03486580577313685,Decision Tree,Weighted
+missing_count,0.022541323707685246,Random Forest,Weighted
+missing_ratio,0.022673257594598612,Random Forest,Weighted
+longest_missing_streak,0.020529752209346545,Random Forest,Weighted
+missing_streak_count,0.034986589475845244,Random Forest,Weighted
+max_missing_gap_days,0.02145238801313642,Random Forest,Weighted
+mean,0.016522826246666154,Random Forest,Weighted
+median,0.01505404855297692,Random Forest,Weighted
+std_dev,0.0321642745058917,Random Forest,Weighted
+variance,0.041080832017388956,Random Forest,Weighted
+cv,0.024464667702391002,Random Forest,Weighted
+min,0.010204906204854288,Random Forest,Weighted
+max,0.03024073067330579,Random Forest,Weighted
+range,0.028397895969002766,Random Forest,Weighted
+zero_count,0.012207999142191553,Random Forest,Weighted
+zero_ratio,0.012204715121554962,Random Forest,Weighted
+mean_abs_daily_change,0.02744514779186981,Random Forest,Weighted
+max_abs_daily_change,0.024020171915395395,Random Forest,Weighted
+monthly_mean_1,0.019221217727273247,Random Forest,Weighted
+monthly_std_1,0.024630531337378896,Random Forest,Weighted
+monthly_mean_2,0.020141638232951304,Random Forest,Weighted
+monthly_std_2,0.026298569703374023,Random Forest,Weighted
+monthly_mean_3,0.01794981879494512,Random Forest,Weighted
+monthly_std_3,0.04223534500994227,Random Forest,Weighted
+monthly_mean_4,0.01908605714526253,Random Forest,Weighted
+monthly_std_4,0.05064500791395157,Random Forest,Weighted
+monthly_mean_5,0.018424698644862115,Random Forest,Weighted
+monthly_std_5,0.03985591449064189,Random Forest,Weighted
+monthly_mean_6,0.02013077500068173,Random Forest,Weighted
+monthly_std_6,0.024301970530201215,Random Forest,Weighted
+monthly_mean_7,0.020160678189758925,Random Forest,Weighted
+monthly_std_7,0.02445897252556117,Random Forest,Weighted
+monthly_mean_8,0.018653133283565628,Random Forest,Weighted
+monthly_std_8,0.02220718182406507,Random Forest,Weighted
+monthly_mean_9,0.01865323625208369,Random Forest,Weighted
+monthly_std_9,0.023798975505908596,Random Forest,Weighted
+monthly_mean_10,0.02416753536181665,Random Forest,Weighted
+monthly_std_10,0.03996641325110988,Random Forest,Weighted
+monthly_mean_11,0.015345697824050172,Random Forest,Weighted
+monthly_std_11,0.019341507800512265,Random Forest,Weighted
+monthly_mean_12,0.012886756509829343,Random Forest,Weighted
+monthly_std_12,0.017822289577472214,Random Forest,Weighted
+peak_to_average_ratio,0.023424550718698978,Random Forest,Weighted
+missing_count,0.027315817773342133,XGBoost,Weighted
+missing_ratio,0.0,XGBoost,Weighted
+longest_missing_streak,0.04222714155912399,XGBoost,Weighted
+missing_streak_count,0.048890817910432816,XGBoost,Weighted
+max_missing_gap_days,0.0,XGBoost,Weighted
+mean,0.022805415093898773,XGBoost,Weighted
+median,0.01929411105811596,XGBoost,Weighted
+std_dev,0.02317841351032257,XGBoost,Weighted
+variance,0.0,XGBoost,Weighted
+cv,0.030013492330908775,XGBoost,Weighted
+min,0.020112233236432076,XGBoost,Weighted
+max,0.03198098763823509,XGBoost,Weighted
+range,0.029805125668644905,XGBoost,Weighted
+zero_count,0.014956759288907051,XGBoost,Weighted
+zero_ratio,0.01852727122604847,XGBoost,Weighted
+mean_abs_daily_change,0.02596834860742092,XGBoost,Weighted
+max_abs_daily_change,0.01981240324676037,XGBoost,Weighted
+monthly_mean_1,0.02108849212527275,XGBoost,Weighted
+monthly_std_1,0.017433909699320793,XGBoost,Weighted
+monthly_mean_2,0.020097050815820694,XGBoost,Weighted
+monthly_std_2,0.019999193027615547,XGBoost,Weighted
+monthly_mean_3,0.018104884773492813,XGBoost,Weighted
+monthly_std_3,0.02839195542037487,XGBoost,Weighted
+monthly_mean_4,0.02029840648174286,XGBoost,Weighted
+monthly_std_4,0.10311190783977509,XGBoost,Weighted
+monthly_mean_5,0.02095910906791687,XGBoost,Weighted
+monthly_std_5,0.03446941077709198,XGBoost,Weighted
+monthly_mean_6,0.020184505730867386,XGBoost,Weighted
+monthly_std_6,0.01994343474507332,XGBoost,Weighted
+monthly_mean_7,0.01859114319086075,XGBoost,Weighted
+monthly_std_7,0.023205798119306564,XGBoost,Weighted
+monthly_mean_8,0.016979217529296875,XGBoost,Weighted
+monthly_std_8,0.021243231371045113,XGBoost,Weighted
+monthly_mean_9,0.016550131142139435,XGBoost,Weighted
+monthly_std_9,0.020207533612847328,XGBoost,Weighted
+monthly_mean_10,0.025221170857548714,XGBoost,Weighted
+monthly_std_10,0.03433316573500633,XGBoost,Weighted
+monthly_mean_11,0.02227923460304737,XGBoost,Weighted
+monthly_std_11,0.024922482669353485,XGBoost,Weighted
+monthly_mean_12,0.015493960119783878,XGBoost,Weighted
+monthly_std_12,0.022714687511324883,XGBoost,Weighted
+peak_to_average_ratio,0.019287681207060814,XGBoost,Weighted
+missing_count,0.02824370549506422,Decision Tree,SMOTE
+missing_ratio,0.026025830819300884,Decision Tree,SMOTE
+longest_missing_streak,0.03668319164268713,Decision Tree,SMOTE
+missing_streak_count,0.25435213093778647,Decision Tree,SMOTE
+max_missing_gap_days,0.019619746426640244,Decision Tree,SMOTE
+mean,0.005925856966246586,Decision Tree,SMOTE
+median,0.007519666362064448,Decision Tree,SMOTE
+std_dev,0.008488496620956876,Decision Tree,SMOTE
+variance,0.012463430851356226,Decision Tree,SMOTE
+cv,0.021842455396245335,Decision Tree,SMOTE
+min,0.028369518927859046,Decision Tree,SMOTE
+max,0.009917224726130687,Decision Tree,SMOTE
+range,0.009507459372384763,Decision Tree,SMOTE
+zero_count,0.018770415621217996,Decision Tree,SMOTE
+zero_ratio,0.01940417466939073,Decision Tree,SMOTE
+mean_abs_daily_change,0.019161995667801284,Decision Tree,SMOTE
+max_abs_daily_change,0.01567037554879302,Decision Tree,SMOTE
+monthly_mean_1,0.009550095153620666,Decision Tree,SMOTE
+monthly_std_1,0.015864170203938873,Decision Tree,SMOTE
+monthly_mean_2,0.012392947917279941,Decision Tree,SMOTE
+monthly_std_2,0.011841461033611089,Decision Tree,SMOTE
+monthly_mean_3,0.006866212351321276,Decision Tree,SMOTE
+monthly_std_3,0.017395128183362443,Decision Tree,SMOTE
+monthly_mean_4,0.009457846644282977,Decision Tree,SMOTE
+monthly_std_4,0.13001120277850609,Decision Tree,SMOTE
+monthly_mean_5,0.006956922631466324,Decision Tree,SMOTE
+monthly_std_5,0.029016494807460488,Decision Tree,SMOTE
+monthly_mean_6,0.010783541728272422,Decision Tree,SMOTE
+monthly_std_6,0.014795683283699682,Decision Tree,SMOTE
+monthly_mean_7,0.01082175101986187,Decision Tree,SMOTE
+monthly_std_7,0.015697424798714422,Decision Tree,SMOTE
+monthly_mean_8,0.01367185412541931,Decision Tree,SMOTE
+monthly_std_8,0.014317907168303595,Decision Tree,SMOTE
+monthly_mean_9,0.00768359267931446,Decision Tree,SMOTE
+monthly_std_9,0.012901768106767424,Decision Tree,SMOTE
+monthly_mean_10,0.016109091761356886,Decision Tree,SMOTE
+monthly_std_10,0.03370232128725869,Decision Tree,SMOTE
+monthly_mean_11,0.009342100752228692,Decision Tree,SMOTE
+monthly_std_11,0.010916900759560262,Decision Tree,SMOTE
+monthly_mean_12,0.005734492523113108,Decision Tree,SMOTE
+monthly_std_12,0.007821909364028863,Decision Tree,SMOTE
+peak_to_average_ratio,0.02438150288532425,Decision Tree,SMOTE
+missing_count,0.029578784189691436,Random Forest,SMOTE
+missing_ratio,0.03081121177715911,Random Forest,SMOTE
+longest_missing_streak,0.030474692627726157,Random Forest,SMOTE
+missing_streak_count,0.07544674991181084,Random Forest,SMOTE
+max_missing_gap_days,0.032926032658129954,Random Forest,SMOTE
+mean,0.013110384833417857,Random Forest,SMOTE
+median,0.012481900335389689,Random Forest,SMOTE
+std_dev,0.027618419707529634,Random Forest,SMOTE
+variance,0.035431044391235206,Random Forest,SMOTE
+cv,0.024706194740609172,Random Forest,SMOTE
+min,0.01995866775399294,Random Forest,SMOTE
+max,0.02588411908315054,Random Forest,SMOTE
+range,0.022439696340545743,Random Forest,SMOTE
+zero_count,0.023791246038262385,Random Forest,SMOTE
+zero_ratio,0.021457387908950784,Random Forest,SMOTE
+mean_abs_daily_change,0.025034426319953798,Random Forest,SMOTE
+max_abs_daily_change,0.02074815927915144,Random Forest,SMOTE
+monthly_mean_1,0.015482515265607897,Random Forest,SMOTE
+monthly_std_1,0.023793190486409113,Random Forest,SMOTE
+monthly_mean_2,0.01720608680054077,Random Forest,SMOTE
+monthly_std_2,0.020073045436524606,Random Forest,SMOTE
+monthly_mean_3,0.014958133527954748,Random Forest,SMOTE
+monthly_std_3,0.037369876818997075,Random Forest,SMOTE
+monthly_mean_4,0.014870267784037886,Random Forest,SMOTE
+monthly_std_4,0.04629558057265776,Random Forest,SMOTE
+monthly_mean_5,0.014205369719341167,Random Forest,SMOTE
+monthly_std_5,0.036994464779328946,Random Forest,SMOTE
+monthly_mean_6,0.016409716900658806,Random Forest,SMOTE
+monthly_std_6,0.01889401328364512,Random Forest,SMOTE
+monthly_mean_7,0.017202558722384593,Random Forest,SMOTE
+monthly_std_7,0.01937264946338787,Random Forest,SMOTE
+monthly_mean_8,0.016987939730614587,Random Forest,SMOTE
+monthly_std_8,0.02015376395163745,Random Forest,SMOTE
+monthly_mean_9,0.01576935258846907,Random Forest,SMOTE
+monthly_std_9,0.021491983146377427,Random Forest,SMOTE
+monthly_mean_10,0.020082856699483426,Random Forest,SMOTE
+monthly_std_10,0.04233422716177723,Random Forest,SMOTE
+monthly_mean_11,0.013189626928149184,Random Forest,SMOTE
+monthly_std_11,0.01662439791114862,Random Forest,SMOTE
+monthly_mean_12,0.0117337208280227,Random Forest,SMOTE
+monthly_std_12,0.012384323306988469,Random Forest,SMOTE
+peak_to_average_ratio,0.02422122028914866,Random Forest,SMOTE
+missing_count,0.022798681631684303,XGBoost,SMOTE
+missing_ratio,0.022470800206065178,XGBoost,SMOTE
+longest_missing_streak,0.04837997257709503,XGBoost,SMOTE
+missing_streak_count,0.14372165501117706,XGBoost,SMOTE
+max_missing_gap_days,0.0,XGBoost,SMOTE
+mean,0.012126177549362183,XGBoost,SMOTE
+median,0.011463434435427189,XGBoost,SMOTE
+std_dev,0.012485937215387821,XGBoost,SMOTE
+variance,0.03702777996659279,XGBoost,SMOTE
+cv,0.022919222712516785,XGBoost,SMOTE
+min,0.05755625665187836,XGBoost,SMOTE
+max,0.012039575725793839,XGBoost,SMOTE
+range,0.01191178523004055,XGBoost,SMOTE
+zero_count,0.037271659821271896,XGBoost,SMOTE
+zero_ratio,0.03100503794848919,XGBoost,SMOTE
+mean_abs_daily_change,0.019307367503643036,XGBoost,SMOTE
+max_abs_daily_change,0.0124505078420043,XGBoost,SMOTE
+monthly_mean_1,0.010075134225189686,XGBoost,SMOTE
+monthly_std_1,0.011656954884529114,XGBoost,SMOTE
+monthly_mean_2,0.01332871988415718,XGBoost,SMOTE
+monthly_std_2,0.010153255425393581,XGBoost,SMOTE
+monthly_mean_3,0.00903033185750246,XGBoost,SMOTE
+monthly_std_3,0.05427677556872368,XGBoost,SMOTE
+monthly_mean_4,0.00996486097574234,XGBoost,SMOTE
+monthly_std_4,0.09021143615245819,XGBoost,SMOTE
+monthly_mean_5,0.0095133101567626,XGBoost,SMOTE
+monthly_std_5,0.021718408912420273,XGBoost,SMOTE
+monthly_mean_6,0.015081501565873623,XGBoost,SMOTE
+monthly_std_6,0.014178027398884296,XGBoost,SMOTE
+monthly_mean_7,0.013586236163973808,XGBoost,SMOTE
+monthly_std_7,0.014844541437923908,XGBoost,SMOTE
+monthly_mean_8,0.015366016887128353,XGBoost,SMOTE
+monthly_std_8,0.011398852802813053,XGBoost,SMOTE
+monthly_mean_9,0.008893255144357681,XGBoost,SMOTE
+monthly_std_9,0.01069013774394989,XGBoost,SMOTE
+monthly_mean_10,0.018657302483916283,XGBoost,SMOTE
+monthly_std_10,0.05271917209029198,XGBoost,SMOTE
+monthly_mean_11,0.01757354848086834,XGBoost,SMOTE
+monthly_std_11,0.013776494190096855,XGBoost,SMOTE
+monthly_mean_12,0.0094246044754982,XGBoost,SMOTE
+monthly_std_12,0.010358353145420551,XGBoost,SMOTE
+peak_to_average_ratio,0.018586911261081696,XGBoost,SMOTE

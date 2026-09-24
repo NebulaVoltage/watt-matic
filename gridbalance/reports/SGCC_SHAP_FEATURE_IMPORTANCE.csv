@@ -1,0 +1,43 @@
+Feature,Mean_Abs_SHAP,Mean_Signed_SHAP,Rank,Group,Type
+missing_streak_count,0.59452045,-0.2569114,1,Missingness,Missingness Feature
+monthly_std_4,0.32793894,-0.17284426,2,Temporal/periodic,Raw Consumption Statistic
+monthly_std_3,0.29008564,-0.15203853,3,Temporal/periodic,Raw Consumption Statistic
+mean_abs_daily_change,0.25970185,-0.060321435,4,Volatility,Raw Consumption Statistic
+missing_count,0.237842,-0.13889618,5,Missingness,Missingness Feature
+monthly_mean_10,0.23298909,-0.0851888,6,Temporal/periodic,Raw Consumption Statistic
+longest_missing_streak,0.22557928,-0.041064546,7,Missingness,Missingness Feature
+peak_to_average_ratio,0.21277116,-0.10237385,8,Peak behaviour,Raw Consumption Statistic
+monthly_std_5,0.20742014,-0.14776559,9,Temporal/periodic,Raw Consumption Statistic
+monthly_std_10,0.19293006,-0.113459535,10,Temporal/periodic,Raw Consumption Statistic
+monthly_std_11,0.16777642,-0.0899093,11,Temporal/periodic,Raw Consumption Statistic
+cv,0.1500752,-0.081430234,12,Variability,Raw Consumption Statistic
+monthly_mean_8,0.14874566,-0.08972023,13,Temporal/periodic,Raw Consumption Statistic
+monthly_mean_3,0.14253914,-0.0015954078,14,Temporal/periodic,Raw Consumption Statistic
+max,0.13971214,-0.100711286,15,Extremes,Raw Consumption Statistic
+monthly_std_8,0.13498424,-0.095039956,16,Temporal/periodic,Raw Consumption Statistic
+monthly_std_9,0.1338244,-0.05684544,17,Temporal/periodic,Raw Consumption Statistic
+max_abs_daily_change,0.12960757,-0.08618359,18,Volatility,Raw Consumption Statistic
+monthly_mean_11,0.12478253,-0.016500298,19,Temporal/periodic,Raw Consumption Statistic
+monthly_std_1,0.124374956,-0.05914258,20,Temporal/periodic,Raw Consumption Statistic
+range,0.12062053,-0.07293373,21,Extremes,Raw Consumption Statistic
+monthly_mean_2,0.11824082,-0.081091024,22,Temporal/periodic,Raw Consumption Statistic
+monthly_mean_4,0.11648824,-0.08206282,23,Temporal/periodic,Raw Consumption Statistic
+monthly_mean_7,0.10996022,-0.052914657,24,Temporal/periodic,Raw Consumption Statistic
+monthly_std_2,0.09186762,-0.04073303,25,Temporal/periodic,Raw Consumption Statistic
+monthly_mean_1,0.09175244,-0.056652535,26,Temporal/periodic,Raw Consumption Statistic
+monthly_std_7,0.09016161,-0.043854784,27,Temporal/periodic,Raw Consumption Statistic
+median,0.08745681,-0.05718914,28,Central tendency,Raw Consumption Statistic
+monthly_std_12,0.08374918,-0.05275717,29,Temporal/periodic,Raw Consumption Statistic
+monthly_mean_5,0.083160974,-0.04927379,30,Temporal/periodic,Raw Consumption Statistic
+monthly_mean_6,0.082242854,-0.025811434,31,Temporal/periodic,Raw Consumption Statistic
+monthly_std_6,0.08201726,-0.022617947,32,Temporal/periodic,Raw Consumption Statistic
+zero_ratio,0.07517789,-0.021579402,33,Zero behaviour,Raw Consumption Statistic
+std_dev,0.06259399,-0.013783181,34,Variability,Raw Consumption Statistic
+zero_count,0.059326254,-0.028098,35,Zero behaviour,Raw Consumption Statistic
+monthly_mean_9,0.0585509,-0.023946682,36,Temporal/periodic,Raw Consumption Statistic
+max_missing_gap_days,0.057242952,-0.008588614,37,Missingness,Missingness Feature
+min,0.054576017,-0.033094447,38,Extremes,Raw Consumption Statistic
+missing_ratio,0.048963886,-0.02379164,39,Missingness,Missingness Feature
+monthly_mean_12,0.04771365,-0.028523887,40,Temporal/periodic,Raw Consumption Statistic
+mean,0.04076187,-0.0036337615,41,Central tendency,Raw Consumption Statistic
+variance,0.028440952,0.004224558,42,Variability,Raw Consumption Statistic

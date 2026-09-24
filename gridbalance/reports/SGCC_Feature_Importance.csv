@@ -1,0 +1,496 @@
+Feature,Importance,Model,Strategy
+mean,0.0,Decision Tree,Original
+median,0.0,Decision Tree,Original
+trimmed_mean,0.0,Decision Tree,Original
+std_dev,0.0,Decision Tree,Original
+variance,0.0,Decision Tree,Original
+cv,0.0,Decision Tree,Original
+iqr,0.0,Decision Tree,Original
+mad,0.0,Decision Tree,Original
+min,0.0,Decision Tree,Original
+max,0.0,Decision Tree,Original
+range,0.0,Decision Tree,Original
+percentile_5,1.0,Decision Tree,Original
+percentile_95,0.0,Decision Tree,Original
+zero_count,0.0,Decision Tree,Original
+zero_ratio,0.0,Decision Tree,Original
+longest_zero_streak,0.0,Decision Tree,Original
+zero_streak_count,0.0,Decision Tree,Original
+mean_abs_daily_change,0.0,Decision Tree,Original
+std_abs_daily_change,0.0,Decision Tree,Original
+max_abs_daily_change,0.0,Decision Tree,Original
+unusually_large_changes_count,0.0,Decision Tree,Original
+linear_trend_slope,0.0,Decision Tree,Original
+trend_r2,0.0,Decision Tree,Original
+early_vs_late_change,0.0,Decision Tree,Original
+relative_trend,0.0,Decision Tree,Original
+monthly_mean_1,0.0,Decision Tree,Original
+monthly_std_1,0.0,Decision Tree,Original
+monthly_mean_2,0.0,Decision Tree,Original
+monthly_std_2,0.0,Decision Tree,Original
+monthly_mean_3,0.0,Decision Tree,Original
+monthly_std_3,0.0,Decision Tree,Original
+monthly_mean_4,0.0,Decision Tree,Original
+monthly_std_4,0.0,Decision Tree,Original
+monthly_mean_5,0.0,Decision Tree,Original
+monthly_std_5,0.0,Decision Tree,Original
+monthly_mean_6,0.0,Decision Tree,Original
+monthly_std_6,0.0,Decision Tree,Original
+monthly_mean_7,0.0,Decision Tree,Original
+monthly_std_7,0.0,Decision Tree,Original
+monthly_mean_8,0.0,Decision Tree,Original
+monthly_std_8,0.0,Decision Tree,Original
+monthly_mean_9,0.0,Decision Tree,Original
+monthly_std_9,0.0,Decision Tree,Original
+monthly_mean_10,0.0,Decision Tree,Original
+monthly_std_10,0.0,Decision Tree,Original
+monthly_mean_11,0.0,Decision Tree,Original
+monthly_std_11,0.0,Decision Tree,Original
+monthly_mean_12,0.0,Decision Tree,Original
+monthly_std_12,0.0,Decision Tree,Original
+seasonal_variation,0.0,Decision Tree,Original
+temporal_consistency,0.0,Decision Tree,Original
+peak_to_average_ratio,0.0,Decision Tree,Original
+high_consumption_day_count,0.0,Decision Tree,Original
+high_consumption_day_ratio,0.0,Decision Tree,Original
+peak_frequency,0.0,Decision Tree,Original
+mean,0.00010571932476694627,Random Forest,Original
+median,0.0036238238085967455,Random Forest,Original
+trimmed_mean,0.0006911632248606258,Random Forest,Original
+std_dev,0.050385371306392986,Random Forest,Original
+variance,0.09801971105896025,Random Forest,Original
+cv,0.11082901570368212,Random Forest,Original
+iqr,0.023573589542057703,Random Forest,Original
+mad,0.04873980223160432,Random Forest,Original
+min,0.11158966691250011,Random Forest,Original
+max,0.0,Random Forest,Original
+range,0.0,Random Forest,Original
+percentile_5,0.08214405089574967,Random Forest,Original
+percentile_95,0.0,Random Forest,Original
+zero_count,0.0006213496046877799,Random Forest,Original
+zero_ratio,0.0,Random Forest,Original
+longest_zero_streak,0.0002445327519852739,Random Forest,Original
+zero_streak_count,0.0,Random Forest,Original
+mean_abs_daily_change,0.005069087920738747,Random Forest,Original
+std_abs_daily_change,0.0,Random Forest,Original
+max_abs_daily_change,0.013548101286059702,Random Forest,Original
+unusually_large_changes_count,0.0,Random Forest,Original
+linear_trend_slope,0.00012264845841760956,Random Forest,Original
+trend_r2,0.005712392034512078,Random Forest,Original
+early_vs_late_change,0.002617442902768994,Random Forest,Original
+relative_trend,0.00012391324891324791,Random Forest,Original
+monthly_mean_1,0.00028984305923960874,Random Forest,Original
+monthly_std_1,0.012650693081871667,Random Forest,Original
+monthly_mean_2,0.0,Random Forest,Original
+monthly_std_2,0.07516832641546131,Random Forest,Original
+monthly_mean_3,0.00022617492852048903,Random Forest,Original
+monthly_std_3,0.009764518373852334,Random Forest,Original
+monthly_mean_4,0.0006180341312408232,Random Forest,Original
+monthly_std_4,0.019267375108248445,Random Forest,Original
+monthly_mean_5,0.0,Random Forest,Original
+monthly_std_5,0.057351600655473865,Random Forest,Original
+monthly_mean_6,0.00011042105263157857,Random Forest,Original
+monthly_std_6,0.04639968673611042,Random Forest,Original
+monthly_mean_7,0.00011240122744702891,Random Forest,Original
+monthly_std_7,0.009065286423240969,Random Forest,Original
+monthly_mean_8,0.002508441562032242,Random Forest,Original
+monthly_std_8,0.008893978444236178,Random Forest,Original
+monthly_mean_9,0.0003397192858859147,Random Forest,Original
+monthly_std_9,0.008189061880414735,Random Forest,Original
+monthly_mean_10,0.0004925825021403692,Random Forest,Original
+monthly_std_10,0.00022260419319242758,Random Forest,Original
+monthly_mean_11,0.0013415031819114878,Random Forest,Original
+monthly_std_11,0.0072201437724502115,Random Forest,Original
+monthly_mean_12,0.0,Random Forest,Original
+monthly_std_12,0.0,Random Forest,Original
+seasonal_variation,0.0,Random Forest,Original
+temporal_consistency,0.0,Random Forest,Original
+peak_to_average_ratio,0.16943688200585133,Random Forest,Original
+high_consumption_day_count,0.0,Random Forest,Original
+high_consumption_day_ratio,0.012289598968203825,Random Forest,Original
+peak_frequency,0.0002797407930878131,Random Forest,Original
+mean,0.0,XGBoost,Original
+median,0.0,XGBoost,Original
+trimmed_mean,0.0,XGBoost,Original
+std_dev,0.018982743844389915,XGBoost,Original
+variance,0.0,XGBoost,Original
+cv,0.831108808517456,XGBoost,Original
+iqr,0.0,XGBoost,Original
+mad,0.0,XGBoost,Original
+min,0.04429880529642105,XGBoost,Original
+max,0.0,XGBoost,Original
+range,0.0,XGBoost,Original
+percentile_5,0.0,XGBoost,Original
+percentile_95,0.0,XGBoost,Original
+zero_count,0.0,XGBoost,Original
+zero_ratio,0.0,XGBoost,Original
+longest_zero_streak,0.0,XGBoost,Original
+zero_streak_count,0.0,XGBoost,Original
+mean_abs_daily_change,0.0,XGBoost,Original
+std_abs_daily_change,0.0,XGBoost,Original
+max_abs_daily_change,0.0,XGBoost,Original
+unusually_large_changes_count,0.0,XGBoost,Original
+linear_trend_slope,0.0,XGBoost,Original
+trend_r2,0.0,XGBoost,Original
+early_vs_late_change,0.0,XGBoost,Original
+relative_trend,0.0,XGBoost,Original
+monthly_mean_1,0.0,XGBoost,Original
+monthly_std_1,0.0,XGBoost,Original
+monthly_mean_2,0.0,XGBoost,Original
+monthly_std_2,0.0,XGBoost,Original
+monthly_mean_3,0.0,XGBoost,Original
+monthly_std_3,0.0,XGBoost,Original
+monthly_mean_4,0.0,XGBoost,Original
+monthly_std_4,0.0,XGBoost,Original
+monthly_mean_5,0.0,XGBoost,Original
+monthly_std_5,0.0,XGBoost,Original
+monthly_mean_6,0.0,XGBoost,Original
+monthly_std_6,0.0,XGBoost,Original
+monthly_mean_7,0.0,XGBoost,Original
+monthly_std_7,0.0,XGBoost,Original
+monthly_mean_8,0.0,XGBoost,Original
+monthly_std_8,0.0,XGBoost,Original
+monthly_mean_9,0.0,XGBoost,Original
+monthly_std_9,0.0,XGBoost,Original
+monthly_mean_10,0.0,XGBoost,Original
+monthly_std_10,0.0,XGBoost,Original
+monthly_mean_11,0.0,XGBoost,Original
+monthly_std_11,0.0,XGBoost,Original
+monthly_mean_12,0.0,XGBoost,Original
+monthly_std_12,0.0,XGBoost,Original
+seasonal_variation,0.0,XGBoost,Original
+temporal_consistency,0.0,XGBoost,Original
+peak_to_average_ratio,0.10560963302850723,XGBoost,Original
+high_consumption_day_count,0.0,XGBoost,Original
+high_consumption_day_ratio,0.0,XGBoost,Original
+peak_frequency,0.0,XGBoost,Original
+mean,0.0,Decision Tree (Weighted),Original
+median,0.0,Decision Tree (Weighted),Original
+trimmed_mean,0.0,Decision Tree (Weighted),Original
+std_dev,0.0,Decision Tree (Weighted),Original
+variance,0.0,Decision Tree (Weighted),Original
+cv,0.0,Decision Tree (Weighted),Original
+iqr,0.0,Decision Tree (Weighted),Original
+mad,0.0,Decision Tree (Weighted),Original
+min,0.0,Decision Tree (Weighted),Original
+max,0.0,Decision Tree (Weighted),Original
+range,0.0,Decision Tree (Weighted),Original
+percentile_5,0.9999999999999079,Decision Tree (Weighted),Original
+percentile_95,0.0,Decision Tree (Weighted),Original
+zero_count,0.0,Decision Tree (Weighted),Original
+zero_ratio,0.0,Decision Tree (Weighted),Original
+longest_zero_streak,0.0,Decision Tree (Weighted),Original
+zero_streak_count,0.0,Decision Tree (Weighted),Original
+mean_abs_daily_change,0.0,Decision Tree (Weighted),Original
+std_abs_daily_change,0.0,Decision Tree (Weighted),Original
+max_abs_daily_change,0.0,Decision Tree (Weighted),Original
+unusually_large_changes_count,0.0,Decision Tree (Weighted),Original
+linear_trend_slope,0.0,Decision Tree (Weighted),Original
+trend_r2,0.0,Decision Tree (Weighted),Original
+early_vs_late_change,0.0,Decision Tree (Weighted),Original
+relative_trend,0.0,Decision Tree (Weighted),Original
+monthly_mean_1,0.0,Decision Tree (Weighted),Original
+monthly_std_1,9.22595333463437e-14,Decision Tree (Weighted),Original
+monthly_mean_2,0.0,Decision Tree (Weighted),Original
+monthly_std_2,0.0,Decision Tree (Weighted),Original
+monthly_mean_3,0.0,Decision Tree (Weighted),Original
+monthly_std_3,0.0,Decision Tree (Weighted),Original
+monthly_mean_4,0.0,Decision Tree (Weighted),Original
+monthly_std_4,0.0,Decision Tree (Weighted),Original
+monthly_mean_5,0.0,Decision Tree (Weighted),Original
+monthly_std_5,0.0,Decision Tree (Weighted),Original
+monthly_mean_6,0.0,Decision Tree (Weighted),Original
+monthly_std_6,0.0,Decision Tree (Weighted),Original
+monthly_mean_7,0.0,Decision Tree (Weighted),Original
+monthly_std_7,0.0,Decision Tree (Weighted),Original
+monthly_mean_8,0.0,Decision Tree (Weighted),Original
+monthly_std_8,0.0,Decision Tree (Weighted),Original
+monthly_mean_9,0.0,Decision Tree (Weighted),Original
+monthly_std_9,0.0,Decision Tree (Weighted),Original
+monthly_mean_10,0.0,Decision Tree (Weighted),Original
+monthly_std_10,0.0,Decision Tree (Weighted),Original
+monthly_mean_11,0.0,Decision Tree (Weighted),Original
+monthly_std_11,0.0,Decision Tree (Weighted),Original
+monthly_mean_12,0.0,Decision Tree (Weighted),Original
+monthly_std_12,0.0,Decision Tree (Weighted),Original
+seasonal_variation,0.0,Decision Tree (Weighted),Original
+temporal_consistency,0.0,Decision Tree (Weighted),Original
+peak_to_average_ratio,0.0,Decision Tree (Weighted),Original
+high_consumption_day_count,0.0,Decision Tree (Weighted),Original
+high_consumption_day_ratio,0.0,Decision Tree (Weighted),Original
+peak_frequency,0.0,Decision Tree (Weighted),Original
+mean,0.0040571496916168215,Random Forest (Weighted),Original
+median,0.0,Random Forest (Weighted),Original
+trimmed_mean,0.000912465902132161,Random Forest (Weighted),Original
+std_dev,0.06526142067899379,Random Forest (Weighted),Original
+variance,0.09974993902946792,Random Forest (Weighted),Original
+cv,0.11271024288111237,Random Forest (Weighted),Original
+iqr,0.021013759413734453,Random Forest (Weighted),Original
+mad,0.05528767324593497,Random Forest (Weighted),Original
+min,0.11366779650304043,Random Forest (Weighted),Original
+max,0.0,Random Forest (Weighted),Original
+range,0.0,Random Forest (Weighted),Original
+percentile_5,0.08293367813078881,Random Forest (Weighted),Original
+percentile_95,0.0,Random Forest (Weighted),Original
+zero_count,0.00033853270223752096,Random Forest (Weighted),Original
+zero_ratio,0.0,Random Forest (Weighted),Original
+longest_zero_streak,0.0,Random Forest (Weighted),Original
+zero_streak_count,0.0,Random Forest (Weighted),Original
+mean_abs_daily_change,0.00037900811016311725,Random Forest (Weighted),Original
+std_abs_daily_change,0.0,Random Forest (Weighted),Original
+max_abs_daily_change,0.01675828847300123,Random Forest (Weighted),Original
+unusually_large_changes_count,0.0,Random Forest (Weighted),Original
+linear_trend_slope,0.0006997458150769578,Random Forest (Weighted),Original
+trend_r2,0.000556597099398656,Random Forest (Weighted),Original
+early_vs_late_change,0.0017214459864966242,Random Forest (Weighted),Original
+relative_trend,0.00026348141396914963,Random Forest (Weighted),Original
+monthly_mean_1,0.0003779759333982073,Random Forest (Weighted),Original
+monthly_std_1,0.0005356423718516727,Random Forest (Weighted),Original
+monthly_mean_2,0.0,Random Forest (Weighted),Original
+monthly_std_2,0.07576413375766197,Random Forest (Weighted),Original
+monthly_mean_3,3.807014487704289e-05,Random Forest (Weighted),Original
+monthly_std_3,0.009336495888678053,Random Forest (Weighted),Original
+monthly_mean_4,0.006580154751886156,Random Forest (Weighted),Original
+monthly_std_4,0.018935340047512534,Random Forest (Weighted),Original
+monthly_mean_5,0.004360410154237082,Random Forest (Weighted),Original
+monthly_std_5,0.05585313322669593,Random Forest (Weighted),Original
+monthly_mean_6,0.0028827979321102005,Random Forest (Weighted),Original
+monthly_std_6,0.03391023773803612,Random Forest (Weighted),Original
+monthly_mean_7,0.0007178343555900453,Random Forest (Weighted),Original
+monthly_std_7,0.009205131274001367,Random Forest (Weighted),Original
+monthly_mean_8,0.002683715619374912,Random Forest (Weighted),Original
+monthly_std_8,0.008151397084252249,Random Forest (Weighted),Original
+monthly_mean_9,7.604573204323607e-05,Random Forest (Weighted),Original
+monthly_std_9,0.007255496168021864,Random Forest (Weighted),Original
+monthly_mean_10,0.0011812037371139656,Random Forest (Weighted),Original
+monthly_std_10,0.0022253540914205497,Random Forest (Weighted),Original
+monthly_mean_11,0.0026610411004824156,Random Forest (Weighted),Original
+monthly_std_11,0.006057554083439092,Random Forest (Weighted),Original
+monthly_mean_12,0.00011364465901185473,Random Forest (Weighted),Original
+monthly_std_12,3.775243058664187e-05,Random Forest (Weighted),Original
+seasonal_variation,0.0,Random Forest (Weighted),Original
+temporal_consistency,0.0,Random Forest (Weighted),Original
+peak_to_average_ratio,0.16980980114692215,Random Forest (Weighted),Original
+high_consumption_day_count,0.0,Random Forest (Weighted),Original
+high_consumption_day_ratio,0.004938411493629709,Random Forest (Weighted),Original
+peak_frequency,0.0,Random Forest (Weighted),Original
+mean,0.00023710897949058563,XGBoost (Weighted),Original
+median,0.0,XGBoost (Weighted),Original
+trimmed_mean,4.327853457652964e-05,XGBoost (Weighted),Original
+std_dev,0.007034997455775738,XGBoost (Weighted),Original
+variance,0.0,XGBoost (Weighted),Original
+cv,0.5320159792900085,XGBoost (Weighted),Original
+iqr,0.0,XGBoost (Weighted),Original
+mad,0.00043087577796541154,XGBoost (Weighted),Original
+min,0.0836826041340828,XGBoost (Weighted),Original
+max,0.0,XGBoost (Weighted),Original
+range,0.0,XGBoost (Weighted),Original
+percentile_5,0.0,XGBoost (Weighted),Original
+percentile_95,0.0,XGBoost (Weighted),Original
+zero_count,0.0,XGBoost (Weighted),Original
+zero_ratio,0.0,XGBoost (Weighted),Original
+longest_zero_streak,0.0,XGBoost (Weighted),Original
+zero_streak_count,0.0,XGBoost (Weighted),Original
+mean_abs_daily_change,0.0,XGBoost (Weighted),Original
+std_abs_daily_change,0.0,XGBoost (Weighted),Original
+max_abs_daily_change,0.0,XGBoost (Weighted),Original
+unusually_large_changes_count,0.0,XGBoost (Weighted),Original
+linear_trend_slope,0.0,XGBoost (Weighted),Original
+trend_r2,0.0,XGBoost (Weighted),Original
+early_vs_late_change,0.0,XGBoost (Weighted),Original
+relative_trend,0.0,XGBoost (Weighted),Original
+monthly_mean_1,0.0,XGBoost (Weighted),Original
+monthly_std_1,0.0,XGBoost (Weighted),Original
+monthly_mean_2,0.0,XGBoost (Weighted),Original
+monthly_std_2,0.0,XGBoost (Weighted),Original
+monthly_mean_3,0.0,XGBoost (Weighted),Original
+monthly_std_3,0.0,XGBoost (Weighted),Original
+monthly_mean_4,0.0,XGBoost (Weighted),Original
+monthly_std_4,0.0,XGBoost (Weighted),Original
+monthly_mean_5,0.0,XGBoost (Weighted),Original
+monthly_std_5,0.0,XGBoost (Weighted),Original
+monthly_mean_6,0.0,XGBoost (Weighted),Original
+monthly_std_6,0.0,XGBoost (Weighted),Original
+monthly_mean_7,0.0,XGBoost (Weighted),Original
+monthly_std_7,0.0,XGBoost (Weighted),Original
+monthly_mean_8,0.0,XGBoost (Weighted),Original
+monthly_std_8,0.0,XGBoost (Weighted),Original
+monthly_mean_9,0.0,XGBoost (Weighted),Original
+monthly_std_9,0.0,XGBoost (Weighted),Original
+monthly_mean_10,0.0,XGBoost (Weighted),Original
+monthly_std_10,0.0,XGBoost (Weighted),Original
+monthly_mean_11,0.0,XGBoost (Weighted),Original
+monthly_std_11,0.0,XGBoost (Weighted),Original
+monthly_mean_12,0.0,XGBoost (Weighted),Original
+monthly_std_12,0.0,XGBoost (Weighted),Original
+seasonal_variation,0.0,XGBoost (Weighted),Original
+temporal_consistency,0.0,XGBoost (Weighted),Original
+peak_to_average_ratio,0.37655511498451233,XGBoost (Weighted),Original
+high_consumption_day_count,0.0,XGBoost (Weighted),Original
+high_consumption_day_ratio,0.0,XGBoost (Weighted),Original
+peak_frequency,0.0,XGBoost (Weighted),Original
+mean,0.0,Decision Tree,SMOTE
+median,0.0,Decision Tree,SMOTE
+trimmed_mean,0.0,Decision Tree,SMOTE
+std_dev,0.0,Decision Tree,SMOTE
+variance,0.0,Decision Tree,SMOTE
+cv,0.0,Decision Tree,SMOTE
+iqr,0.0,Decision Tree,SMOTE
+mad,0.0,Decision Tree,SMOTE
+min,0.0,Decision Tree,SMOTE
+max,0.0,Decision Tree,SMOTE
+range,0.0,Decision Tree,SMOTE
+percentile_5,1.0,Decision Tree,SMOTE
+percentile_95,0.0,Decision Tree,SMOTE
+zero_count,0.0,Decision Tree,SMOTE
+zero_ratio,0.0,Decision Tree,SMOTE
+longest_zero_streak,0.0,Decision Tree,SMOTE
+zero_streak_count,0.0,Decision Tree,SMOTE
+mean_abs_daily_change,0.0,Decision Tree,SMOTE
+std_abs_daily_change,0.0,Decision Tree,SMOTE
+max_abs_daily_change,0.0,Decision Tree,SMOTE
+unusually_large_changes_count,0.0,Decision Tree,SMOTE
+linear_trend_slope,0.0,Decision Tree,SMOTE
+trend_r2,0.0,Decision Tree,SMOTE
+early_vs_late_change,0.0,Decision Tree,SMOTE
+relative_trend,0.0,Decision Tree,SMOTE
+monthly_mean_1,0.0,Decision Tree,SMOTE
+monthly_std_1,0.0,Decision Tree,SMOTE
+monthly_mean_2,0.0,Decision Tree,SMOTE
+monthly_std_2,0.0,Decision Tree,SMOTE
+monthly_mean_3,0.0,Decision Tree,SMOTE
+monthly_std_3,0.0,Decision Tree,SMOTE
+monthly_mean_4,0.0,Decision Tree,SMOTE
+monthly_std_4,0.0,Decision Tree,SMOTE
+monthly_mean_5,0.0,Decision Tree,SMOTE
+monthly_std_5,0.0,Decision Tree,SMOTE
+monthly_mean_6,0.0,Decision Tree,SMOTE
+monthly_std_6,0.0,Decision Tree,SMOTE
+monthly_mean_7,0.0,Decision Tree,SMOTE
+monthly_std_7,0.0,Decision Tree,SMOTE
+monthly_mean_8,0.0,Decision Tree,SMOTE
+monthly_std_8,0.0,Decision Tree,SMOTE
+monthly_mean_9,0.0,Decision Tree,SMOTE
+monthly_std_9,0.0,Decision Tree,SMOTE
+monthly_mean_10,0.0,Decision Tree,SMOTE
+monthly_std_10,0.0,Decision Tree,SMOTE
+monthly_mean_11,0.0,Decision Tree,SMOTE
+monthly_std_11,0.0,Decision Tree,SMOTE
+monthly_mean_12,0.0,Decision Tree,SMOTE
+monthly_std_12,0.0,Decision Tree,SMOTE
+seasonal_variation,0.0,Decision Tree,SMOTE
+temporal_consistency,0.0,Decision Tree,SMOTE
+peak_to_average_ratio,0.0,Decision Tree,SMOTE
+high_consumption_day_count,0.0,Decision Tree,SMOTE
+high_consumption_day_ratio,0.0,Decision Tree,SMOTE
+peak_frequency,0.0,Decision Tree,SMOTE
+mean,0.0035266627483219615,Random Forest,SMOTE
+median,2.0944981992810792e-05,Random Forest,SMOTE
+trimmed_mean,0.0007391016795040361,Random Forest,SMOTE
+std_dev,0.06651752084457623,Random Forest,SMOTE
+variance,0.10036283895711712,Random Forest,SMOTE
+cv,0.11123744498446145,Random Forest,SMOTE
+iqr,0.023493815421398747,Random Forest,SMOTE
+mad,0.05871685902696428,Random Forest,SMOTE
+min,0.1222131255380274,Random Forest,SMOTE
+max,0.0,Random Forest,SMOTE
+range,0.0,Random Forest,SMOTE
+percentile_5,0.0817091869565457,Random Forest,SMOTE
+percentile_95,0.0,Random Forest,SMOTE
+zero_count,0.0,Random Forest,SMOTE
+zero_ratio,0.0,Random Forest,SMOTE
+longest_zero_streak,0.0,Random Forest,SMOTE
+zero_streak_count,0.0,Random Forest,SMOTE
+mean_abs_daily_change,0.00012535565435976506,Random Forest,SMOTE
+std_abs_daily_change,0.0,Random Forest,SMOTE
+max_abs_daily_change,0.01825379749665446,Random Forest,SMOTE
+unusually_large_changes_count,0.0,Random Forest,SMOTE
+linear_trend_slope,0.000248438578292441,Random Forest,SMOTE
+trend_r2,0.0004708836310960894,Random Forest,SMOTE
+early_vs_late_change,0.0013114008432995497,Random Forest,SMOTE
+relative_trend,2.0957316562281515e-05,Random Forest,SMOTE
+monthly_mean_1,0.0015417097382594434,Random Forest,SMOTE
+monthly_std_1,0.0,Random Forest,SMOTE
+monthly_mean_2,0.0,Random Forest,SMOTE
+monthly_std_2,0.07591599815726013,Random Forest,SMOTE
+monthly_mean_3,4.188913875491688e-05,Random Forest,SMOTE
+monthly_std_3,0.009589330779206106,Random Forest,SMOTE
+monthly_mean_4,0.005716233744785572,Random Forest,SMOTE
+monthly_std_4,0.019525790837017446,Random Forest,SMOTE
+monthly_mean_5,0.003415293101431741,Random Forest,SMOTE
+monthly_std_5,0.057115721422789374,Random Forest,SMOTE
+monthly_mean_6,6.270485338194287e-05,Random Forest,SMOTE
+monthly_std_6,0.03567900712702109,Random Forest,SMOTE
+monthly_mean_7,0.000367785839234791,Random Forest,SMOTE
+monthly_std_7,0.009082169244907743,Random Forest,SMOTE
+monthly_mean_8,0.0023007939011333196,Random Forest,SMOTE
+monthly_std_8,0.00828921403174901,Random Forest,SMOTE
+monthly_mean_9,0.0001045530631704311,Random Forest,SMOTE
+monthly_std_9,0.007611424925198266,Random Forest,SMOTE
+monthly_mean_10,0.00020789041015922,Random Forest,SMOTE
+monthly_std_10,0.0005975094112343659,Random Forest,SMOTE
+monthly_mean_11,0.0024466975718226733,Random Forest,SMOTE
+monthly_std_11,0.006260005868862003,Random Forest,SMOTE
+monthly_mean_12,2.0956160814315495e-05,Random Forest,SMOTE
+monthly_std_12,2.0752488358323643e-05,Random Forest,SMOTE
+seasonal_variation,0.0,Random Forest,SMOTE
+temporal_consistency,0.0,Random Forest,SMOTE
+peak_to_average_ratio,0.1598534242354149,Random Forest,SMOTE
+high_consumption_day_count,0.0,Random Forest,SMOTE
+high_consumption_day_ratio,0.005264809288858688,Random Forest,SMOTE
+peak_frequency,0.0,Random Forest,SMOTE
+mean,0.0,XGBoost,SMOTE
+median,0.0,XGBoost,SMOTE
+trimmed_mean,0.0,XGBoost,SMOTE
+std_dev,0.0,XGBoost,SMOTE
+variance,0.0,XGBoost,SMOTE
+cv,1.0,XGBoost,SMOTE
+iqr,0.0,XGBoost,SMOTE
+mad,0.0,XGBoost,SMOTE
+min,0.0,XGBoost,SMOTE
+max,0.0,XGBoost,SMOTE
+range,0.0,XGBoost,SMOTE
+percentile_5,0.0,XGBoost,SMOTE
+percentile_95,0.0,XGBoost,SMOTE
+zero_count,0.0,XGBoost,SMOTE
+zero_ratio,0.0,XGBoost,SMOTE
+longest_zero_streak,0.0,XGBoost,SMOTE
+zero_streak_count,0.0,XGBoost,SMOTE
+mean_abs_daily_change,0.0,XGBoost,SMOTE
+std_abs_daily_change,0.0,XGBoost,SMOTE
+max_abs_daily_change,0.0,XGBoost,SMOTE
+unusually_large_changes_count,0.0,XGBoost,SMOTE
+linear_trend_slope,0.0,XGBoost,SMOTE
+trend_r2,0.0,XGBoost,SMOTE
+early_vs_late_change,0.0,XGBoost,SMOTE
+relative_trend,0.0,XGBoost,SMOTE
+monthly_mean_1,0.0,XGBoost,SMOTE
+monthly_std_1,0.0,XGBoost,SMOTE
+monthly_mean_2,0.0,XGBoost,SMOTE
+monthly_std_2,0.0,XGBoost,SMOTE
+monthly_mean_3,0.0,XGBoost,SMOTE
+monthly_std_3,0.0,XGBoost,SMOTE
+monthly_mean_4,0.0,XGBoost,SMOTE
+monthly_std_4,0.0,XGBoost,SMOTE
+monthly_mean_5,0.0,XGBoost,SMOTE
+monthly_std_5,0.0,XGBoost,SMOTE
+monthly_mean_6,0.0,XGBoost,SMOTE
+monthly_std_6,0.0,XGBoost,SMOTE
+monthly_mean_7,0.0,XGBoost,SMOTE
+monthly_std_7,0.0,XGBoost,SMOTE
+monthly_mean_8,0.0,XGBoost,SMOTE
+monthly_std_8,0.0,XGBoost,SMOTE
+monthly_mean_9,0.0,XGBoost,SMOTE
+monthly_std_9,0.0,XGBoost,SMOTE
+monthly_mean_10,0.0,XGBoost,SMOTE
+monthly_std_10,0.0,XGBoost,SMOTE
+monthly_mean_11,0.0,XGBoost,SMOTE
+monthly_std_11,0.0,XGBoost,SMOTE
+monthly_mean_12,0.0,XGBoost,SMOTE
+monthly_std_12,0.0,XGBoost,SMOTE
+seasonal_variation,0.0,XGBoost,SMOTE
+temporal_consistency,0.0,XGBoost,SMOTE
+peak_to_average_ratio,0.0,XGBoost,SMOTE
+high_consumption_day_count,0.0,XGBoost,SMOTE
+high_consumption_day_ratio,0.0,XGBoost,SMOTE
+peak_frequency,0.0,XGBoost,SMOTE

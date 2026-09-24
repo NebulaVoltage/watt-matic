@@ -1,0 +1,14 @@
+Metric,Value
+Total Cells,43812648
+Total Missing,11233528
+Missing %,25.64%
+Missing Normal %,25.10%
+Missing Theft %,31.47%
+Total Zeros,5788603
+Zero %,13.21%
+Zero Normal %,13.67%
+Zero Theft %,8.31%
+Negatives,0
+Infinities,0
+Dup CONS_NO,0
+Dup Rows,0

@@ -1,0 +1,22 @@
+# Candidate Reduced Feature Set
+# Total Features: 18
+# Selection Logic: Top SHAP importance on Train/Val, excluding collinear redundancies (>0.85 correlation).
+
+missing_streak_count
+monthly_std_4
+monthly_std_3
+mean_abs_daily_change
+missing_count
+monthly_mean_10
+longest_missing_streak
+peak_to_average_ratio
+monthly_std_5
+monthly_std_10
+monthly_std_11
+cv
+monthly_mean_8
+max
+monthly_std_8
+monthly_mean_11
+monthly_std_1
+monthly_mean_2
