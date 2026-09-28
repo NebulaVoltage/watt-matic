@@ -14,6 +14,9 @@ export const App: React.FC = () => {
   return (
     <Router>
       <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-emerald-500/30 selection:text-emerald-300">
+        <div className="m-4 p-4 bg-emerald-600 border-2 border-emerald-300 rounded-xl text-emerald-100 text-2xl font-bold text-center shadow-lg" id="css-test-banner">
+          [CSS PIPELINE VERIFIED ACTIVE] Tailwind v4 Utility Test Rendered Successfully
+        </div>
         <Navbar />
         <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <Routes>
