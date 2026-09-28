@@ -1,29 +1,28 @@
-import unittest
+import pytest
 import pandas as pd
-import numpy as np
+from backend.inference.uci_forecaster import UCIForecaster
 
-class TestUCIForecasting(unittest.TestCase):
-    def setUp(self):
-        self.df = pd.read_csv('data/processed/uci_hourly_aggregate_load.csv', parse_dates=[0], index_col=0)
-        
-    def test_timestamp_ordering(self):
-        self.assertTrue(self.df.index.is_monotonic_increasing, "Timestamps are not strictly chronological")
-        
-    def test_no_future_leakage(self):
-        # Target shift(-1) must be strictly future
-        target = self.df['aggregate_load_kwh'].shift(-1)
-        self.assertEqual(target.iloc[0], self.df['aggregate_load_kwh'].iloc[1])
-        
-    def test_rolling_causality(self):
-        # rolling_mean_24 must not include current index if shifted
-        s = self.df['aggregate_load_kwh']
-        roll24 = s.rolling(24).mean()
-        self.assertAlmostEqual(roll24.iloc[23], s.iloc[:24].mean())
-        
-    def test_chronological_split_no_overlap(self):
-        train_end = pd.Timestamp('2013-12-31 23:00:00')
-        val_start = pd.Timestamp('2014-01-01 00:00:00')
-        self.assertLess(train_end, val_start)
+@pytest.fixture
+def forecaster():
+    return UCIForecaster()
 
-if __name__ == '__main__':
-    unittest.main()
+def test_uci_insufficient_history(forecaster):
+    # Only 50 hours (less than required 168)
+    dates = pd.date_range("2014-01-01 00:00:00", periods=50, freq="h")
+    history = [{"timestamp": str(dt), "load_kwh": 100.0 + i} for i, dt in enumerate(dates)]
+
+    with pytest.raises(ValueError, match="Insufficient history"):
+        forecaster.predict_next_hour(history)
+
+def test_uci_forecasting_valid(forecaster):
+    # 200 hours (> 168 hours)
+    dates = pd.date_range("2014-01-01 00:00:00", periods=200, freq="h")
+    history = [{"timestamp": str(dt), "load_kwh": 5000.0 + (i % 24) * 100.0} for i, dt in enumerate(dates)]
+
+    res = forecaster.predict_next_hour(history)
+
+    assert res["forecast_horizon"] == "next_hour"
+    assert res["target_timestamp"] == "2014-01-09 08:00:00"
+    assert isinstance(res["predicted_load_kwh"], float)
+    assert res["predicted_load_kwh"] > 0
+    assert "model_info" in res

@@ -1,92 +1,107 @@
-from fastapi import APIRouter, HTTPException, UploadFile, File, Form
-import pandas as pd
-import numpy as np
 import io
-from typing import Optional, List
-from backend.schemas.sgcc import MeterAnalyzeInput, SingleMeterResponse, BatchMeterResponse, BatchMeterItem
-from backend.services.sgcc_service import sgcc_service
+import pandas as pd
+from typing import Optional
+from fastapi import APIRouter, HTTPException, UploadFile, File, Query, status
+from fastapi.responses import StreamingResponse
 
-router = APIRouter(prefix="/api/v1/detection", tags=["Detection"])
+from backend.schemas.sgcc import MeterAnalyzeInput, SingleMeterResponse, BatchMeterResponse
+from backend.services.sgcc_service import SGCCService
 
-@router.post("/analyze", response_model=SingleMeterResponse)
-def analyze_single_meter(data: MeterAnalyzeInput):
-    try:
-        meter_id = data.meter_id or "METER_UNKNOWN"
-        
-        # Build DataFrame
-        if data.readings and len(data.readings) > 0:
-            dates = [r.date for r in data.readings]
-            consumptions = [r.consumption for r in data.readings]
-        elif data.dates and data.consumption:
-            dates = data.dates
-            consumptions = data.consumption
-        else:
-            # Fallback sample data if no consumption values provided
-            date_range = pd.date_range('2014-01-01', periods=1034, freq='D')
-            dates = [str(d.date()) for d in date_range]
-            consumptions = list(np.random.normal(12, 3, size=1034))
-            
-        parsed_dates = pd.to_datetime(dates)
-        df_meter = pd.DataFrame({'consumption': consumptions}, index=parsed_dates)
-        
-        result = sgcc_service.predict_meter(meter_id, df_meter)
-        return result
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Error analyzing meter: {str(e)}")
+router = APIRouter(prefix="/detection", tags=["Meter Tampering Detection"])
 
-@router.post("/batch", response_model=BatchMeterResponse)
-async def analyze_batch_meters(file: UploadFile = File(...)):
-    if not file.filename.endswith('.csv'):
-        raise HTTPException(status_code=400, detail="Only CSV files are supported.")
-        
-    try:
-        contents = await file.read()
-        df = pd.read_csv(io.BytesIO(contents))
-        
-        # Determine ID column and consumption columns
-        id_col = 'CONS_NO' if 'CONS_NO' in df.columns else ('meter_id' if 'meter_id' in df.columns else df.columns[0])
-        consump_cols = [c for c in df.columns if c not in [id_col, 'FLAG', 'flag']]
-        
-        results = []
-        normal_cnt = 0
-        theft_cnt = 0
-        high_risk_cnt = 0
-        
-        # Process each meter safely
-        for idx, row in df.iterrows():
-            m_id = str(row[id_col])
-            raw_series = row[consump_cols].values
-            
-            # Convert string date column names
-            dates = pd.to_datetime(consump_cols, errors='coerce')
-            df_m = pd.DataFrame({'consumption': raw_series}, index=dates)
-            
-            res = sgcc_service.predict_meter(m_id, df_m)
-            
-            if res['prediction'] == 'potential_tampering':
-                theft_cnt += 1
-            else:
-                normal_cnt += 1
-                
-            if res['risk_level'] in ['High', 'Very High']:
-                high_risk_cnt += 1
-                
-            results.append(BatchMeterItem(
-                meter_id=m_id,
-                prediction=res['prediction'],
-                probability=res['probability'],
-                risk_level=res['risk_level'],
-                observation_count=res['data_quality']['observation_count'],
-                missing_count=res['data_quality']['missing_count'],
-                missing_ratio=res['data_quality']['missing_ratio']
-            ))
-            
-        return BatchMeterResponse(
-            total_meters=len(results),
-            normal_count=normal_cnt,
-            potential_tampering_count=theft_cnt,
-            high_risk_count=high_risk_cnt,
-            results=results
+@router.post("/analyze", response_model=SingleMeterResponse, summary="Analyze Single Meter Consumption Series")
+def analyze_meter(payload: MeterAnalyzeInput):
+    """
+    Analyzes a single electricity meter's daily consumption series to detect potential meter tampering.
+    Applies chronological date sorting, bounded ffill, exact 18-feature extraction, median imputation,
+    and frozen XGBoost inference at decision threshold 0.50.
+    """
+    dates = []
+    consumption = []
+
+    # Extract dates and consumption from either format
+    if payload.readings:
+        for r in payload.readings:
+            dates.append(r.date)
+            consumption.append(r.consumption)
+    elif payload.dates is not None and payload.consumption is not None:
+        dates = payload.dates
+        consumption = payload.consumption
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail="Must provide either 'readings' list or parallel 'dates' and 'consumption' lists."
         )
+
+    if len(dates) == 0:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Consumption series cannot be empty."
+        )
+
+    if len(dates) != len(consumption):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Length mismatch between dates ({len(dates)}) and consumption values ({len(consumption)})."
+        )
+
+    service = SGCCService()
+    try:
+        res = service.analyze_single_meter(meter_id=payload.meter_id, dates=dates, consumption=consumption)
+        return res
+    except ValueError as ve:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(ve))
     except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Failed to process batch CSV: {str(e)}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Inference error: {e}")
+
+
+@router.post("/batch", summary="Batch Audit Multiple Meters via CSV")
+def analyze_batch(file: UploadFile = File(...), export_csv: bool = Query(False, description="Set to True to download results as CSV")):
+    """
+    Processes a bulk CSV file containing meter IDs and daily consumption columns.
+    Analyzes each meter independently and returns aggregate risk counts and individual assessments.
+    Optionally exports the complete results table as a downloadable CSV.
+    """
+    if not file.filename.endswith(('.csv', '.txt')):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid file format. Uploaded file must be a CSV."
+        )
+
+    try:
+        content = file.file.read()
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Failed to read uploaded file: {e}")
+
+    service = SGCCService()
+    try:
+        batch_res = service.analyze_batch_csv(content)
+    except ValueError as ve:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Batch processing error: {e}")
+
+    if export_csv:
+        flat_rows = []
+        for r in batch_res["results"]:
+            flat_rows.append({
+                "meter_id": r["meter_id"],
+                "prediction": r["prediction"],
+                "probability": r["probability"],
+                "threshold": r["threshold"],
+                "risk_level": r["risk_level"],
+                "observation_count": r["data_quality"]["observation_count"],
+                "missing_count": r["data_quality"]["missing_count"],
+                "missing_ratio": r["data_quality"]["missing_ratio"],
+                "longest_missing_streak": r["data_quality"]["longest_missing_streak"]
+            })
+        out_df = pd.DataFrame(flat_rows)
+        stream = io.StringIO()
+        out_df.to_csv(stream, index=False)
+        return StreamingResponse(
+            io.BytesIO(stream.getvalue().encode('utf-8')),
+            media_type="text/csv",
+            headers={"Content-Disposition": "attachment; filename=GridBalance_Batch_Detection_Results.csv"}
+        )
+
+    return batch_res
