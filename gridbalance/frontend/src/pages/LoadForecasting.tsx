@@ -9,7 +9,6 @@ export const LoadForecasting: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<ForecastResponse | null>(null);
 
-  // Generate 200 sample hourly observations starting from 2014-06-20
   const generateDefaultHistory = (): LoadPointInput[] => {
     const points: LoadPointInput[] = [];
     const baseDt = new Date('2014-06-20T00:00:00');
@@ -50,7 +49,6 @@ export const LoadForecasting: React.FC = () => {
       const res = await api.forecastNextHour(history);
       setResult(res);
 
-      // Save last forecast to session storage for homepage telemetry
       sessionStorage.setItem('gridbalance_last_forecast', res.predicted_load_kwh.toLocaleString());
     } catch (err: any) {
       setError(err.message || "Failed to generate next-hour load forecast.");
@@ -64,7 +62,6 @@ export const LoadForecasting: React.FC = () => {
   const loadDiff = result ? predictedLoad - currentLoad : 0;
   const pctChange = result && currentLoad > 0 ? (loadDiff / currentLoad) * 100 : 0;
 
-  // Build chart dataset appending the predicted point at target_timestamp
   const chartData = [...history.map(h => ({ timestamp: h.timestamp.slice(5, 16), load_kwh: h.load_kwh, isPrediction: false }))];
   if (result) {
     chartData.push({
@@ -75,48 +72,61 @@ export const LoadForecasting: React.FC = () => {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-bold text-slate-100 font-mono tracking-tight flex items-center gap-3">
-          <Zap className="w-7 h-7 text-cyan-400" />
+        <h1 className="text-xl sm:text-2xl font-bold text-slate-100 font-mono tracking-tight flex items-center gap-2.5">
+          <Zap className="w-6 h-6 text-cyan-400" />
           ELECTRICITY LOAD FORECASTING
         </h1>
-        <p className="text-slate-400 text-sm mt-1">
-          Predict next-hour ($t+1$) aggregate grid electricity demand using causal historical load features and frozen XGBoost regression.
+        <p className="text-slate-400 text-xs mt-1">
+          Predict next-hour ($t+1$) aggregate grid electricity demand using causal historical load features.
         </p>
+
+        {/* Phase 9 Status Strip */}
+        <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-xs bg-slate-900 border border-slate-800 p-3 rounded-lg">
+          <div>
+            <span className="text-slate-500">Model:</span> <span className="text-slate-200 font-semibold">UCI XGBoost Regressor</span>
+          </div>
+          <div>
+            <span className="text-slate-500">Features:</span> <span className="text-slate-200 font-semibold">29 Causal Features</span>
+          </div>
+          <div>
+            <span className="text-slate-500">Target:</span> <span className="text-cyan-400 font-bold">Next-Hour Load (t+1)</span>
+          </div>
+          <div>
+            <span className="text-slate-500">Min History:</span> <span className="text-emerald-400 font-semibold">168 Hours</span>
+          </div>
+        </div>
       </div>
 
-      {/* Input & Requirement Notice */}
+      {/* Input Card */}
       <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <h2 className="text-sm font-mono uppercase tracking-wider text-slate-300 flex items-center gap-2">
+            <h2 className="text-xs font-mono uppercase tracking-wider text-slate-300 flex items-center gap-2">
               <Clock className="w-4 h-4 text-cyan-400" />
               Historical Hourly Load Sequence Input
             </h2>
-            <p className="text-xs text-slate-400 font-mono mt-1">
-              Minimum history required: <span className="text-cyan-400 font-bold">168 hours (7 days)</span> for 168-hr lag & rolling window calculations.
-            </p>
           </div>
 
           <button
             type="button"
             onClick={handleGenerateSample}
-            className="px-3.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30 text-xs font-mono transition-colors cursor-pointer"
+            className="px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30 text-xs font-mono transition-colors cursor-pointer"
           >
             Refresh Sample Series ({history.length} hrs)
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="bg-slate-950 p-4 rounded-lg border border-slate-800 font-mono text-xs space-y-2">
+          <div className="bg-slate-950 p-3.5 rounded-lg border border-slate-800 font-mono text-xs space-y-1.5">
             <div className="flex justify-between text-slate-400">
               <span>Sequence Range: {history[0]?.timestamp} to {history[history.length - 1]?.timestamp}</span>
               <span className="text-emerald-400">{history.length} Hourly Observations</span>
             </div>
             <div className="text-[11px] text-slate-500">
-              Latest observation ($t$): <span className="text-slate-200 font-bold">{currentLoad.toLocaleString()} kWh</span> at {history[history.length - 1]?.timestamp}
+              Latest observation ($t$): <span className="text-slate-200 font-bold">{currentLoad.toLocaleString()} kWh</span>
             </div>
           </div>
 
@@ -130,7 +140,7 @@ export const LoadForecasting: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-2.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold font-mono text-xs tracking-wider uppercase transition-colors shadow-md disabled:opacity-50 cursor-pointer flex items-center gap-2"
+            className="px-5 py-2.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold font-mono text-xs tracking-wider uppercase transition-colors shadow-md disabled:opacity-50 cursor-pointer flex items-center gap-2"
           >
             {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
             {loading ? 'Running UCI Regressor...' : 'Forecast Next-Hour Load (t+1)'}
@@ -138,7 +148,7 @@ export const LoadForecasting: React.FC = () => {
         </form>
       </div>
 
-      {/* Forecast Result Banner (Phase 12) */}
+      {/* Forecast Result Banner */}
       {result && (
         <div className="space-y-6">
           <div className="bg-cyan-950/20 border border-cyan-800/80 rounded-xl p-6 space-y-4">
@@ -150,27 +160,26 @@ export const LoadForecasting: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-4 font-mono text-center">
-                <div className="bg-slate-900/90 px-4 py-2 rounded-lg border border-slate-800">
+              <div className="grid grid-cols-3 gap-3 font-mono text-center">
+                <div className="bg-slate-900/90 px-3.5 py-2 rounded-lg border border-slate-800">
                   <div className="text-[10px] text-slate-400 uppercase">Current Load (t)</div>
-                  <div className="text-base font-bold text-slate-200">{currentLoad.toLocaleString()} kWh</div>
+                  <div className="text-sm font-bold text-slate-200">{currentLoad.toLocaleString()} kWh</div>
                 </div>
 
-                <div className="bg-slate-900/90 px-4 py-2 rounded-lg border border-slate-800">
+                <div className="bg-slate-900/90 px-3.5 py-2 rounded-lg border border-slate-800">
                   <div className="text-[10px] text-slate-400 uppercase">Expected Change</div>
-                  <div className={`text-base font-bold ${loadDiff >= 0 ? 'text-emerald-400' : 'text-amber-400'}`}>
+                  <div className={`text-sm font-bold ${loadDiff >= 0 ? 'text-emerald-400' : 'text-amber-400'}`}>
                     {loadDiff >= 0 ? '+' : ''}{loadDiff.toFixed(1)} kWh ({pctChange >= 0 ? '+' : ''}{pctChange.toFixed(2)}%)
                   </div>
                 </div>
 
-                <div className="bg-slate-900/90 px-4 py-2 rounded-lg border border-slate-800">
+                <div className="bg-slate-900/90 px-3.5 py-2 rounded-lg border border-slate-800">
                   <div className="text-[10px] text-slate-400 uppercase">Target Timestamp</div>
-                  <div className="text-xs font-bold text-cyan-300 mt-1">{result.target_timestamp}</div>
+                  <div className="text-xs font-bold text-cyan-300 mt-0.5">{result.target_timestamp}</div>
                 </div>
               </div>
             </div>
 
-            {/* Model & Horizon Metadata */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs bg-slate-950/60 p-3 rounded-lg border border-slate-800/80">
               <div>
                 <span className="text-slate-500">Model Engine:</span>{' '}
@@ -182,22 +191,21 @@ export const LoadForecasting: React.FC = () => {
               </div>
               <div>
                 <span className="text-slate-500">Forecast Horizon:</span>{' '}
-                <span className="text-cyan-400 font-bold">Strictly Single-Step (t+1 hr)</span>
+                <span className="text-cyan-400 font-bold">Single-Step (t+1 hr)</span>
               </div>
             </div>
           </div>
 
-          {/* Interactive Historical Load & Forecast Curve */}
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-4">
-            <h3 className="text-sm font-mono uppercase tracking-wider text-slate-300 flex items-center justify-between">
+            <h3 className="text-xs font-mono uppercase tracking-wider text-slate-300 flex items-center justify-between">
               <span className="flex items-center gap-2">
                 <BarChart2 className="w-4 h-4 text-cyan-400" />
                 200-Hour Load Trajectory & Next-Hour Forecast Target
               </span>
-              <span className="text-xs text-slate-400 font-mono">Cyan Dot = Predicted Target (t+1)</span>
+              <span className="text-xs text-slate-400 font-mono">Cyan Dot = Target (t+1)</span>
             </h3>
 
-            <div className="h-72 w-full">
+            <div className="h-64 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={chartData} margin={{ top: 10, right: 30, left: 20, bottom: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
@@ -222,7 +230,7 @@ export const LoadForecasting: React.FC = () => {
                     <ReferenceDot
                       x={result.target_timestamp.slice(5, 16)}
                       y={result.predicted_load_kwh}
-                      r={7}
+                      r={6}
                       fill="#22d3ee"
                       stroke="#090d16"
                       strokeWidth={2}

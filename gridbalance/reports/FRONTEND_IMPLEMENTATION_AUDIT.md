@@ -1,65 +1,38 @@
-# GridBalance — Frontend Implementation Audit & Architecture Plan
+# GridBalance — Frontend UI Failure Diagnosis & Repair Audit
 
 ## 1. Executive Summary
 
-This audit establishes the frontend technical specifications and component architecture for the **GridBalance Smart Grid Intelligence Web Application**. The application connects directly to the frozen FastAPI inference backend (`http://127.0.0.1:8000/api/v1`) to provide production-grade, research-validated smart grid analytics without mock predictions or artificial statistics.
+This diagnosis identifies the exact technical root causes behind the broken frontend UI layout and establishes the step-by-step repair strategy to restore the GridBalance visual design system.
 
 ---
 
-## 2. Technical Stack & Environment Audit
+## 2. Root Cause Analysis
 
-| Layer | Library / Technology | Version | Purpose |
-| :--- | :--- | :--- | :--- |
-| **Framework** | React + TypeScript | React 19.2, TS 6.0 | Component hierarchy, type-safe application logic |
-| **Build Tool** | Vite | 8.3.0 | Hot Module Replacement (HMR) and fast production bundle generation |
-| **Routing** | React Router DOM | 7.18.4 | Single Page Application (SPA) client-side routing |
-| **Styling** | Tailwind CSS v4 + `@tailwindcss/postcss` | 4.3.3 | Dark technical design system (energy/grid aesthetic) |
-| **Icons** | Lucide React | 1.48.0 | Clean vector UI iconography |
-| **Visualization** | Recharts | 3.10.1 | Interactive time-series consumption & load forecasting charts |
-| **API Client** | Native Fetch API | Built-in | Centralized typed HTTP service (`src/services/api.ts`) |
+| Component / File | Identified Defect | Impact on Application UI |
+| :--- | :--- | :--- |
+| `src/index.css` | **Missing Tailwind Import** (`@import "tailwindcss";`) and residual Vite template rules (`#root { width: 1126px; margin: 0 auto; text-align: center; }`, `h1 { font-size: 56px; }`). | All Tailwind utility classes were ignored. The entire application was forced into a 1126px centered box with `text-align: center`, default unstyled buttons, huge 56px headings, and broken layouts. |
+| `postcss.config.js` | **0-byte empty file**. `@tailwindcss/postcss` plugin was not registered. | Vite's CSS pipeline could not process Tailwind CSS v4 directives. |
+| `index.html` | Default `<title>frontend</title>` header title. | Unprofessional browser tab label. |
+| Typography Hierarchy | Heading rules in `index.css` overriding inline Tailwind font sizes. | Section headers (`METER TAMPERING DETECTION`) appeared disproportionately massive and collided with surrounding text. |
+| Responsive Layout | Root container enforcing fixed width instead of full-width flex/grid layout (`w-full min-h-screen bg-slate-950`). | Layout collapsed into a single centered column on all screen sizes. |
 
 ---
 
-## 3. Application Route Map
+## 3. Repair Strategy
 
-The application enforces a 7-route navigation model:
-
-1. `/` — **Overview Dashboard**: High-level grid load metrics, active model health indicator (`● ML Engine Online`), real recent session summaries, and quick action launchpad.
-2. `/detection` — **Meter Tampering Detection**: Drag-and-drop CSV / form upload for single-meter daily consumption series, invoking `POST /api/v1/detection/analyze`.
-3. `/detection/batch` — **Batch Meter Analysis**: Bulk CSV upload invoking `POST /api/v1/detection/batch`, returning searchable, sortable, paginated risk tables with CSV export.
-4. `/detection/:meterId` — **Individual Meter Intelligence**: Session-backed deep-dive profile for a specific customer meter, displaying historical consumption trends and data quality signals.
-5. `/forecast` — **Electricity Load Forecasting**: Historical hourly load series input ($\ge 168$ hours), invoking `POST /api/v1/forecast/next-hour` to display next-hour ($t+1$) demand predictions.
-6. `/models` — **Model Intelligence**: Research evaluation metric dashboards for SGCC (18 features, threshold 0.50) and UCI (29 features, $t+1$ horizon) sourced directly from `GET /api/v1/models`.
-7. `/research` — **Research & Methodology**: Scientific documentation of temporal splits, sealed test protocols, missingness ablation, and robustness testing.
-
----
-
-## 4. Visual Design System
-
-- **Color Palette**:
-  - Backgrounds: `slate-950` (`#020617`), `slate-900` (`#0f172a`), `slate-800/80` (`#1e293b`)
-  - Typography: Primary `slate-100` (`#f8fafc`), Secondary `slate-400` (`#94a3b8`)
-  - Status Accents:
-    - Normal / Healthy: `emerald-400` (`#34d399`) / `emerald-500/20`
-    - Medium Risk / Warning: `amber-400` (`#fbbf24`) / `amber-500/20`
-    - High Risk / Potential Tampering: `rose-400` (`#f87171`) / `rose-500/20`
-    - Forecasting / Cyan Accent: `cyan-400` (`#22d3ee`) / `cyan-500/20`
-- **Typography & Layout**: Monospace indicators (`font-mono`) for numerical values, probabilities, timestamps, and model parameters; clean sans-serif for headers and body copy.
-- **Micro-Interactions**: Subtle border glows (`border-slate-800 hover:border-slate-700`), responsive grid cards, and smooth CSS transitions.
-
----
-
-## 5. Backend Service Integration Strategy
-
-All frontend pages consume endpoints from `src/services/api.ts`:
-- Health Status (`GET /api/v1/health`): Polled on mount and polled periodically to drive the header status badge (`● ML Engine Online` / `● ML Engine Offline`).
-- Model Metadata (`GET /api/v1/models`): Cached at app level to populate research benchmark cards.
-- Single Meter Inference (`POST /api/v1/detection/analyze`): Formatted payload with dates and consumption array.
-- Batch Inference (`POST /api/v1/detection/batch`): `FormData` multipart file upload.
-- Next-Hour Forecasting (`POST /api/v1/forecast/next-hour`): Sequential load array payload.
-
----
-
-## 6. Verification Protocol
-
-The application implementation will be verified by running the live FastAPI server (`127.0.0.1:8000`), launching Vite dev server (`127.0.0.1:5173`), performing real single/batch detection and load forecasting requests, and confirming 100% of data rendered on screen originates from real FastAPI responses.
+1. **Configure PostCSS & Tailwind v4**:
+   - Update `postcss.config.js` to register `@tailwindcss/postcss`.
+   - Update `src/index.css` to import `@import "tailwindcss";` and replace Vite template CSS overrides with clean resets.
+2. **Design System & Palette Alignment**:
+   - Dark technical command-center palette:
+     - Background: `#090B10` / `#0D1117` (`bg-slate-950`)
+     - Surface Cards: `#11151D` / `#151A23` (`bg-slate-900`, `border-slate-800`)
+     - Primary Accents: Cyan (`#22d3ee`), Emerald Green (`#34d399`), Amber (`#fbbf24`), Rose (`#f87171`)
+     - Typography: Clean sans-serif headers (24–32px page titles, 16–18px section headers), monospace metrics (12–14px).
+3. **Application Shell & Layout**:
+   - Full-width dark background (`min-h-screen bg-slate-950 text-slate-100 flex flex-col`).
+   - Sticky navbar header with live backend status badge (`● ML Engine Online` / `● ML Engine Offline`).
+   - Main content container with `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1`.
+   - Footer with research evaluation disclaimers and Swagger API documentation links.
+4. **Component Refactoring**:
+   - Refactor Overview Dashboard (`/`), Detection (`/detection`), Batch Detection (`/detection/batch`), Meter Profile (`/detection/:meterId`), Load Forecasting (`/forecast`), Model Intelligence (`/models`), and Research (`/research`) to enforce card layouts, status strips, input form styling, Recharts visualization, and responsive grids.
