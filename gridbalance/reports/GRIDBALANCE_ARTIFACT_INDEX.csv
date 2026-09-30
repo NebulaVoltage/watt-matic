@@ -1,0 +1,41 @@
+artifact,path,type,purpose,research_section,status
+SGCC Baseline XGBoost Model,models/sgcc_baselines/XGBoost_Weighted.joblib,Model Checkpoint,Baseline XGBoost model with class weighting,Section 7,Verified
+SGCC Baseline SMOTE Model,models/sgcc_baselines/XGBoost_SMOTE.joblib,Model Checkpoint,Baseline XGBoost model with SMOTE,Section 7,Verified
+SGCC Tuned Best Model,models/sgcc_tuned/xgboost_tuned_best.joblib,Model Checkpoint,Frozen 42-feature tuned XGBoost classifier,Section 9 & 11,Verified
+SGCC Reduced Best Model,models/sgcc_tuned/xgboost_reduced_best.joblib,Model Checkpoint,Frozen 18-feature candidate XGBoost classifier,Section 14 & 15,Verified
+SGCC Stability Model,models/sgcc_stability/xgboost_stability_selected.joblib,Model Checkpoint,Stability-selected 14-feature XGBoost classifier,Section 14,Verified
+UCI Forecasting Frozen Model,models/uci_forecasting/xgb_forecasting_frozen.joblib,Model Checkpoint,Frozen 29-feature XGBoost regressor for load forecasting,Section 23 & 24,Verified
+SGCC Data Validation Report,reports/REAL_SGCC_DATA_VALIDATION.md,Markdown Report,Raw SGCC dataset audit and quality metrics,Section 3 & 4,Verified
+SGCC Feature Engineering Report,reports/REAL_SGCC_FEATURE_ENGINEERING_REPORT.md,Markdown Report,Chronological sorting and feature extraction documentation,Section 5,Verified
+SGCC Baseline Model Report,reports/REAL_SGCC_BASELINE_MODEL_REPORT.md,Markdown Report,Baseline performance across 12 configurations,Section 7 & 8,Verified
+SGCC XGBoost Tuning Report,reports/SGCC_XGBOOST_TUNING_REPORT.md,Markdown Report,Randomized CV search and threshold optimization,Section 9 & 10,Verified
+SGCC SHAP Analysis Report,reports/SGCC_SHAP_FEATURE_ANALYSIS.md,Markdown Report,SHAP feature importances and 18-feature selection,Section 12 & 13,Verified
+SGCC Feature Stability Report,reports/SGCC_FEATURE_SELECTION_STABILITY.md,Markdown Report,Cross-validation stability analysis,Section 14,Verified
+SGCC Robustness Analysis Report,reports/SGCC_ROBUSTNESS_ANALYSIS.md,Markdown Report,"Noise, data loss, and evasion simulation results",Section 15,Verified
+UCI Dataset Audit Report,reports/UCI_DATASET_AUDIT.md,Markdown Report,Raw UCI load dataset structure and aggregation,Section 17,Verified
+UCI Temporal Split Report,reports/UCI_TEMPORAL_SPLIT.md,Markdown Report,Train/val/test chronological partition documentation,Section 19,Verified
+UCI Error Analysis Report,reports/UCI_ERROR_ANALYSIS.md,Markdown Report,Residual and error distribution breakdown,Section 25,Verified
+UCI Feature Importance Report,reports/UCI_FEATURE_IMPORTANCE.md,Markdown Report,Feature importance breakdown for UCI regressor,Section 26,Verified
+UCI Reproducibility Report,reports/UCI_REPRODUCIBILITY.md,Markdown Report,Environment and reproducibility specification,Section 33,Verified
+Backend Inference Report,reports/ML_INFERENCE_BACKEND_REPORT.md,Markdown Report,FastAPI inference backend architecture and tests,Section 30,Verified
+Platform Integration Report,reports/PLATFORM_INTEGRATION_REPORT.md,Markdown Report,Integrated web application documentation,Section 29 & 31,Verified
+Real SGCC Data Quality CSV,reports/REAL_SGCC_DATA_QUALITY.csv,CSV Data File,Raw missingness and zero counts for SGCC,Section 3 & 4,Verified
+Real SGCC Baseline Results CSV,reports/REAL_SGCC_BASELINE_RESULTS.csv,CSV Data File,Empirical metrics for 12 baseline configurations,Section 7,Verified
+SGCC Separability Audit CSV,reports/SGCC_Class_Separability_Audit.csv,CSV Data File,Standardized mean differences per feature,Section 4,Verified
+SGCC SHAP Feature Importance CSV,reports/SGCC_SHAP_FEATURE_IMPORTANCE.csv,CSV Data File,Mean absolute and signed SHAP values,Section 12,Verified
+SGCC Group Ablation CSV,reports/SGCC_FEATURE_GROUP_ABLATION.csv,CSV Data File,Ablation results for 8 feature groups,Section 13,Verified
+SGCC Selection Frequency CSV,reports/SGCC_FEATURE_SELECTION_FREQUENCY.csv,CSV Data File,Fold selection counts across 5-fold CV,Section 14,Verified
+SGCC Feature Set Comparison CSV,reports/SGCC_FEATURE_SET_COMPARISON.csv,CSV Data File,42 vs 18 vs 14 feature comparison,Section 14,Verified
+SGCC Noise Perturbation CSV,reports/SGCC_NOISE_PERTURBATION_RESULTS.csv,CSV Data File,Additive and multiplicative noise results,Section 15,Verified
+SGCC Missingness Robustness CSV,reports/SGCC_MISSINGNESS_ROBUSTNESS_RESULTS.csv,CSV Data File,Telemetry loss simulation results,Section 15,Verified
+SGCC Evasion Simulation CSV,reports/SGCC_EVASION_SIMULATION_RESULTS.csv,CSV Data File,Load suppression tampering simulation results,Section 15,Verified
+UCI Statistics CSV,reports/UCI_DATASET_STATISTICS.csv,CSV Data File,Summary statistics for UCI dataset,Section 17,Verified
+UCI Model Comparison CSV,reports/UCI_MODEL_COMPARISON.csv,CSV Data File,Validation metrics across forecasting models,Section 21,Verified
+UCI Time Series CV CSV,reports/UCI_TIME_SERIES_CV.csv,CSV Data File,Expanding window temporal CV results,Section 22,Verified
+FastAPI Main Application,main.py,Python Script,FastAPI entry point and lifespan manager,Section 30,Verified
+SGCC Predictor Service,services/sgcc_service.py,Python Module,SGCC inference service and feature extractor,Section 30,Verified
+UCI Forecaster Service,services/forecasting_service.py,Python Module,UCI forecasting inference service,Section 30,Verified
+Detection API Router,api/detection.py,Python Module,End points /api/v1/detection/analyze & batch,Section 30,Verified
+Forecasting API Router,api/forecasting.py,Python Module,Endpoint /api/v1/forecast/next-hour,Section 30,Verified
+React App Entry Point,frontend/src/App.tsx,TypeScript React,Frontend router and root layout component,Section 31,Verified
+Automated Test Suite,tests/test_api_endpoints.py,Python Pytest,Backend API endpoint tests,Section 32,Verified

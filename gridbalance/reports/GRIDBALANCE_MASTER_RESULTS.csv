@@ -1,0 +1,91 @@
+dataset,experiment,model,feature_set,strategy,split,metric,value,source_file,notes
+SGCC,Baseline Evaluation,Logistic Regression,42 Features,Original,Validation,Precision,0.523810,REAL_SGCC_BASELINE_RESULTS.csv,"No class weighting, median imputer"
+SGCC,Baseline Evaluation,Logistic Regression,42 Features,Original,Validation,Recall,0.040590,REAL_SGCC_BASELINE_RESULTS.csv,"No class weighting, median imputer"
+SGCC,Baseline Evaluation,Logistic Regression,42 Features,Original,Validation,F1,0.075342,REAL_SGCC_BASELINE_RESULTS.csv,"No class weighting, median imputer"
+SGCC,Baseline Evaluation,Logistic Regression,42 Features,Original,Validation,PR-AUC,0.259303,REAL_SGCC_BASELINE_RESULTS.csv,"No class weighting, median imputer"
+SGCC,Baseline Evaluation,Logistic Regression,42 Features,Original,Validation,ROC-AUC,0.753086,REAL_SGCC_BASELINE_RESULTS.csv,"No class weighting, median imputer"
+SGCC,Baseline Evaluation,Decision Tree,42 Features,Original,Validation,Precision,0.250426,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted tree
+SGCC,Baseline Evaluation,Decision Tree,42 Features,Original,Validation,Recall,0.271218,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted tree
+SGCC,Baseline Evaluation,Decision Tree,42 Features,Original,Validation,F1,0.260407,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted tree
+SGCC,Baseline Evaluation,Decision Tree,42 Features,Original,Validation,PR-AUC,0.130076,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted tree
+SGCC,Baseline Evaluation,Decision Tree,42 Features,Original,Validation,ROC-AUC,0.591369,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted tree
+SGCC,Baseline Evaluation,Random Forest,42 Features,Original,Validation,Precision,0.644068,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted forest
+SGCC,Baseline Evaluation,Random Forest,42 Features,Original,Validation,Recall,0.070111,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted forest
+SGCC,Baseline Evaluation,Random Forest,42 Features,Original,Validation,F1,0.126456,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted forest
+SGCC,Baseline Evaluation,Random Forest,42 Features,Original,Validation,PR-AUC,0.343214,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted forest
+SGCC,Baseline Evaluation,Random Forest,42 Features,Original,Validation,ROC-AUC,0.816903,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted forest
+SGCC,Baseline Evaluation,XGBoost,42 Features,Original,Validation,Precision,0.556818,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted gradient boosting
+SGCC,Baseline Evaluation,XGBoost,42 Features,Original,Validation,Recall,0.180812,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted gradient boosting
+SGCC,Baseline Evaluation,XGBoost,42 Features,Original,Validation,F1,0.272981,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted gradient boosting
+SGCC,Baseline Evaluation,XGBoost,42 Features,Original,Validation,PR-AUC,0.398049,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted gradient boosting
+SGCC,Baseline Evaluation,XGBoost,42 Features,Original,Validation,ROC-AUC,0.826893,REAL_SGCC_BASELINE_RESULTS.csv,Unweighted gradient boosting
+SGCC,Class Weighting,Logistic Regression,42 Features,Weighted,Validation,F1,0.285050,REAL_SGCC_BASELINE_RESULTS.csv,Class weighted
+SGCC,Class Weighting,Decision Tree,42 Features,Weighted,Validation,F1,0.242764,REAL_SGCC_BASELINE_RESULTS.csv,Class weighted
+SGCC,Class Weighting,Random Forest,42 Features,Weighted,Validation,F1,0.308497,REAL_SGCC_BASELINE_RESULTS.csv,Class weighted
+SGCC,Class Weighting,XGBoost,42 Features,Weighted,Validation,F1,0.412698,REAL_SGCC_BASELINE_RESULTS.csv,Class weighted
+SGCC,SMOTE Oversampling,Logistic Regression,42 Features,SMOTE,Validation,F1,0.289628,REAL_SGCC_BASELINE_RESULTS.csv,SMOTE inside pipeline
+SGCC,SMOTE Oversampling,Decision Tree,42 Features,SMOTE,Validation,F1,0.264384,REAL_SGCC_BASELINE_RESULTS.csv,SMOTE inside pipeline
+SGCC,SMOTE Oversampling,Random Forest,42 Features,SMOTE,Validation,F1,0.368473,REAL_SGCC_BASELINE_RESULTS.csv,SMOTE inside pipeline
+SGCC,SMOTE Oversampling,XGBoost,42 Features,SMOTE,Validation,F1,0.411825,REAL_SGCC_BASELINE_RESULTS.csv,SMOTE inside pipeline
+SGCC,Baseline Sealed Test,Logistic Regression,42 Features,Original,Sealed Test,F1,0.072664,REAL_SGCC_BASELINE_RESULTS.csv,Sealed test set
+SGCC,Baseline Sealed Test,Decision Tree,42 Features,Original,Sealed Test,F1,0.256591,REAL_SGCC_BASELINE_RESULTS.csv,Sealed test set
+SGCC,Baseline Sealed Test,Random Forest,42 Features,Original,Sealed Test,F1,0.135091,REAL_SGCC_BASELINE_RESULTS.csv,Sealed test set
+SGCC,Baseline Sealed Test,XGBoost,42 Features,Original,Sealed Test,F1,0.272981,REAL_SGCC_BASELINE_RESULTS.csv,Sealed test set
+SGCC,Baseline Sealed Test,XGBoost,42 Features,Weighted,Sealed Test,F1,0.380222,REAL_SGCC_BASELINE_RESULTS.csv,Sealed test set
+SGCC,Hyperparameter Tuning,Tuned XGBoost,42 Features,Weighted (Tuned),5-Fold CV,F1,0.409000,SGCC_XGBOOST_TUNING_REPORT.md,CV Mean F1
+SGCC,Hyperparameter Tuning,Tuned XGBoost,42 Features,Weighted (Tuned),Validation,F1,0.457364,SGCC_XGBOOST_TUNING_RESULTS.csv,Threshold 0.50
+SGCC,Hyperparameter Tuning,Tuned XGBoost,42 Features,Weighted (Tuned),Validation,PR-AUC,0.422784,SGCC_XGBOOST_TUNING_RESULTS.csv,Threshold 0.50
+SGCC,Hyperparameter Tuning,Tuned XGBoost,42 Features,Weighted (Tuned),Validation,ROC-AUC,0.833437,SGCC_XGBOOST_TUNING_RESULTS.csv,Threshold 0.50
+SGCC,Hyperparameter Tuning,Tuned XGBoost,42 Features,Weighted (Tuned),Sealed Test,Precision,0.344737,SGCC_XGBOOST_TUNING_RESULTS.csv,Threshold 0.50
+SGCC,Hyperparameter Tuning,Tuned XGBoost,42 Features,Weighted (Tuned),Sealed Test,Recall,0.483395,SGCC_XGBOOST_TUNING_RESULTS.csv,Threshold 0.50
+SGCC,Hyperparameter Tuning,Tuned XGBoost,42 Features,Weighted (Tuned),Sealed Test,F1,0.402458,SGCC_XGBOOST_TUNING_RESULTS.csv,Threshold 0.50
+SGCC,Hyperparameter Tuning,Tuned XGBoost,42 Features,Weighted (Tuned),Sealed Test,PR-AUC,0.375018,SGCC_XGBOOST_TUNING_RESULTS.csv,Threshold 0.50
+SGCC,Hyperparameter Tuning,Tuned XGBoost,42 Features,Weighted (Tuned),Sealed Test,ROC-AUC,0.826008,SGCC_XGBOOST_TUNING_RESULTS.csv,Threshold 0.50
+SGCC,Feature Selection,Full Model,42 Features,Weighted,5-Fold CV,CV F1 Mean,0.409334,SGCC_FEATURE_SET_COMPARISON.csv,5-fold CV on train/val
+SGCC,Feature Selection,Full Model,42 Features,Weighted,Sealed Test,Test F1,0.416107,SGCC_FEATURE_SET_COMPARISON.csv,Sealed test evaluation
+SGCC,Feature Selection,Candidate Model,18 Features,Weighted,5-Fold CV,CV F1 Mean,0.402925,SGCC_FEATURE_SET_COMPARISON.csv,5-fold CV on train/val
+SGCC,Feature Selection,Candidate Model,18 Features,Weighted,Sealed Test,Test Precision,0.318527,SGCC_FEATURE_SET_COMPARISON.csv,Sealed test evaluation
+SGCC,Feature Selection,Candidate Model,18 Features,Weighted,Sealed Test,Test Recall,0.542435,SGCC_FEATURE_SET_COMPARISON.csv,Sealed test evaluation
+SGCC,Feature Selection,Candidate Model,18 Features,Weighted,Sealed Test,Test F1,0.401365,SGCC_FEATURE_SET_COMPARISON.csv,Sealed test evaluation
+SGCC,Feature Selection,Candidate Model,18 Features,Weighted,Sealed Test,Test PR-AUC,0.404908,SGCC_FEATURE_SET_COMPARISON.csv,Sealed test evaluation
+SGCC,Feature Selection,Candidate Model,18 Features,Weighted,Sealed Test,Test ROC-AUC,0.834699,SGCC_FEATURE_SET_COMPARISON.csv,Sealed test evaluation
+SGCC,Feature Selection,Stability Model,14 Features,Weighted,5-Fold CV,CV F1 Mean,0.369514,SGCC_FEATURE_SET_COMPARISON.csv,Folds selected >= 80%
+SGCC,Feature Selection,Stability Model,14 Features,Weighted,Sealed Test,Test F1,0.364676,SGCC_FEATURE_SET_COMPARISON.csv,Folds selected >= 80%
+SGCC,Feature Ablation,No Missingness,37 Features,Weighted,Validation,F1,0.383260,SGCC_MISSINGNESS_ABLATION.csv,All 5 missingness features removed
+SGCC,Feature Ablation,No Missingness,37 Features,Weighted,Sealed Test,Precision,0.289062,SGCC_MISSINGNESS_ABLATION.csv,All 5 missingness features removed
+SGCC,Feature Ablation,No Missingness,37 Features,Weighted,Sealed Test,Recall,0.409594,SGCC_MISSINGNESS_ABLATION.csv,All 5 missingness features removed
+SGCC,Feature Ablation,No Missingness,37 Features,Weighted,Sealed Test,F1,0.338931,SGCC_MISSINGNESS_ABLATION.csv,All 5 missingness features removed
+SGCC,Feature Ablation,No Missingness,37 Features,Weighted,Sealed Test,PR-AUC,0.290324,SGCC_MISSINGNESS_ABLATION.csv,All 5 missingness features removed
+SGCC,Feature Ablation,No Missingness,37 Features,Weighted,Sealed Test,ROC-AUC,0.769105,SGCC_MISSINGNESS_ABLATION.csv,All 5 missingness features removed
+SGCC,Robustness Noise,42-Feature Model,42 Features,Additive 20%,Sealed Test,F1,0.414229,SGCC_ROBUSTNESS_SUMMARY.csv,20% Additive Gaussian noise
+SGCC,Robustness Noise,42-Feature Model,42 Features,Additive 20%,Sealed Test,Flip Rate,0.051770,SGCC_ROBUSTNESS_SUMMARY.csv,Prediction flip rate under 20% noise
+SGCC,Robustness Noise,18-Feature Model,18 Features,Additive 20%,Sealed Test,F1,0.407982,SGCC_ROBUSTNESS_SUMMARY.csv,20% Additive Gaussian noise
+SGCC,Robustness Noise,18-Feature Model,18 Features,Additive 20%,Sealed Test,Flip Rate,0.059638,SGCC_ROBUSTNESS_SUMMARY.csv,Prediction flip rate under 20% noise
+SGCC,Robustness Data Loss,42-Feature Model,42 Features,Long Burst 30%,Sealed Test,F1,0.348200,SGCC_MISSINGNESS_ROBUSTNESS_RESULTS.csv,30% long burst missingness
+SGCC,Robustness Data Loss,18-Feature Model,18 Features,Long Burst 30%,Sealed Test,F1,0.340100,SGCC_MISSINGNESS_ROBUSTNESS_RESULTS.csv,30% long burst missingness
+UCI,Forecasting Comparison,Linear Regression,29 Features,Default,Validation,MAE,3994.49,UCI_MODEL_COMPARISON.csv,Baseline Linear Model
+UCI,Forecasting Comparison,Linear Regression,29 Features,Default,Validation,RMSE,5937.10,UCI_MODEL_COMPARISON.csv,Baseline Linear Model
+UCI,Forecasting Comparison,Linear Regression,29 Features,Default,Validation,R2,0.991942,UCI_MODEL_COMPARISON.csv,Baseline Linear Model
+UCI,Forecasting Comparison,Linear Regression,29 Features,Default,Validation,sMAPE,0.0200,UCI_MODEL_COMPARISON.csv,Baseline Linear Model
+UCI,Forecasting Comparison,Ridge Regression,29 Features,Default,Validation,MAE,3994.50,UCI_MODEL_COMPARISON.csv,L2 Regularization
+UCI,Forecasting Comparison,Ridge Regression,29 Features,Default,Validation,RMSE,5937.11,UCI_MODEL_COMPARISON.csv,L2 Regularization
+UCI,Forecasting Comparison,Ridge Regression,29 Features,Default,Validation,R2,0.991942,UCI_MODEL_COMPARISON.csv,L2 Regularization
+UCI,Forecasting Comparison,Decision Tree Regressor,29 Features,Default,Validation,MAE,6205.81,UCI_MODEL_COMPARISON.csv,Decision Tree
+UCI,Forecasting Comparison,Decision Tree Regressor,29 Features,Default,Validation,RMSE,9070.78,UCI_MODEL_COMPARISON.csv,Decision Tree
+UCI,Forecasting Comparison,Decision Tree Regressor,29 Features,Default,Validation,R2,0.981198,UCI_MODEL_COMPARISON.csv,Decision Tree
+UCI,Forecasting Comparison,Random Forest Regressor,29 Features,Default,Validation,MAE,4297.09,UCI_MODEL_COMPARISON.csv,Random Forest Ensemble
+UCI,Forecasting Comparison,Random Forest Regressor,29 Features,Default,Validation,RMSE,6320.15,UCI_MODEL_COMPARISON.csv,Random Forest Ensemble
+UCI,Forecasting Comparison,Random Forest Regressor,29 Features,Default,Validation,R2,0.990875,UCI_MODEL_COMPARISON.csv,Random Forest Ensemble
+UCI,Forecasting Comparison,XGBoost Regressor,29 Features,Tuned,Validation,MAE,3935.63,UCI_MODEL_COMPARISON.csv,XGBoost Validation
+UCI,Forecasting Comparison,XGBoost Regressor,29 Features,Tuned,Validation,RMSE,5802.40,UCI_MODEL_COMPARISON.csv,XGBoost Validation
+UCI,Forecasting Comparison,XGBoost Regressor,29 Features,Tuned,Validation,R2,0.992300,UCI_MODEL_COMPARISON.csv,XGBoost Validation
+UCI,Forecasting Comparison,XGBoost Regressor,29 Features,Tuned,Validation,sMAPE,0.0194,UCI_MODEL_COMPARISON.csv,XGBoost Validation
+UCI,Time Series CV,Linear Regression,29 Features,Default,5-Fold Temporal CV,Mean MAE,8092.58,UCI_TIME_SERIES_CV.csv,Expanding window CV
+UCI,Time Series CV,Ridge Regression,29 Features,Default,5-Fold Temporal CV,Mean MAE,8091.44,UCI_TIME_SERIES_CV.csv,Expanding window CV
+UCI,Time Series CV,Random Forest Regressor,29 Features,Default,5-Fold Temporal CV,Mean MAE,8415.71,UCI_TIME_SERIES_CV.csv,Expanding window CV
+UCI,Time Series CV,XGBoost Regressor,29 Features,Default,5-Fold Temporal CV,Mean MAE,10365.77,UCI_TIME_SERIES_CV.csv,Expanding window CV
+UCI,Sealed Test Evaluation,XGBoost Regressor,29 Features,Frozen Model,Sealed Test,MAE,4421.55,UCI_ERROR_ANALYSIS.md,Final sealed test set (H2 2014)
+UCI,Sealed Test Evaluation,XGBoost Regressor,29 Features,Frozen Model,Sealed Test,RMSE,6654.94,UCI_ERROR_ANALYSIS.md,Final sealed test set (H2 2014)
+UCI,Sealed Test Evaluation,XGBoost Regressor,29 Features,Frozen Model,Sealed Test,R2,0.994400,UCI_ERROR_ANALYSIS.md,Final sealed test set (H2 2014)
+UCI,Sealed Test Evaluation,XGBoost Regressor,29 Features,Frozen Model,Sealed Test,sMAPE,0.0193,UCI_ERROR_ANALYSIS.md,Final sealed test set (H2 2014)
+UCI,Sealed Test Evaluation,Daily Seasonal Naive,1 Feature,Baseline,Sealed Test,MAE,20808.20,UCI_ERROR_ANALYSIS.md,Daily persistence benchmark
