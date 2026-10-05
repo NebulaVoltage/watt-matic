@@ -1,0 +1,39 @@
+{
+  "random_seed": 42,
+  "sgcc": {
+    "split": {
+      "train": 0.7,
+      "val": 0.15,
+      "test": 0.15
+    },
+    "threshold_default": 0.5,
+    "features_18": [
+      "missing_streak_count",
+      "monthly_std_4",
+      "monthly_std_3",
+      "mean_abs_daily_change",
+      "missing_count",
+      "monthly_mean_10",
+      "longest_missing_streak",
+      "peak_to_average_ratio",
+      "monthly_std_5",
+      "monthly_std_10",
+      "monthly_std_11",
+      "cv",
+      "monthly_mean_8",
+      "max",
+      "monthly_std_8",
+      "monthly_mean_11",
+      "monthly_std_1",
+      "monthly_mean_2"
+    ]
+  },
+  "uci": {
+    "split": {
+      "train": 26136,
+      "val": 4344,
+      "test": 4416
+    },
+    "horizon": "next_hour"
+  }
+}
