@@ -1,0 +1,5 @@
+dataset,model,metric,train_val_gap,val_test_gap,assessment
+SGCC,XGBoost 18-Feature,F1,-0.0163,0.0444,Healthy Generalization
+SGCC,XGBoost 42-Feature,F1,-0.0239,0.0755,Mild Overfitting
+UCI,XGBoost Regressor,MAE (kWh),1330.46,516.03,Excellent Generalization
+UCI,XGBoost Regressor,R2,0.0056,-0.0022,Excellent Generalization

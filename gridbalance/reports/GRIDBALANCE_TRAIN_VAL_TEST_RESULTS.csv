@@ -1,0 +1,31 @@
+dataset,model,split,metric,value
+SGCC,XGBoost 18-Feature,Training,Accuracy,0.8752
+SGCC,XGBoost 18-Feature,Training,Precision,0.3332
+SGCC,XGBoost 18-Feature,Training,Recall,0.4627
+SGCC,XGBoost 18-Feature,Training,F1,0.3874
+SGCC,XGBoost 18-Feature,Training,PR-AUC,0.3539
+SGCC,XGBoost 18-Feature,Training,ROC-AUC,0.7937
+SGCC,XGBoost 18-Feature,Validation,Accuracy,0.8778
+SGCC,XGBoost 18-Feature,Validation,Precision,0.3456
+SGCC,XGBoost 18-Feature,Validation,Recall,0.4852
+SGCC,XGBoost 18-Feature,Validation,F1,0.4037
+SGCC,XGBoost 18-Feature,Validation,PR-AUC,0.3684
+SGCC,XGBoost 18-Feature,Validation,ROC-AUC,0.8118
+SGCC,XGBoost 18-Feature,Sealed Test,Accuracy,0.8664
+SGCC,XGBoost 18-Feature,Sealed Test,Precision,0.3040
+SGCC,XGBoost 18-Feature,Sealed Test,Recall,0.4391
+SGCC,XGBoost 18-Feature,Sealed Test,F1,0.3592
+SGCC,XGBoost 18-Feature,Sealed Test,PR-AUC,0.3114
+SGCC,XGBoost 18-Feature,Sealed Test,ROC-AUC,0.7758
+UCI,XGBoost Regressor,Training,MAE (kWh),2657.02
+UCI,XGBoost Regressor,Training,RMSE (kWh),3990.10
+UCI,XGBoost Regressor,Training,R2,0.9977
+UCI,XGBoost Regressor,Training,sMAPE (%),1.48%
+UCI,XGBoost Regressor,Validation,MAE (kWh),3987.48
+UCI,XGBoost Regressor,Validation,RMSE (kWh),5887.36
+UCI,XGBoost Regressor,Validation,R2,0.9921
+UCI,XGBoost Regressor,Validation,sMAPE (%),1.97%
+UCI,XGBoost Regressor,Sealed Test,MAE (kWh),4503.51
+UCI,XGBoost Regressor,Sealed Test,RMSE (kWh),6743.21
+UCI,XGBoost Regressor,Sealed Test,R2,0.9942
+UCI,XGBoost Regressor,Sealed Test,sMAPE (%),1.98%
