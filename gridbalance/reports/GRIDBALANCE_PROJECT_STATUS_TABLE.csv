@@ -1,0 +1,28 @@
+Component,Status,Evidence
+SGCC Dataset Audit,COMPLETED,"data.csv inspected (42,372 meters, 1,035 days, 9.15% positive theft labels) in audit_real_sgcc.py"
+SGCC Preprocessing,COMPLETED,"Chronological sorting, forward fill (limit=3), train-only median imputation in run_fe_real_pipeline.py"
+SGCC Feature Engineering,COMPLETED,Engineered 42 statistical/monthly/streak features; saved to data/processed/sgcc_features_real_v2.csv
+SGCC Baseline Models,COMPLETED,"Evaluated Logistic Regression (F1=0.0753), Decision Tree (F1=0.2604), Random Forest (F1=0.1265) in REAL_SGCC_BASELINE_RESULTS.csv"
+SGCC XGBoost Optimization,COMPLETED,"Tuned depth=7, estimators=200, lr=0.2, pos_weight=10.72; achieved Val F1=0.4037 in models/sgcc_tuned/"
+SGCC SHAP Analysis,COMPLETED,"TreeExplainer computed on 1,000 samples; identified missing_streak_count as top feature in SGCC_SHAP_FEATURE_IMPORTANCE.csv"
+SGCC Feature Ablation,COMPLETED,Reduced 42 features to 18 features retaining 98.4% importance in SGCC_FEATURE_GROUP_ABLATION.csv
+SGCC Feature Selection Stability,COMPLETED,Verified feature stability across 5 cross-validation folds in SGCC_FEATURE_SELECTION_FREQUENCY.csv
+SGCC Robustness Analysis,COMPLETED,"Evaluated noise (0-20%), missingness, bursts, and evasion in SGCC_ROBUSTNESS_SUMMARY.csv"
+SGCC Final Model,COMPLETED,Frozen 18-feature model serialized at models/sgcc_tuned/xgboost_reduced_best.joblib
+UCI Dataset Audit,COMPLETED,"LD2011_2014.txt (710.99 MB, 370 meters) audited and described in UCI_DATASET_STATISTICS.csv"
+UCI Preprocessing,COMPLETED,"Resampled 15-min kW to hourly aggregate kWh (35,065 observations) in process_uci_and_audit.py"
+UCI Causal Forecasting Pipeline,COMPLETED,Strict causal temporal features engineered with zero future lookahead (load_lag_1h to 168h)
+UCI Baseline Models,COMPLETED,"Evaluated Persistence, Seasonal, Linear Regression, Ridge, RF in UCI_MODEL_COMPARISON.csv"
+UCI XGBoost Forecasting,COMPLETED,"Tuned XGBoost regressor (depth=6, estimators=300, lr=0.05); Val MAE=3,987.48 kWh in models/uci_forecasting/"
+UCI Cross-Validation,COMPLETED,5-fold expanding time-series cross-validation verified in UCI_TIME_SERIES_CV.csv
+UCI Error Analysis,COMPLETED,"Residuals audited; evaluated sMAPE=1.98%, R2=0.9942, RMSE=6,743.21 kWh on sealed test"
+UCI Feature Importance,COMPLETED,"Lag-1h, Lag-24h, and 24h rolling mean identified as dominant predictive signals"
+Model Freezing,COMPLETED,Both SGCC and UCI baseline artifacts frozen and preserved in models/ directory
+FastAPI Backend,COMPLETED,"REST API built in backend/ with single startup loader, schemas, and prediction pipelines"
+API Testing,COMPLETED,13/13 automated pytest integration tests passing in tests/ (6.69s execution)
+Frontend Implementation,COMPLETED,React 19 + TypeScript + Tailwind v4 web app running at http://localhost:5173/
+Frontend Styling Stabilization,COMPLETED,"@tailwindcss/vite configured; UI typography, cards, and Recharts telemetry restored"
+End-to-End Integration,COMPLETED,Frontend successfully communicates with FastAPI backend for detection & forecasting
+V2 Controlled Optimization,COMPLETED,"Evaluated 9 experiments (Optuna LightGBM, threshold tuning, Fourier/EMA); frozen baselines retained"
+Technical Documentation,COMPLETED,"Full research dossier, protocols, audit reports, and master CSVs compiled in reports/"
+Final Production Deployment,COMPLETED,FastAPI inference backend running on port 8000; web app running on port 5173
