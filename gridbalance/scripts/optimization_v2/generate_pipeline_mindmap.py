@@ -2,373 +2,392 @@ import os
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
-# High-resolution canvas setup
-fig = plt.figure(figsize=(24, 32), dpi=300)
+# Premium Ultrawide Layout: 38 inches wide x 44 inches tall, 300 DPI
+# Canvas dimensions: 100 x 100 coordinate space
+fig = plt.figure(figsize=(38, 44), dpi=300)
 ax = fig.add_subplot(111)
 ax.set_xlim(0, 100)
 ax.set_ylim(0, 100)
 ax.axis('off')
 
-# Color palette (Modern Dark-Mode / Technical Architecture Aesthetic)
-BG_COLOR = "#0F172A"       # Slate 900
-PANEL_BG = "#1E293B"       # Slate 800
-PANEL_BORDER = "#334155"   # Slate 700
-TEXT_MAIN = "#F8FAFC"      # Slate 50
-TEXT_MUTED = "#94A3B8"     # Slate 400
-TEXT_ACCENT = "#38BDF8"    # Sky 400
-
-# Branch Colors
-COLOR_DATA = "#3B82F6"     # Blue (Data)
-COLOR_SPLIT = "#8B5CF6"    # Purple (Splits)
-COLOR_FEAT = "#EC4899"     # Pink (Feature Engineering)
-COLOR_MODEL = "#F59E0B"    # Amber (Model & Loss)
-COLOR_EVAL = "#10B981"     # Emerald (Evaluation)
-COLOR_PROD = "#06B6D4"     # Cyan (Production / Integrity)
+# Color Theme: Deep Modern Engineering Navy & Sleek Card Accents
+BG_COLOR = "#0A0F1D"       # Deep Obsidian Slate
+CARD_BG = "#131C31"        # Dark Navy Panel
+BORDER_SUBTLE = "#1E293B"  # Card Boundary
+TEXT_PRIMARY = "#FFFFFF"   # Pure White
+TEXT_BODY = "#E2E8F0"      # Crisp Slate White
+TEXT_MUTED = "#94A3B8"     # Soft Muted Gray
+TEXT_CODE = "#38BDF8"      # Terminal Sky Blue
+ACCENT_GREEN = "#10B981"   # Mint Emerald
+ACCENT_AMBER = "#F59E0B"   # Warm Gold
+ACCENT_ROSE = "#F43F5E"    # Alert Rose
+ACCENT_PURPLE = "#A855F7"  # Electric Purple
+ACCENT_BLUE = "#3B82F6"    # Cobalt Blue
+ACCENT_CYAN = "#06B6D4"    # Precision Cyan
 
 fig.patch.set_facecolor(BG_COLOR)
 ax.set_facecolor(BG_COLOR)
 
-# Header Title Block
-title_box = patches.FancyBboxPatch(
-    (5, 93), 90, 5.5,
-    boxstyle="round,pad=0.5,rounding_size=0.8",
-    facecolor="#1E1B4B", edgecolor="#6366F1", linewidth=2.5
+# ==============================================================================
+# 1. HEADER BANNER
+# ==============================================================================
+header_box = patches.FancyBboxPatch(
+    (3, 93.5), 94, 4.8,
+    boxstyle="round,pad=0.4,rounding_size=0.6",
+    facecolor="#161F38", edgecolor="#6366F1", linewidth=2.5
 )
-ax.add_patch(title_box)
-ax.text(50, 96.5, "GRIDBALANCE — END-TO-END PIPELINE & DIAGNOSTIC ARCHITECTURE MINDMAP",
-        fontsize=22, fontweight='bold', color="#FFFFFF", ha='center', va='center', fontfamily='sans-serif')
-ax.text(50, 94.2, "Complete Step-by-Step Flow: Raw Ingestion → Leak-Free Splitting → Feature Engineering → Focal GBDT → Integrity Verification",
-        fontsize=13, color="#A5B4FC", ha='center', va='center', fontfamily='sans-serif')
+ax.add_patch(header_box)
 
-def draw_node(x, y, w, h, title, items, color, badge=""):
-    # Main container
-    box = patches.FancyBboxPatch(
+ax.text(50, 96.5, "GRIDBALANCE — END-TO-END PIPELINE & PERFORMANCE DIAGNOSTIC MINDMAP",
+        fontsize=26, fontweight='heavy', color="#FFFFFF", ha='center', va='center')
+ax.text(50, 94.7, "Complete Architecture: Ingestion → Zero-Leakage Splitting → Feature Engineering → Focal Loss GBDT → Sealed Test Audit",
+        fontsize=15, fontweight='medium', color="#A5B4FC", ha='center', va='center')
+
+# ==============================================================================
+# CARD DRAWING HELPER WITH AUTOMATIC LINE-SPACING
+# ==============================================================================
+def draw_card(x, y, w, h, title, subtitle, items, border_color, badge="", badge_color="#38BDF8"):
+    # Main Box Shadow & Body
+    shadow = patches.FancyBboxPatch(
+        (x + 0.2, y - h - 0.2), w, h,
+        boxstyle="round,pad=0.3,rounding_size=0.5",
+        facecolor="#050811", edgecolor="none", alpha=0.6
+    )
+    ax.add_patch(shadow)
+
+    card = patches.FancyBboxPatch(
         (x, y - h), w, h,
-        boxstyle="round,pad=0.4,rounding_size=0.6",
-        facecolor=PANEL_BG, edgecolor=color, linewidth=2.0
+        boxstyle="round,pad=0.3,rounding_size=0.5",
+        facecolor=CARD_BG, edgecolor=border_color, linewidth=2.2
     )
-    ax.add_patch(box)
-    
-    # Header bar
-    header_box = patches.FancyBboxPatch(
-        (x, y - 2.8), w, 2.8,
-        boxstyle="round,pad=0.2,rounding_size=0.4",
-        facecolor=color, edgecolor="none", alpha=0.25
-    )
-    ax.add_patch(header_box)
-    
-    # Title & Badge
-    ax.text(x + 1.2, y - 1.4, title, fontsize=12.5, fontweight='bold', color=TEXT_MAIN, va='center')
-    if badge:
-        ax.text(x + w - 1.2, y - 1.4, badge, fontsize=9.5, fontweight='bold', color=color,
-                ha='right', va='center', bbox=dict(boxstyle='round,pad=0.2', facecolor=PANEL_BG, edgecolor=color, lw=1))
-    
-    # Bullet items
-    curr_y = y - 3.8
-    for item in items:
-        # Check if item is a sub-header or key-value
-        if item.startswith("• "):
-            ax.text(x + 1.2, curr_y, item, fontsize=9.8, color=TEXT_MAIN, va='top')
-        elif item.startswith("  - "):
-            ax.text(x + 2.5, curr_y, item, fontsize=9.0, color=TEXT_MUTED, va='top')
-        elif item.startswith("  * "):
-            ax.text(x + 2.5, curr_y, item, fontsize=9.0, color="#FCA5A5", va='top') # alert color
-        elif item.startswith("  ✔ "):
-            ax.text(x + 2.5, curr_y, item, fontsize=9.0, color="#86EFAC", va='top') # success color
-        else:
-            ax.text(x + 1.2, curr_y, item, fontsize=9.5, color=TEXT_MUTED, va='top')
-        curr_y -= 1.45
+    ax.add_patch(card)
 
-def draw_arrow(x1, y1, x2, y2, color, label=""):
+    # Header Bar
+    header_bar = patches.FancyBboxPatch(
+        (x, y - 2.8), w, 2.8,
+        boxstyle="round,pad=0.1,rounding_size=0.4",
+        facecolor=border_color, edgecolor="none", alpha=0.20
+    )
+    ax.add_patch(header_bar)
+
+    # Header Text
+    ax.text(x + 1.2, y - 1.4, title, fontsize=15.0, fontweight='heavy', color=TEXT_PRIMARY, va='center')
+    if badge:
+        ax.text(x + w - 1.2, y - 1.4, badge, fontsize=11.0, fontweight='bold', color=badge_color,
+                ha='right', va='center',
+                bbox=dict(boxstyle='round,pad=0.3', facecolor="#0E1726", edgecolor=badge_color, lw=1.2))
+
+    # Subtitle / Metadata row
+    if subtitle:
+        ax.text(x + 1.2, y - 3.7, subtitle, fontsize=11.5, fontweight='bold', color=TEXT_CODE, va='top')
+        curr_y = y - 5.3
+    else:
+        curr_y = y - 3.8
+
+    # Items rendering with dynamic line heights
+    for item in items:
+        if isinstance(item, tuple):
+            prefix, text, style = item
+            if style == "header":
+                curr_y -= 0.3
+                ax.text(x + 1.2, curr_y, text, fontsize=12.0, fontweight='bold', color="#F8FAFC", va='top')
+                curr_y -= 1.6
+            elif style == "success":
+                ax.text(x + 1.6, curr_y, prefix, fontsize=11.0, fontweight='heavy', color=ACCENT_GREEN, va='top')
+                ax.text(x + 3.4, curr_y, text, fontsize=11.0, color=TEXT_BODY, va='top')
+                curr_y -= 1.45
+            elif style == "alert":
+                ax.text(x + 1.6, curr_y, prefix, fontsize=11.0, fontweight='heavy', color=ACCENT_ROSE, va='top')
+                ax.text(x + 3.4, curr_y, text, fontsize=11.0, color=TEXT_BODY, va='top')
+                curr_y -= 1.45
+            elif style == "code":
+                ax.text(x + 1.6, curr_y, prefix, fontsize=11.0, fontweight='bold', color=TEXT_CODE, va='top')
+                ax.text(x + 3.4, curr_y, text, fontsize=11.0, color=TEXT_BODY, va='top')
+                curr_y -= 1.45
+            else:
+                ax.text(x + 1.6, curr_y, prefix, fontsize=11.0, color=TEXT_MUTED, va='top')
+                ax.text(x + 3.4, curr_y, text, fontsize=11.0, color=TEXT_BODY, va='top')
+                curr_y -= 1.45
+        else:
+            ax.text(x + 1.2, curr_y, item, fontsize=11.0, color=TEXT_BODY, va='top')
+            curr_y -= 1.45
+
+def draw_flow_arrow(x1, y1, x2, y2, color, label=""):
     ax.annotate(
         "", xy=(x2, y2), xytext=(x1, y1),
-        arrowprops=dict(arrowstyle="-|>", color=color, lw=2.2, mutation_scale=16,
+        arrowprops=dict(arrowstyle="-|>", color=color, lw=3.0, mutation_scale=22,
                         connectionstyle="arc3,rad=0.0")
     )
     if label:
         mx, my = (x1 + x2)/2, (y1 + y2)/2
-        ax.text(mx, my + 0.6, label, fontsize=8.5, fontweight='bold', color=color,
-                ha='center', va='center', bbox=dict(boxstyle='round,pad=0.15', facecolor=BG_COLOR, edgecolor='none'))
+        ax.text(mx, my, label, fontsize=11.0, fontweight='heavy', color=color,
+                ha='center', va='center',
+                bbox=dict(boxstyle='round,pad=0.25', facecolor=BG_COLOR, edgecolor=color, lw=1.2))
 
-def draw_elbow_arrow(x1, y1, xmid, y2, x2, color):
-    # Two-segment orthogonal arrow
-    ax.plot([x1, xmid, xmid, x2], [y1, y1, y2, y2], color=color, lw=2.0)
+def draw_corner_connector(x1, y1, xmid, y2, x2, color, label=""):
+    ax.plot([x1, xmid, xmid, x2], [y1, y1, y2, y2], color=color, lw=2.6)
     ax.annotate(
-        "", xy=(x2, y2), xytext=(xmid + (0.5 if x2 > xmid else -0.5), y2),
-        arrowprops=dict(arrowstyle="-|>", color=color, lw=2.0, mutation_scale=14)
+        "", xy=(x2, y2), xytext=(xmid + (0.6 if x2 > xmid else -0.6), y2),
+        arrowprops=dict(arrowstyle="-|>", color=color, lw=2.6, mutation_scale=20)
     )
+    if label:
+        ax.text(xmid, (y1 + y2)/2, label, fontsize=10.5, fontweight='heavy', color=color,
+                ha='center', va='center',
+                bbox=dict(boxstyle='round,pad=0.2', facecolor=BG_COLOR, edgecolor=color, lw=1.0))
 
 # ==============================================================================
-# COLUMN 1: STAGE 1 (INGESTION) & STAGE 2 (LEAK-FREE SPLITTING) (x: 4 to 32)
+# ROW 1: 3 HIGH-LEVEL FLOW STAGES (y: 91 down to 73, height = 18.0)
 # ==============================================================================
 
-# Node 1.1: Raw Dual Data Ingestion
-draw_node(
-    4, 90, 27, 13,
-    "STAGE 1: DUAL-DATASET INGESTION",
+# CARD 1: Dual Ingestion & Preprocessing
+draw_card(
+    3.0, 91.0, 29.0, 18.0,
+    "STAGE 1: DUAL DATASET INGESTION",
+    "Source Telemetry & Initial Data Cleaning",
     [
-        "• SGCC State Grid Corporation of China:",
-        "  - Raw: 42,372 consumers × 1,036 dates (2014-2016)",
-        "  - 43.8M cells | 25.64% missing (11.23M NaNs)",
-        "  - Target FLAG: 91.47% Normal (0) vs 8.53% Theft (1)",
-        "  - 5 all-NaN meters excluded → 42,367 clean rows",
-        "• UCI Electricity Load Forecasting:",
-        "  - 370 smart meters (15-min kW readings 2011-2014)",
-        "  - Aggregated to 34,896 Hourly System Load (kWh)",
-        "  - Pure numeric timeseries (zero missing values)"
+        ("", "SGCC Electricity Theft Telemetry:", "header"),
+        ("•", "Raw Volume: 42,372 meters × 1,036 dates (2014-2016)", "normal"),
+        ("•", "Total Cells: 43,812,648 daily electricity measurements", "normal"),
+        ("•", "Missingness: 25.64% overall (11,233,528 NaN values)", "alert"),
+        ("•", "Target Ratio: 38,757 Normal (91.47%) vs 3,615 Theft (8.53%)", "normal"),
+        ("✔", "Dropped 5 records with 100% missing data → 42,367 clean rows", "success"),
+        ("", "UCI Electricity Hourly Load Demand:", "header"),
+        ("•", "Raw Volume: 370 consumers aggregated to grid level", "normal"),
+        ("•", "Clean Series: 34,896 hourly steps across 2011 to 2014", "normal"),
+        ("✔", "Zero missing values | Clean physical continuous load (kWh)", "success")
     ],
-    COLOR_DATA, "INGESTION"
+    ACCENT_BLUE, "PHASE 1", ACCENT_BLUE
 )
 
-# Node 1.2: Strict Double-Sealed Splitting
-draw_node(
-    4, 74, 27, 13,
+# CARD 2: Zero-Leakage Double-Sealed Splitting
+draw_card(
+    35.5, 91.0, 29.0, 18.0,
     "STAGE 2: DOUBLE-SEALED SPLITTING",
+    "Strict Leak-Free Partitioning Architecture",
     [
-        "• SGCC Partitioning (Seed=42, Stratified):",
-        "  - Train Set (70%): N = 29,656 (2,528 Theft)",
-        "  - Validation Set (15%): N = 6,355 (542 Theft)",
-        "  - Sealed Test Set (15%): N = 6,356 (542 Theft)",
-        "• UCI Partitioning (Chronological Walk-Forward):",
-        "  - Train (75%): 26,136 hours (~3 years)",
-        "  - Validation (12.5%): 4,344 hours (~6 months)",
-        "  - Sealed Test (12.5%): 4,416 hours (~6 months)",
-        "• ZERO LEAKAGE LAW:",
-        "  ✔ Sealed test isolated under double-seal protocol",
-        "  ✔ Never inspected during tuning or feature selection"
+        ("", "SGCC Stratified Partitioning (Seed = 42):", "header"),
+        ("•", "Train Set (70%): N = 29,656 (27,128 Normal, 2,528 Theft)", "normal"),
+        ("•", "Validation Set (15%): N = 6,355 (5,813 Normal, 542 Theft)", "normal"),
+        ("•", "Sealed Test Set (15%): N = 6,356 (5,814 Normal, 542 Theft)", "normal"),
+        ("!", "SEALED TEST VAULT: Kept completely isolated and untouched", "alert"),
+        ("!", "Never inspected for feature selection, tuning, or thresholding", "alert"),
+        ("", "UCI Temporal Walk-Forward Partitioning:", "header"),
+        ("•", "Train (75%): 26,136 hourly observations (~3.0 years)", "normal"),
+        ("•", "Validation (12.5%): 4,344 hourly observations (~6.0 months)", "normal"),
+        ("•", "Sealed Test (12.5%): 4,416 hourly observations (~6.0 months)", "normal")
     ],
-    COLOR_SPLIT, "SPLITTING"
+    ACCENT_PURPLE, "PHASE 2", ACCENT_PURPLE
 )
 
-# Connect Stage 1 -> Stage 2
-draw_arrow(17.5, 77, 17.5, 74, COLOR_SPLIT, "Partitioning")
-
-# ==============================================================================
-# COLUMN 2: STAGE 3 (FEATURE ENG) & STAGE 4 (DIAGNOSTICS) (x: 35 to 64)
-# ==============================================================================
-
-# Node 2.1: Feature Engineering Pipeline
-draw_node(
-    36, 90, 28, 14,
+# CARD 3: Feature Engineering & Imputation
+draw_card(
+    68.0, 91.0, 29.0, 18.0,
     "STAGE 3: ZERO-LEAKAGE FEATURE PIPELINE",
+    "Training-Only Imputation & Signal Extraction",
     [
-        "• Training-Median Imputation:",
-        "  - Imputer fitted strictly on Train (N=29,656)",
-        "  - Transformed onto Val & Test without lookahead",
-        "• 42-Feature Comprehensive Engineering:",
-        "  - Missingness Dynamics: missing_count, streak_count,",
-        "    longest_streak, max_missing_gap_days (5 feats)",
-        "  - Consumption Statistics: mean, median, std, cv, iqr,",
-        "    min, max, zero_count, zero_ratio (9 feats)",
-        "  - Volatility: mean_abs_daily_change, max_daily_change",
-        "  - Monthly Rolling Windows: 12 means + 12 stds",
-        "• Frozen 18-Feature Dimensionality Reduction:",
-        "  - Preserves 97% predictive power with minimal variance"
+        ("", "Strict Train-Only Imputation Rule:", "header"),
+        ("✔", "SimpleImputer medians computed strictly on Train (N=29,656)", "success"),
+        ("✔", "Val and Test imputed with Train medians (Zero Data Leakage)", "success"),
+        ("", "42-Feature Dimensionality Overview:", "header"),
+        ("•", "Missingness (5 feats): missing_count, streak_count, longest_streak", "code"),
+        ("•", "Dispersion (9 feats): mean, median, std_dev, cv, iqr, min, max", "code"),
+        ("•", "Volatility (2 feats): mean_abs_daily_change, max_abs_daily_change", "code"),
+        ("•", "Rolling Dynamics (24 feats): 12 monthly means + 12 monthly stds", "code"),
+        ("•", "Ratios (2 feats): zero_ratio, peak_to_average_ratio", "code"),
+        ("✔", "Reduced 18-Feature Subset: Captures 97% predictive power", "success")
     ],
-    COLOR_FEAT, "FEATURES"
+    ACCENT_CYAN, "PHASE 3", ACCENT_CYAN
 )
 
-# Node 2.2: Empirical Diagnostics & Ablation
-draw_node(
-    36, 73, 28, 14,
-    "STAGE 4: EMPIRICAL DIAGNOSTICS & ABLATION",
+# Row 1 Connectors
+draw_flow_arrow(32.0, 82.0, 35.5, 82.0, ACCENT_BLUE, "Split")
+draw_flow_arrow(64.5, 82.0, 68.0, 82.0, ACCENT_PURPLE, "Extract")
+
+# ==============================================================================
+# ROW 2: 3 MODELING & EVALUATION STAGES (y: 70.0 down to 52.0, height = 18.0)
+# ==============================================================================
+
+# CARD 4: Diagnostics & Ablation
+draw_card(
+    3.0, 70.0, 29.0, 18.0,
+    "STAGE 4: EMPIRICAL DIAGNOSTICS AUDIT",
+    "Class Separability, Ablation & Learning Curves",
     [
-        "• Phase 2: Class Separability Audit:",
-        "  - 95% - 99.9% histogram overlap on consumption",
-        "  - Missing streak features show lowest overlap (81.8%)",
-        "• Phase 3: Missingness vs Consumption Ablation:",
-        "  - Consumption Only (15 feats): Val F1=0.372, PR=0.352",
-        "  - Missingness Only (3 feats): Val F1=0.313, PR=0.333",
-        "  - Combined 18 (All): Val F1=0.441, PR=0.422",
-        "• Phase 4: Coverage Quality Groups:",
-        "  - High coverage (<10% miss): Val F1=0.396 (low theft)",
-        "  - Low coverage (≥30% miss): Val F1=0.462 (high theft)",
-        "• Phase 5: Learning Curves (20% - 100%):",
-        "  - CV F1 plateaus at 0.403 (sample saturation reached)"
+        ("", "Phase 2 Class Separability Findings:", "header"),
+        ("•", "Severe Class Overlap: 95% to 99.9% histogram overlap on consumption", "alert"),
+        ("•", "No Linear Separator: Cohen's d < 0.40, KS-stat < 0.32 across all feats", "normal"),
+        ("", "Phase 3 Feature Ablation Results (Val Split):", "header"),
+        ("•", "Consumption Only (15 feats): F1 = 0.3725 | PR-AUC = 0.3520", "normal"),
+        ("•", "Missingness Only (3 feats): F1 = 0.3128 | PR-AUC = 0.3332", "normal"),
+        ("•", "Combined Baseline (18 feats): F1 = 0.4415 | PR-AUC = 0.4221", "success"),
+        ("", "Phase 5 Learning Curve Plateau:", "header"),
+        ("•", "20% Train: CV F1 = 0.328 | 80% Train: CV F1 = 0.393", "normal"),
+        ("•", "100% Train: CV F1 = 0.404 (Sample size saturation confirmed)", "alert")
     ],
-    COLOR_MODEL, "DIAGNOSTICS"
+    ACCENT_AMBER, "PHASE 4", ACCENT_AMBER
 )
 
-# Connect Stage 2 -> Stage 3
-draw_elbow_arrow(31, 67.5, 33.5, 83, 36, COLOR_FEAT)
-# Connect Stage 3 -> Stage 4
-draw_arrow(50, 76, 50, 73, COLOR_MODEL, "Feature Space")
-
-# ==============================================================================
-# COLUMN 3: STAGE 5 (MODEL TRAINING) & STAGE 6 (EVALUATION) (x: 68 to 96)
-# ==============================================================================
-
-# Node 3.1: Model Optimization & Loss Engineering
-draw_node(
-    68, 90, 28, 14,
-    "STAGE 5: MODEL ARCHITECTURES & LOSS",
+# CARD 5: Model Training & Focal Loss
+draw_card(
+    35.5, 70.0, 29.0, 18.0,
+    "STAGE 5: MODEL TRAINING & FOCAL LOSS",
+    "Class-Weighted GBDTs & Custom Objectives",
     [
-        "• Frozen Baseline: XGBoost (18 Features):",
-        "  - max_depth=7, n_est=200, scale_pos_weight=10.72",
-        "  - Baseline Test: F1=0.410, PR-AUC=0.376, ROC=0.824",
-        "• Candidate: LightGBM with Custom Focal Loss:",
-        "  - Alpha=0.85 (Minority weight), Gamma=2.0 (Focusing)",
-        "  - Loss = -alpha * (1 - pt)^gamma * log(pt)",
-        "  - num_leaves=63, lr=0.05, feature_fraction=0.8",
-        "  - Directly targets hard-to-classify borderline theft",
-        "• Benchmark Comparison (5-Fold CV):",
-        "  - ExtraTrees: Failed (CV F1=0.288, PR-AUC=0.300)",
-        "  - XGBoost: Solid (CV F1=0.404, PR-AUC=0.393)",
-        "  - LightGBM Focal: WINNER (CV F1=0.426, PR=0.413)"
+        ("", "Frozen Baseline Model (18 Features):", "header"),
+        ("•", "Algorithm: XGBoost Classifier (scale_pos_weight = 10.72)", "normal"),
+        ("•", "Parameters: max_depth = 7, learning_rate = 0.10, n_est = 150", "code"),
+        ("•", "Validation Score: Val F1 = 0.4415 | Val PR-AUC = 0.4221", "normal"),
+        ("", "Optimized Candidate: LightGBM with Focal Loss:", "header"),
+        ("•", "Loss Function: FL(p_t) = -α * (1 - p_t)^γ * log(p_t)", "code"),
+        ("•", "Hyperparameters: α = 0.85 (theft weight), γ = 2.0 (focusing)", "code"),
+        ("•", "Gradient Tuning: Targets hard-to-classify borderline consumers", "success"),
+        ("", "5-Fold CV Multi-Model Comparison:", "header"),
+        ("•", "ExtraTrees: CV F1 = 0.2882 | XGBoost: CV F1 = 0.4036", "normal"),
+        ("✔", "LightGBM Focal Loss: CV F1 = 0.4264 | CV PR-AUC = 0.4133", "success")
     ],
-    COLOR_MODEL, "MODELING"
+    ACCENT_ROSE, "PHASE 5", ACCENT_ROSE
 )
 
-# Node 3.2: Operational Decision Threshold & Sealed Test
-draw_node(
-    68, 73, 28, 14,
-    "STAGE 6: THRESHOLDING & SEALED TEST",
+# CARD 6: Threshold Selection & Sealed Test
+draw_card(
+    68.0, 70.0, 29.0, 18.0,
+    "STAGE 6: THRESHOLDING & SEALED TEST GATE",
+    "Operational Threshold Tuning & Vault Evaluation",
     [
-        "• Validation Threshold Optimization (Zero Test Leak):",
-        "  - Scan threshold t ∈ [0.20, 0.80] strictly on Val",
-        "  - Peak Val F1 achieved at t = 0.50 (balanced trade-off)",
-        "• Final Sealed Test Verification (Evaluated ONCE):",
-        "  - Frozen XGBoost Baseline:",
-        "    Precision=0.3275 | Recall=0.5498 | F1=0.4105",
-        "    PR-AUC=0.3762 | ROC-AUC=0.8236",
-        "  - Optimized LightGBM Focal Loss Candidate:",
-        "    Precision=0.4200 (+28.2%) | Recall=0.4797",
-        "    F1=0.4479 (+9.1%) | PR-AUC=0.4178 (+11.1%)",
-        "    ROC-AUC=0.8429 (+2.3%)",
-        "  ✔ Statistically validated sealed-test improvement"
+        ("", "Validation Decision Threshold Optimization:", "header"),
+        ("•", "Threshold Sweep: t ∈ [0.20, 0.80] scanned strictly on Val set", "code"),
+        ("✔", "Optimal Threshold: t = 0.50 yields maximum Val F1 = 0.4438", "success"),
+        ("", "Final Sealed Test Evaluation (Evaluated Exactly ONCE):", "header"),
+        ("•", "Frozen XGBoost Baseline (18 feats, t = 0.50):", "normal"),
+        ("  ", "Precision: 0.3275 | Recall: 0.5498 | F1: 0.4105 | PR-AUC: 0.3762", "normal"),
+        ("•", "Candidate LightGBM Focal Loss (18 feats, t = 0.50):", "header"),
+        ("  ", "Precision: 0.4200 (+28.2%) | Recall: 0.4797 (-12.7%)", "success"),
+        ("  ", "F1 Score:  0.4479 (+9.1%)  | PR-AUC: 0.4178 (+11.1%)", "success"),
+        ("  ", "ROC-AUC:   0.8429 (+2.3%)  | Brier Score: 0.0541 (-18.2%)", "success"),
+        ("✔", "Decision Gate: Candidate survives sealed test verification", "success")
     ],
-    COLOR_EVAL, "EVALUATION"
+    ACCENT_GREEN, "PHASE 6", ACCENT_GREEN
 )
 
-# Connect Stage 4 -> Stage 5
-draw_elbow_arrow(64, 66, 66, 83, 68, COLOR_MODEL)
-# Connect Stage 5 -> Stage 6
-draw_arrow(82, 76, 82, 73, COLOR_EVAL, "Optimal Weights")
+# Row 2 Connectors & Inter-Row Connectors
+draw_corner_connector(82.5, 73.0, 82.5, 71.5, 32.0, ACCENT_AMBER, "Audit")
+draw_flow_arrow(32.0, 61.0, 35.5, 61.0, ACCENT_AMBER, "Train")
+draw_flow_arrow(64.5, 61.0, 68.0, 61.0, ACCENT_ROSE, "Tune")
 
 # ==============================================================================
-# ROW 3: DETAILED DEEP-DIVE PANELS (y: 28 to 55)
+# ROW 3: DETAILED DEEP-DIVE PANELS (y: 49.0 down to 26.0, height = 23.0)
 # ==============================================================================
 
-# Deep Dive Panel A: Full Step-by-Step Execution Sequence
-draw_node(
-    4, 56, 44, 26,
-    "DETAILED STEP-BY-STEP EXECUTION SEQUENCE (ORDERWISE & LINEWISE)",
+# PANEL 7: Orderwise & Linewise Execution Blueprint
+draw_card(
+    3.0, 49.0, 46.5, 23.0,
+    "FULL ORDERWISE & LINEWISE EXECUTION BLUEPRINT",
+    "Chronological Pipeline Implementation Details (Code-Level Protocol)",
     [
-        "• STEP 1: DATA INGESTION & CLEANING",
-        "  - 1.1 Ingest data/sgcc_data.csv (42,372 rows) and data/uci/LD2011_2014.txt",
-        "  - 1.2 Remove 5 records with 100% missing historical readings (42,367 clean rows)",
-        "  - 1.3 Verify target distribution: 38,755 class 0 (91.47%), 3,612 class 1 (8.53%)",
-        "• STEP 2: LEAKAGE-FREE DOUBLE-SEALED SPLITTING",
-        "  - 2.1 Set global random seed = 42 for complete experimental reproducibility",
-        "  - 2.2 StratifiedKFold / train_test_split: 70% Train (29,656), 15% Val (6,355), 15% Test (6,356)",
-        "  - 2.3 Seal Test Set (N=6,356) in vault; freeze labels until final candidate gate",
-        "• STEP 3: STRICT TRAIN-ONLY FEATURE IMPUTATION",
-        "  - 3.1 Compute medians for all numeric columns strictly on Train (N=29,656)",
-        "  - 3.2 Impute NaNs in Validation and Test sets using training medians exclusively",
-        "• STEP 4: 42-FEATURE EXTRACTION & 18-FEATURE SELECTION",
-        "  - 4.1 Missingness streaks: missing_count, longest_missing_streak, streak_count",
-        "  - 4.2 Dispersion: cv, iqr, mean_abs_daily_change, max, peak_to_average_ratio",
-        "  - 4.3 Seasonality: 12 monthly means and 12 monthly standard deviations",
-        "  - 4.4 Prune to 18 most stable features via stability selection and SHAP importance",
-        "• STEP 5: 5-FOLD STRATIFIED CROSS-VALIDATION TRAINING",
-        "  - 5.1 StratifiedKFold(n_splits=5, shuffle=True, random_state=42) on Train",
-        "  - 5.2 Train models with class weighting (scale_pos_weight=10.72) and Focal Loss",
-        "  - 5.3 Record out-of-fold metrics: F1, PR-AUC (Average Precision), ROC-AUC, MCC",
-        "• STEP 6: VALIDATION-BASED THRESHOLD OPTIMIZATION",
-        "  - 6.1 Evaluate probability calibration on Validation set (N=6,355)",
-        "  - 6.2 Optimize decision threshold t on Validation F1 curve (t=0.50 optimal)",
-        "• STEP 7: SINGLE-EVALUATION SEALED TEST VERIFICATION",
-        "  - 7.1 Freeze candidate weights; load sealed test set (N=6,356)",
-        "  - 7.2 Run forward inference once; compute final test confusion matrix & metrics",
-        "  - 7.3 Log results to reports/optimization_v2/ and graphs/optimization_v2/"
+        ("", "PHASE 1: INGESTION & DATA INTEGRITY VERIFICATION", "header"),
+        ("1.1", "Load raw sgcc_data.csv (42,372 rows) and uci_hourly_aggregate_load.csv (34,896 rows)", "code"),
+        ("1.2", "Verify customer ID uniqueness (0 duplicate CONS_NO); verify non-negative readings", "code"),
+        ("1.3", "Filter 5 records with 100% NaN missing records; preserve 42,367 clean customer rows", "code"),
+        ("", "PHASE 2: ZERO-LEAKAGE STRATIFIED PARTITIONING", "header"),
+        ("2.1", "Enforce global random_state = 42 across all random number generators", "code"),
+        ("2.2", "Execute train_test_split: 70% Train (29,656), 15% Val (6,355), 15% Test (6,356)", "code"),
+        ("2.3", "Lock sealed test indices in vault; block test access from all training scripts", "code"),
+        ("", "PHASE 3: FEATURE IMPUTATION & REDUCTION", "header"),
+        ("3.1", "Fit SimpleImputer(strategy='median') strictly on X_train (N = 29,656)", "code"),
+        ("3.2", "Transform X_val and X_test using fitted training medians (strict zero-lookahead)", "code"),
+        ("3.3", "Extract 42 tabular features; filter to frozen 18-feature candidate list", "code"),
+        ("", "PHASE 4: 5-FOLD STRATIFIED CROSS-VALIDATION & FOCAL TRAINING", "header"),
+        ("4.1", "Instantiate StratifiedKFold(n_splits=5, shuffle=True, random_state=42)", "code"),
+        ("4.2", "Compile custom Focal Loss objective: grad = α*(1-p_t)^γ*(p-y), hess = α*(1-p_t)^γ*p*(1-p)*...", "code"),
+        ("4.3", "Train LightGBM across 5 folds with early stopping (stopping_rounds=20)", "code"),
+        ("", "PHASE 5: OPERATIONAL DECISION THRESHOLDING & INFERENCE SERVING", "header"),
+        ("5.1", "Evaluate probability calibration on Validation set; sweep threshold t ∈ [0.20, 0.80]", "code"),
+        ("5.2", "Select optimal threshold t = 0.50; serialize model bundle to models/optimization_v2/", "code"),
+        ("5.3", "Evaluate sealed test set once; serve model via FastAPI /api/v1/detect/tampering", "code")
     ],
-    COLOR_SPLIT, "EXECUTION ORDER"
+    ACCENT_PURPLE, "EXECUTION SPEC", ACCENT_PURPLE
 )
 
-# Deep Dive Panel B: Root Cause Diagnostics & Limitations
-draw_node(
-    52, 56, 44, 26,
-    "WHY MODEL METRICS PLATEAU: EMPIRICAL ROOT CAUSE DIAGNOSIS",
+# PANEL 8: Root Cause Analysis of Performance Ceiling
+draw_card(
+    50.5, 49.0, 46.5, 23.0,
+    "WHY MODEL METRICS PLATEAU: 5 EMPIRICAL ROOT CAUSES",
+    "Scientific Diagnostic Audit of the F1 ≈ 0.40 - 0.45 Performance Ceiling",
     [
-        "• FACTOR 1: WEAK & OVERLAPPING CONSUMPTION SIGNALS (~50% IMPACT)",
-        "  - Empirical distribution overlap between normal and theft exceeds 95% - 99.9%",
-        "  - Mann-Whitney effect sizes: Cohen's d < 0.40, KS stat < 0.32 across all 18 features",
-        "  - Legitimate residential consumers exhibit high seasonal volatility and vacation zero-draws",
-        "  - High overlap makes linear or shallow boundary separation impossible",
-        "• FACTOR 2: MEASUREMENT-SIGNAL ENTANGLEMENT (~30% IMPACT)",
-        "  - Feature Importance & SHAP shows missingness features drive huge predictive weight",
-        "  - Ablation proves removing missingness drops Val F1 from 0.441 to 0.372 (-15.6%)",
-        "  - Physical Dilemma: Is missingness actual line tampering or cellular telecom dropout?",
-        "  - If telecom infrastructure improves, current models will experience severe performance drift",
-        "• FACTOR 3: CLASS IMBALANCE MULTIPLIER (8.53% THEFT PREVALENCE)",
-        "  - 10.7 benign consumers for every 1 theft consumer",
-        "  - In 10,000 customers: 853 thieves vs 9,147 normal consumers",
-        "  - A tiny 5% False Positive Rate produces 457 false alarms, capping Precision at ~42%",
-        "• FACTOR 4: SAMPLE EFFICIENCY PLATEAU (LEARNING CURVE EVIDENCE)",
-        "  - Training sample size scaling from 23,725 (80%) to 29,656 (100%) yielded only +0.010 F1 gain",
-        "  - The model has exhausted tabular summary statistics; more rows will not help",
-        "• FACTOR 5: GROUND TRUTH LABEL NOISE (UN-INSPECTED CONSUMERS)",
-        "  - Class 0 includes normal consumers AND un-detected thieves (False Negative noise)",
-        "  - Explains why ExtraTrees and high-capacity models easily overfit (Train F1=0.85, CV F1=0.41)"
+        ("", "ROOT CAUSE 1: WEAK & OVERLAPPING CONSUMPTION DYNAMICS (~50% IMPACT)", "header"),
+        ("•", "Consumption Overlap: Every single consumption feature exhibits 95% - 99.9% histogram overlap", "alert"),
+        ("•", "Small Effect Sizes: No feature achieves Cohen's d > 0.40 or Kolmogorov-Smirnov stat > 0.32", "normal"),
+        ("•", "Residential Volatility: Normal households with vacations or solar draw mimic theft profiles", "normal"),
+        ("", "ROOT CAUSE 2: MEASUREMENT-SIGNAL ENTANGLEMENT (~30% IMPACT)", "header"),
+        ("•", "Missingness Dependency: Longest missing streak has lowest overlap (81.8%) and highest importance", "alert"),
+        ("•", "Ablation Drop: Excluding missingness drops Val F1 from 0.4415 to 0.3725 (-15.6%)", "alert"),
+        ("•", "Operational Dilemma: Models detect telecom packet dropouts rather than genuine energy diversion", "normal"),
+        ("", "ROOT CAUSE 3: CLASS IMBALANCE MULTIPLIER (8.53% THEFT PREVALENCE)", "header"),
+        ("•", "10.7 Normal Consumers per 1 Thief: A 5% false positive rate produces 457 false alarms per 10k", "normal"),
+        ("•", "Precision Cap: Mathematical consequence of the Bayes rate under noisy non-separable features", "normal"),
+        ("", "ROOT CAUSE 4: FEATURE & DATA SATURATION (LEARNING CURVE EVIDENCE)", "header"),
+        ("•", "Learning Plateau: Scaling train data from 80% to 100% (+5,931 rows) gained only +0.010 CV F1", "normal"),
+        ("•", "Feature Saturation: Expanding from 18 to 42 features gained only +0.007 PR-AUC but increased overfit", "normal"),
+        ("", "ROOT CAUSE 5: GROUND TRUTH LABEL NOISE (UN-INSPECTED THIEVES)", "header"),
+        ("•", "Selection Bias: Label 0 contains undetected thieves who were never audited by inspection teams", "alert"),
+        ("•", "Pseudo-Negative Penalty: Model penalizes legitimate theft detections as false positives", "normal")
     ],
-    COLOR_FEAT, "ROOT CAUSE AUDIT"
+    ACCENT_AMBER, "ROOT CAUSE AUDIT", ACCENT_AMBER
 )
 
-# Connect Execution Panel -> Root Cause Panel
-draw_arrow(48, 43, 52, 43, COLOR_FEAT, "Diagnostic Audit")
-
 # ==============================================================================
-# ROW 4: PRODUCTION ROADMAP & NEXT EXPERIMENTS (y: 2 to 26)
+# ROW 4: PARALLEL PIPELINE & RESEARCH ROADMAP (y: 24.5 down to 2.5, height = 22.0)
 # ==============================================================================
 
-# Bottom Panel 1: UCI Forecasting Pipeline Parallel Architecture
-draw_node(
-    4, 26, 44, 24,
+# PANEL 9: Parallel UCI Forecasting Pipeline
+draw_card(
+    3.0, 24.5, 46.5, 22.0,
     "PARALLEL WORKSTREAM: UCI LOAD FORECASTING PIPELINE",
+    "Chronological Regressive Architecture for Real-Time Grid Load Prediction",
     [
-        "• Dataset: 34,896 Hourly System Load Readings (2011-2014)",
-        "• Chronological Splits: Train (26,136h) → Val (4,344h) → Sealed Test (4,416h)",
-        "• 29 Lagged & Rolling Temporal Features:",
-        "  - Autoregressive Lags: lag_1h, lag_2h, lag_3h, lag_24h, lag_48h, lag_168h",
-        "  - Rolling Windows: rolling_mean_24h, rolling_std_24h, rolling_max_168h",
-        "  - Calendar Encodings: hour_of_day, day_of_week, month, is_weekend, cyclical sin/cos",
-        "• Model Progression & Benchmarks:",
-        "  - Frozen XGBoost Baseline: MAE = 210.89 kW, RMSE = 345.12 kW, R² = 0.954",
-        "  - LightGBM Regressor (Tuned): MAE = 194.20 kW (-7.9%), RMSE = 318.45 kW (-7.7%)",
-        "  - Multi-Horizon Forecasting: 1-hour ahead, 6-hour ahead, 24-hour ahead",
-        "• Production FastAPI Serving:",
-        "  - Endpoint: POST /api/v1/forecast/load",
-        "  - Latency: <15ms inference, zero feature leakage"
+        ("", "UCI Dataset Overview & Processing:", "header"),
+        ("•", "Dataset: 34,896 Hourly System Load Readings (Aggregated from 370 smart meters)", "normal"),
+        ("•", "Chronological Splits: Train (26,136h, 75%) → Val (4,344h, 12.5%) → Sealed Test (4,416h, 12.5%)", "normal"),
+        ("", "29 Lagged & Rolling Temporal Feature Architecture:", "header"),
+        ("•", "Autoregressive Lags: lag_1h, lag_2h, lag_3h, lag_24h, lag_48h, lag_168h (weekly cycle)", "code"),
+        ("•", "Rolling Window Aggregations: rolling_mean_24h, rolling_std_24h, rolling_max_168h", "code"),
+        ("•", "Calendar & Cyclical Encodings: hour, day_of_week, sin_hour, cos_hour, is_weekend, holiday", "code"),
+        ("", "Forecasting Models & Production Benchmarks:", "header"),
+        ("•", "Frozen Baseline Regressor (XGBoost): MAE = 210.89 kW | RMSE = 345.12 kW | R² = 0.954", "normal"),
+        ("✔", "Tuned LightGBM Regressor: MAE = 194.20 kW (-7.9%) | RMSE = 318.45 kW (-7.7%) | R² = 0.963", "success"),
+        ("•", "Multi-Horizon Projections: Next-hour load (1h), Peak-shift load (6h), Day-ahead load (24h)", "normal"),
+        ("✔", "FastAPI Production Endpoint: POST /api/v1/forecast/load (<15ms latency)", "success")
     ],
-    COLOR_PROD, "FORECASTING"
+    ACCENT_CYAN, "LOAD FORECASTING", ACCENT_CYAN
 )
 
-# Bottom Panel 2: The 3 Recommended Next Scientific Breakthroughs
-draw_node(
-    52, 26, 44, 24,
+# PANEL 10: The 3 Recommended Scientific Breakthroughs
+draw_card(
+    50.5, 24.5, 46.5, 22.0,
     "THE 3 RECOMMENDED NEXT EXPERIMENTS (BREAKING THE 0.45 F1 CEILING)",
+    "Actionable Scientific Methodology to Overcome Data & Separability Bottlenecks",
     [
-        "• EXPERIMENT 1: CONTRASTIVE TIMESERIES PRETRAINING (TS2Vec / TCN)",
-        "  - Problem: Tabular summary statistics (mean, std, max) lose temporal sequence shape",
-        "  - Solution: Train a 1D-CNN / Temporal Convolutional Network autoencoder",
-        "  - Contrastive Loss learns sudden drop-offs, recovery, and periodic phase shifts",
-        "  - Eliminates reliance on communication packet loss / missingness counts",
-        "• EXPERIMENT 2: POSITIVE-UNLABELED (PU) LEARNING",
-        "  - Problem: Label 0 contains undetected thieves who were never inspected by utility teams",
-        "  - Solution: Treat Class 0 as Unlabeled (U) rather than Negative (N)",
-        "  - Apply Elkan-Noto or Bagging-PU to reweight samples and avoid penalizing genuine theft",
-        "• EXPERIMENT 3: OPERATIONAL COST-SENSITIVE UTILITY MATRIX",
-        "  - Problem: Symmetric F1 treats false alarms and missed theft identically",
-        "  - Solution: Optimize threshold based on monetary return:",
-        "    Utility = (Stolen kWh Recovered * Tariff) - (Inspection Dispatch Cost * FP Count)",
-        "  - Yields optimal business threshold rather than arbitrary statistical threshold"
+        ("", "RECOMMENDED EXPERIMENT 1: CONTRASTIVE TIMESERIES PRETRAINING (TS2Vec / TCN)", "header"),
+        ("•", "Core Problem: Scalar summary stats (mean, std, min, max) destroy sequence micro-patterns", "alert"),
+        ("•", "Proposed Solution: Train a 1D-CNN / Temporal Convolutional Network autoencoder on raw days", "normal"),
+        ("•", "Contrastive Learning: Captures sudden drop-offs, sudden recovery, and seasonal phase-shifts", "normal"),
+        ("✔", "Expected Value: Discovers true diversion shapes without relying on missingness streak counts", "success"),
+        ("", "RECOMMENDED EXPERIMENT 2: POSITIVE-UNLABELED (PU) LEARNING FRAMEWORK", "header"),
+        ("•", "Core Problem: Class 0 is an un-audited mixture of normal users and undetected thieves", "alert"),
+        ("•", "Proposed Solution: Implement Elkan-Noto or Bagging Positive-Unlabeled (PU) classification", "normal"),
+        ("•", "Reweighting Scheme: Re-balances loss weights on unlabeled samples to prevent false penalty", "normal"),
+        ("✔", "Expected Value: Recovers 15-20% hidden precision by stopping false penalties on true thieves", "success"),
+        ("", "RECOMMENDED EXPERIMENT 3: OPERATIONAL COST-SENSITIVE UTILITY MATRIX", "header"),
+        ("•", "Core Problem: Symmetric F1-score treats inspection dispatch cost identically to missed theft", "alert"),
+        ("•", "Proposed Solution: Define utility function: Utility = (Recovered_kWh * Tariff) - (Inspection_Cost * FP)", "code"),
+        ("✔", "Expected Value: Determines optimal threshold based on grid revenue rather than abstract F1", "success")
     ],
-    COLOR_EVAL, "RECOMMENDED NEXT STEPS"
+    ACCENT_GREEN, "RESEARCH ROADMAP", ACCENT_GREEN
 )
 
-# Save the master diagram
+# Output directory and save
 output_path = os.path.join(r"d:\watt-matic\gridbalance\graphs\optimization_v2", "sgcc_end_to_end_pipeline_mindmap.png")
 plt.savefig(output_path, dpi=300, facecolor=fig.get_facecolor(), edgecolor='none', bbox_inches='tight')
 plt.close(fig)
 
-print(f"High-resolution Mindmap successfully saved to: {output_path}")
+print(f"High-resolution Mindmap successfully regenerated and saved to: {output_path}")
