@@ -1,0 +1,8 @@
+Experiment,Loss_Strategy,Val_F1,Val_PR_AUC,Test_F1_t0.50,Test_Precision,Test_Recall,Test_PR_AUC,Test_ROC_AUC
+Baseline Frozen XGBoost,Binary Cross-Entropy (scale_pos_weight=10.72),0.4037,0.3684,0.3592,0.304,0.4391,0.3114,0.7758
+"XGBoost (spw=6.0, lr=0.15, early_stopping)",Cost-Sensitive Cross-Entropy (scale_pos_weight=6.0),0.4237,0.4138,0.4041,0.3799,0.4317,0.3629,0.8175
+"XGBoost (spw=8.0, lr=0.15, early_stopping)",Cost-Sensitive Cross-Entropy (scale_pos_weight=8.0),0.4521,0.4188,0.4188,0.3643,0.4926,0.389,0.8319
+"XGBoost (spw=10.72, lr=0.15, early_stopping)",Cost-Sensitive Cross-Entropy (scale_pos_weight=10.72),0.4317,0.4202,0.4199,0.3711,0.4834,0.3838,0.8228
+"XGBoost (spw=14.0, lr=0.15, early_stopping)",Cost-Sensitive Cross-Entropy (scale_pos_weight=14.0),0.4194,0.394,0.3873,0.3091,0.5185,0.3652,0.8168
+LightGBM Focal Loss (gamma=1.5),"Focal Loss (gamma=1.5, alpha=0.85)",0.439,0.4136,0.4331,0.381,0.5018,0.4089,0.8399
+LightGBM Focal Loss (gamma=2.0),"Focal Loss (gamma=2.0, alpha=0.85)",0.4469,0.4252,0.4479,0.42,0.4797,0.4178,0.8429

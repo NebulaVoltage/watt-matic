@@ -1,0 +1,16 @@
+Threshold,Accuracy,Precision,Recall,F1_Score,Flagged_Meters_Count,Flagged_Meters_Pct,Field_Inspection_Hit_Rate,Operational_Mode
+0.1,0.5131,0.1391,0.9077,0.2412,3537,55.65,13.9%,Aggressive Catch (High Recall)
+0.2,0.6698,0.1779,0.7934,0.2906,2417,38.03,17.8%,Aggressive Catch (High Recall)
+0.3,0.769,0.226,0.7048,0.3423,1690,26.59,22.6%,Aggressive Catch (High Recall)
+0.35,0.7975,0.2461,0.6661,0.3594,1467,23.08,24.6%,Aggressive Catch (High Recall)
+0.4,0.8252,0.27,0.6162,0.3755,1237,19.46,27.0%,Balanced Standard (Default)
+0.45,0.8468,0.2966,0.5812,0.3928,1062,16.71,29.7%,Balanced Standard (Default)
+0.5,0.8653,0.3275,0.5498,0.4105,910,14.32,32.7%,Balanced Standard (Default)
+0.55,0.8804,0.3577,0.5055,0.419,766,12.05,35.8%,Balanced Standard (Default)
+0.6,0.8891,0.3736,0.4446,0.4061,645,10.15,37.4%,Balanced Standard (Default)
+0.65,0.8977,0.3985,0.3911,0.3948,532,8.37,39.8%,"Conservative (High Precision, Low Inspection Cost)"
+0.7,0.9053,0.4315,0.3487,0.3857,438,6.89,43.2%,"Conservative (High Precision, Low Inspection Cost)"
+0.75,0.91,0.4581,0.3026,0.3644,358,5.63,45.8%,"Conservative (High Precision, Low Inspection Cost)"
+0.8,0.9154,0.5075,0.2509,0.3358,268,4.22,50.7%,"Conservative (High Precision, Low Inspection Cost)"
+0.85,0.918,0.5574,0.1882,0.2814,183,2.88,55.7%,"Conservative (High Precision, Low Inspection Cost)"
+0.9,0.9193,0.6381,0.1236,0.2071,105,1.65,63.8%,"Conservative (High Precision, Low Inspection Cost)"
