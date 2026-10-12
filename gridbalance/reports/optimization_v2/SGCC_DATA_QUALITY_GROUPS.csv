@@ -1,0 +1,4 @@
+Coverage_Group,Customer_Count,Positive_Count,Positive_Prevalence,Validation_F1,Validation_PR_AUC,Validation_Precision,Validation_Recall
+High_Coverage (<10% Missing),3189,200,0.0627,0.3963,0.3401,0.3164,0.53
+Medium_Coverage (10-30% Missing),1038,101,0.0973,0.4889,0.4573,0.3905,0.6535
+Low_Coverage (>=30% Missing),2128,241,0.1133,0.4621,0.479,0.4089,0.5311
