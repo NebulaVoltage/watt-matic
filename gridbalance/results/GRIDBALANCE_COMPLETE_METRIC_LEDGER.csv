@@ -1,0 +1,106 @@
+Dataset,Model,Split,Metric,Value,Threshold,Features,Source,Status
+SGCC,Logistic Regression (Original),Validation,F1,0.0753,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Logistic Regression (Original),Validation,PR-AUC,0.2593,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Logistic Regression (Original),Validation,ROC-AUC,0.7531,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Logistic Regression (Original),Test,F1,0.0727,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Logistic Regression (Original),Test,PR-AUC,0.2377,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Logistic Regression (Original),Test,ROC-AUC,0.7296,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Decision Tree (Original),Validation,F1,0.2604,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Decision Tree (Original),Validation,PR-AUC,0.1301,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Decision Tree (Original),Validation,ROC-AUC,0.5914,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Decision Tree (Original),Test,F1,0.2566,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Decision Tree (Original),Test,PR-AUC,0.1294,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Decision Tree (Original),Test,ROC-AUC,0.5949,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Random Forest (Original),Validation,F1,0.1265,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Random Forest (Original),Validation,PR-AUC,0.3432,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Random Forest (Original),Validation,ROC-AUC,0.8169,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Random Forest (Original),Test,F1,0.1351,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Random Forest (Original),Test,PR-AUC,0.3489,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Random Forest (Original),Test,ROC-AUC,0.8177,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost (Original Unweighted),Validation,F1,0.273,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost (Original Unweighted),Validation,PR-AUC,0.398,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost (Original Unweighted),Validation,ROC-AUC,0.8269,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost (Original Unweighted),Test,F1,0.273,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost (Original Unweighted),Test,PR-AUC,0.3807,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost (Original Unweighted),Test,ROC-AUC,0.8252,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Logistic Regression (Weighted),Validation,F1,0.2851,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Logistic Regression (Weighted),Test,F1,0.2666,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Random Forest (Weighted),Validation,F1,0.3085,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Random Forest (Weighted),Test,F1,0.2789,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost (Weighted),Validation,F1,0.4127,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost (Weighted),Validation,PR-AUC,0.391,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost (Weighted),Validation,ROC-AUC,0.8102,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost (Weighted),Test,F1,0.3802,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost (Weighted),Test,PR-AUC,0.3438,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost (Weighted),Test,ROC-AUC,0.803,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Logistic Regression (SMOTE),Validation,F1,0.2896,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Logistic Regression (SMOTE),Test,F1,0.2773,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Random Forest (SMOTE),Validation,F1,0.3685,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,Random Forest (SMOTE),Test,F1,0.3556,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost (SMOTE),Validation,F1,0.4118,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost (SMOTE),Test,F1,0.3767,0.5,42,reports/REAL_SGCC_BASELINE_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost Tuned (42 Features),CV (5-Fold),F1,0.4093,0.5,42,reports/SGCC_FEATURE_SET_COMPARISON.csv,AUTHORITATIVE
+SGCC,XGBoost Tuned (42 Features),CV (5-Fold),PR-AUC,0.4147,0.5,42,reports/SGCC_FEATURE_SET_COMPARISON.csv,AUTHORITATIVE
+SGCC,XGBoost Tuned (42 Features),CV (5-Fold),ROC-AUC,0.8236,0.5,42,reports/SGCC_FEATURE_SET_COMPARISON.csv,AUTHORITATIVE
+SGCC,XGBoost Tuned (42 Features),Test,F1,0.4161,0.5,42,reports/SGCC_FEATURE_SET_COMPARISON.csv,HISTORICAL
+SGCC,XGBoost Tuned (42 Features),Test,PR-AUC,0.3855,0.5,42,reports/SGCC_FEATURE_SET_COMPARISON.csv,HISTORICAL
+SGCC,XGBoost Tuned (42 Features),Test,ROC-AUC,0.8347,0.5,42,reports/SGCC_FEATURE_SET_COMPARISON.csv,HISTORICAL
+SGCC,XGBoost Reduced (18 Features),CV (5-Fold),F1,0.4029,0.5,18,reports/SGCC_FEATURE_SET_COMPARISON.csv,AUTHORITATIVE
+SGCC,XGBoost Reduced (18 Features),CV (5-Fold),PR-AUC,0.403,0.5,18,reports/SGCC_FEATURE_SET_COMPARISON.csv,AUTHORITATIVE
+SGCC,XGBoost Reduced (18 Features),Validation,F1,0.4037,0.5,18,reports/GRIDBALANCE_TRAIN_VAL_TEST_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost Reduced (18 Features),Validation,PR-AUC,0.3684,0.5,18,reports/GRIDBALANCE_TRAIN_VAL_TEST_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost Reduced (18 Features),Validation,ROC-AUC,0.8118,0.5,18,reports/GRIDBALANCE_TRAIN_VAL_TEST_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost Reduced (18 Features) - Preliminary Test,Test (Prelim),F1,0.4014,0.5,18,reports/SGCC_FEATURE_SET_COMPARISON.csv,HISTORICAL
+SGCC,XGBoost Reduced (18 Features) - Preliminary Test,Test (Prelim),PR-AUC,0.4049,0.5,18,reports/SGCC_FEATURE_SET_COMPARISON.csv,HISTORICAL
+SGCC,XGBoost Reduced (18 Features) - Sealed Test,Sealed Test,F1,0.3592,0.5,18,reports/GRIDBALANCE_TRAIN_VAL_TEST_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost Reduced (18 Features) - Sealed Test,Sealed Test,PR-AUC,0.3114,0.5,18,reports/GRIDBALANCE_TRAIN_VAL_TEST_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost Reduced (18 Features) - Sealed Test,Sealed Test,ROC-AUC,0.7758,0.5,18,reports/GRIDBALANCE_TRAIN_VAL_TEST_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost Reduced (18 Features) - Sealed Test,Sealed Test,Precision,0.304,0.5,18,reports/GRIDBALANCE_TRAIN_VAL_TEST_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost Reduced (18 Features) - Sealed Test,Sealed Test,Recall,0.4391,0.5,18,reports/GRIDBALANCE_TRAIN_VAL_TEST_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost Reduced (18 Features) - Sealed Test,Sealed Test,Accuracy,0.8664,0.5,18,reports/GRIDBALANCE_TRAIN_VAL_TEST_RESULTS.csv,AUTHORITATIVE
+SGCC,XGBoost Stability (14 Features),CV (5-Fold),F1,0.3695,0.5,14,reports/SGCC_FEATURE_SET_COMPARISON.csv,AUTHORITATIVE
+SGCC,XGBoost Stability (14 Features),CV (5-Fold),PR-AUC,0.3466,0.5,14,reports/SGCC_FEATURE_SET_COMPARISON.csv,AUTHORITATIVE
+SGCC,XGBoost Stability (14 Features),Test,F1,0.3647,0.5,14,reports/SGCC_FEATURE_SET_COMPARISON.csv,AUTHORITATIVE
+SGCC,XGBoost Stability (14 Features),Test,PR-AUC,0.331,0.5,14,reports/SGCC_FEATURE_SET_COMPARISON.csv,AUTHORITATIVE
+SGCC,XGBoost Stability (14 Features),Test,ROC-AUC,0.8013,0.5,14,reports/SGCC_FEATURE_SET_COMPARISON.csv,AUTHORITATIVE
+SGCC,LightGBM Baseline V2,Validation,F1,0.3084,0.5,18,reports/optimization_v2/V2_MODEL_OPTIMIZATION_REPORT.md,AUTHORITATIVE
+SGCC,LightGBM Baseline V2,Test,F1,0.3084,0.5,18,reports/optimization_v2/V2_MODEL_OPTIMIZATION_REPORT.md,AUTHORITATIVE
+SGCC,Optuna LightGBM (EXP_SGCC_V2_04),Validation,F1,0.3694,0.58,18,reports/optimization_v2/V2_MODEL_OPTIMIZATION_REPORT.md,AUTHORITATIVE
+SGCC,Optuna LightGBM (EXP_SGCC_V2_04),Test,F1,0.3366,0.58,18,reports/optimization_v2/V2_MODEL_OPTIMIZATION_REPORT.md,AUTHORITATIVE
+SGCC,Optuna LightGBM (EXP_SGCC_V2_04),Test,PR-AUC,0.2938,0.58,18,reports/optimization_v2/V2_MODEL_OPTIMIZATION_REPORT.md,AUTHORITATIVE
+SGCC,Optuna LightGBM (EXP_SGCC_V2_04),Test,ROC-AUC,0.7981,0.58,18,reports/optimization_v2/V2_MODEL_OPTIMIZATION_REPORT.md,AUTHORITATIVE
+SGCC,LightGBM Focal Loss (gamma=2.0),Validation,F1,0.4469,0.5,18,results/optimization_v2/sgcc_focal_loss_comparison.csv,AUTHORITATIVE
+SGCC,LightGBM Focal Loss (gamma=2.0),Validation,PR-AUC,0.4252,0.5,18,results/optimization_v2/sgcc_focal_loss_comparison.csv,AUTHORITATIVE
+SGCC,LightGBM Focal Loss (gamma=2.0),Sealed Test,F1,0.4479,0.5,18,results/optimization_v2/sgcc_focal_loss_comparison.csv,AUTHORITATIVE
+SGCC,LightGBM Focal Loss (gamma=2.0),Sealed Test,PR-AUC,0.4178,0.5,18,results/optimization_v2/sgcc_focal_loss_comparison.csv,AUTHORITATIVE
+SGCC,LightGBM Focal Loss (gamma=2.0),Sealed Test,ROC-AUC,0.8429,0.5,18,results/optimization_v2/sgcc_focal_loss_comparison.csv,AUTHORITATIVE
+SGCC,LightGBM Focal Loss (gamma=2.0),Sealed Test,Precision,0.42,0.5,18,results/optimization_v2/sgcc_focal_loss_comparison.csv,AUTHORITATIVE
+SGCC,LightGBM Focal Loss (gamma=2.0),Sealed Test,Recall,0.4797,0.5,18,results/optimization_v2/sgcc_focal_loss_comparison.csv,AUTHORITATIVE
+UCI,Naive Persistence,Validation,MAE,14066.68,,1,reports/UCI_MODEL_COMPARISON.csv,AUTHORITATIVE
+UCI,Naive Persistence,Validation,sMAPE,7.52,,1,reports/UCI_MODEL_COMPARISON.csv,AUTHORITATIVE
+UCI,Daily Seasonal Naive,Validation,MAE,16290.57,,1,reports/UCI_MODEL_COMPARISON.csv,AUTHORITATIVE
+UCI,Weekly Seasonal Naive,Validation,MAE,20043.49,,1,reports/UCI_MODEL_COMPARISON.csv,AUTHORITATIVE
+UCI,Linear Regression,Validation,MAE,6886.49,,29,reports/UCI_MODEL_COMPARISON.csv,AUTHORITATIVE
+UCI,Ridge Regression,Validation,MAE,6749.66,,29,reports/UCI_MODEL_COMPARISON.csv,AUTHORITATIVE
+UCI,Decision Tree Regressor,Validation,MAE,4941.08,,29,reports/UCI_MODEL_COMPARISON.csv,AUTHORITATIVE
+UCI,Random Forest Regressor,Validation,MAE,4122.08,,29,reports/UCI_MODEL_COMPARISON.csv,AUTHORITATIVE
+UCI,XGBoost Regressor (Baseline Validation),Validation,MAE,3935.63,,29,reports/UCI_MODEL_COMPARISON.csv,AUTHORITATIVE
+UCI,XGBoost Regressor (Baseline Validation),Validation,sMAPE,1.94,,29,reports/UCI_MODEL_COMPARISON.csv,AUTHORITATIVE
+UCI,XGBoost Regressor (Baseline Validation),Validation,R2,0.9923,,29,reports/UCI_MODEL_COMPARISON.csv,AUTHORITATIVE
+UCI,Linear Regression,CV (TimeSeriesSplit 5),Mean MAE,8092.58,,29,reports/UCI_TIME_SERIES_CV.csv,AUTHORITATIVE
+UCI,Ridge Regression,CV (TimeSeriesSplit 5),Mean MAE,8091.44,,29,reports/UCI_TIME_SERIES_CV.csv,AUTHORITATIVE
+UCI,Random Forest Regressor,CV (TimeSeriesSplit 5),Mean MAE,8415.71,,29,reports/UCI_TIME_SERIES_CV.csv,AUTHORITATIVE
+UCI,XGBoost Regressor,CV (TimeSeriesSplit 5),Mean MAE,10365.77,,29,reports/UCI_TIME_SERIES_CV.csv,CONTRADICTORY
+UCI,XGBoost Regressor,CV (TimeSeriesSplit 5),Std MAE,10204.25,,29,reports/UCI_TIME_SERIES_CV.csv,CONTRADICTORY
+UCI,XGBoost Regressor (Full Sealed Test N=4416),Sealed Test,MAE,4503.51,,29,reports/GRIDBALANCE_TRAIN_VAL_TEST_RESULTS.csv,AUTHORITATIVE
+UCI,XGBoost Regressor (Full Sealed Test N=4416),Sealed Test,RMSE,6743.21,,29,reports/GRIDBALANCE_TRAIN_VAL_TEST_RESULTS.csv,AUTHORITATIVE
+UCI,XGBoost Regressor (Full Sealed Test N=4416),Sealed Test,R2,0.9942,,29,reports/GRIDBALANCE_TRAIN_VAL_TEST_RESULTS.csv,AUTHORITATIVE
+UCI,XGBoost Regressor (Full Sealed Test N=4416),Sealed Test,sMAPE,1.98,,29,reports/GRIDBALANCE_TRAIN_VAL_TEST_RESULTS.csv,AUTHORITATIVE
+UCI,XGBoost Regressor (Trimmed Test N=4392),Test (Trimmed 24h),MAE,4421.55,,29,backend/config.py,HISTORICAL
+UCI,XGBoost Regressor (Trimmed Test N=4392),Test (Trimmed 24h),RMSE,6654.94,,29,backend/config.py,HISTORICAL
+UCI,XGBoost Regressor (Trimmed Test N=4392),Test (Trimmed 24h),R2,0.9944,,29,backend/config.py,HISTORICAL
+UCI,XGBoost Regressor (Trimmed Test N=4392),Test (Trimmed 24h),sMAPE,2.18,,29,backend/config.py,HISTORICAL
+UCI,LightGBM Regressor Baseline (EXP_UCI_V2_02),Sealed Test,MAE,4391.08,,29,reports/optimization_v2/V2_MODEL_OPTIMIZATION_REPORT.md,AUTHORITATIVE
+UCI,Optuna LightGBM (EXP_UCI_V2_03),Sealed Test,MAE,4377.14,,29,reports/optimization_v2/V2_MODEL_OPTIMIZATION_REPORT.md,AUTHORITATIVE
+UCI,LightGBM + EMA & Fourier (EXP_UCI_V2_04),Sealed Test,MAE,4348.93,,33,reports/optimization_v2/V2_MODEL_OPTIMIZATION_REPORT.md,AUTHORITATIVE
+UCI,LightGBM + EMA & Fourier (EXP_UCI_V2_04),Sealed Test,sMAPE,1.89,,33,reports/optimization_v2/V2_MODEL_OPTIMIZATION_REPORT.md,AUTHORITATIVE

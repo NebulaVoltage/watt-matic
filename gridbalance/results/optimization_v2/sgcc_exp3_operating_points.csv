@@ -1,0 +1,4 @@
+Operating_Mode,Threshold,Precision,Recall,F1,F2,MCC,Flagged_Pct
+F1-Optimal Balanced,0.5,0.4198,0.4779,0.4469,0.465,0.3927,9.71
+High-Recall (Fraud Sweep),0.4,0.2406,0.7399,0.3631,0.5228,0.3315,26.23
+High-Precision (Targeted Audits),0.55,0.5346,0.3137,0.3953,0.3419,0.3692,5.0

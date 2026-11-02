@@ -5,18 +5,25 @@ import pandas as pd
 from typing import List, Dict, Any, Tuple
 from pathlib import Path
 
-from backend.config import UCI_MODEL_PATH, UCI_METRICS
+from backend.config import UCI_MODEL_PATH, UCI_METRICS, UCI_EXPERIMENTAL_MODEL_PATH, UCI_EXPERIMENTAL_METRICS
 
 logger = logging.getLogger("gridbalance.inference.uci")
 
 class UCIForecaster:
     """
     Inference Engine for UCI Next-Hour Electricity Load Forecasting.
-    Loads the frozen 29-feature XGBoost Regressor ONCE at initialization.
+    Loads the frozen 29-feature XGBoost Regressor (Production) at initialization.
+    Also provides a separate experimental interface for the 33-feature LightGBM EMA model.
     """
-    def __init__(self, model_path: Path = UCI_MODEL_PATH):
+    def __init__(
+        self,
+        model_path: Path = UCI_MODEL_PATH,
+        exp_model_path: Path = UCI_EXPERIMENTAL_MODEL_PATH
+    ):
         self.model_path = model_path
+        self.exp_model_path = exp_model_path
         self.model = None
+        self.experimental_model = None
         self.feature_names = [
             'load_t', 'load_t_minus_1', 'load_t_minus_2', 'load_t_minus_3',
             'load_t_minus_6', 'load_t_minus_12', 'load_t_minus_24', 'load_t_minus_48',
@@ -26,7 +33,9 @@ class UCIForecaster:
             'hour', 'day_of_week', 'day_of_month', 'month', 'week_of_year',
             'sin_hour', 'cos_hour', 'sin_day_of_week', 'cos_day_of_week'
         ]
+        self.feature_names_33 = self.feature_names + ['ema_6', 'ema_24', 'sin_month', 'cos_month']
         self._load_model()
+        self._load_experimental_model()
 
     def _load_model(self):
         if not self.model_path.exists():
@@ -35,8 +44,22 @@ class UCIForecaster:
         self.model = joblib.load(self.model_path)
         logger.info("UCI forecasting model loaded successfully.")
 
+    def _load_experimental_model(self):
+        if self.exp_model_path.exists():
+            try:
+                logger.info(f"Loading experimental UCI 33-feature LightGBM model from {self.exp_model_path}")
+                self.experimental_model = joblib.load(self.exp_model_path)
+                logger.info("Experimental UCI 33-feature model loaded successfully.")
+            except Exception as e:
+                logger.warning(f"Failed to load experimental UCI model from {self.exp_model_path}: {e}")
+        else:
+            logger.info(f"Experimental UCI model artifact not found at {self.exp_model_path}.")
+
     def is_loaded(self) -> bool:
         return self.model is not None
+
+    def is_experimental_loaded(self) -> bool:
+        return self.experimental_model is not None
 
     def preprocess_and_extract_features(self, history: List[Dict[str, Any]]) -> Tuple[pd.DataFrame, pd.Timestamp]:
         """
@@ -132,7 +155,7 @@ class UCIForecaster:
         return X_df, target_timestamp
 
     def predict_next_hour(self, history: List[Dict[str, Any]]) -> Dict[str, Any]:
-        """Executes next-hour load forecast for input load series."""
+        """Executes next-hour load forecast for input load series using the production 29-feature XGBoost model."""
         X_df, target_timestamp = self.preprocess_and_extract_features(history)
 
         pred_val = float(self.model.predict(X_df)[0])
@@ -142,4 +165,58 @@ class UCIForecaster:
             "target_timestamp": str(target_timestamp),
             "predicted_load_kwh": round(pred_val, 2),
             "model_info": UCI_METRICS
+        }
+
+    def predict_experimental_ema(self, history: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """
+        Executes next-hour load forecast using the experimental 33-feature LightGBM model.
+        Strictly enforces a minimum of 336 hours (14 days) of contiguous load history
+        to completely eliminate Exponential Moving Average (EMA) initialization warmup bias.
+        """
+        if not self.is_experimental_loaded():
+            raise RuntimeError("Experimental 33-feature LightGBM model is not loaded.")
+
+        if len(history) < 336:
+            raise ValueError(
+                f"Insufficient history for experimental EMA model: minimum 336 hours required to eliminate "
+                f"warmup bias, got {len(history)} hours."
+            )
+
+        # Preprocess features using the 29 base features
+        X_df, target_timestamp = self.preprocess_and_extract_features(history)
+
+        # Extract underlying sorted and deduplicated series for EMA computation
+        df_sorted = pd.DataFrame(history)
+        df_sorted['dt'] = pd.to_datetime(df_sorted['timestamp'])
+        df_sorted = df_sorted.groupby('dt', as_index=False)['load_kwh'].mean().sort_values('dt').reset_index(drop=True)
+        s = df_sorted['load_kwh'].astype(float)
+
+        # Exact EMA computation identical to training
+        ema_6 = float(s.ewm(span=6).mean().iloc[-1])
+        ema_24 = float(s.ewm(span=24).mean().iloc[-1])
+
+        month = X_df['month'].iloc[0]
+        sin_month = float(np.sin(2 * np.pi * month / 12.0))
+        cos_month = float(np.cos(2 * np.pi * month / 12.0))
+
+        # Append the 4 additional features
+        X_33 = X_df.copy()
+        X_33['ema_6'] = ema_6
+        X_33['ema_24'] = ema_24
+        X_33['sin_month'] = sin_month
+        X_33['cos_month'] = cos_month
+
+        X_33 = X_33[self.feature_names_33]
+
+        pred_val = float(self.experimental_model.predict(X_33)[0])
+
+        return {
+            "forecast_horizon": "next_hour",
+            "target_timestamp": str(target_timestamp),
+            "predicted_load_kwh": round(pred_val, 2),
+            "model_type": "lightgbm_ema_33",
+            "history_length_hours": len(history),
+            "warmup_error_status": "ZERO_BIAS_VERIFIED_336H",
+            "features_used": 33,
+            "model_info": UCI_EXPERIMENTAL_METRICS
         }

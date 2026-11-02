@@ -1,0 +1,5 @@
+Year,Hours_Count,Mean_Load_kWh,Std_Load_kWh,Min_Load_kWh,Max_Load_kWh,Operational_Status
+2011,8760,122713.23,33682.27,51641.14,193848.93,Partial Onboarding
+2012,8784,212317.43,82601.82,4287.09,448148.76,Full Network Operational
+2013,8760,222736.77,81402.87,4369.79,447604.47,Full Network Operational
+2014,8760,224410.87,80063.91,454.48,435101.5,Full Network Operational

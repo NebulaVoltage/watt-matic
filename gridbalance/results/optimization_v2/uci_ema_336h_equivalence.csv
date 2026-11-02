@@ -1,0 +1,3 @@
+History_Window,EMA_24_Max_Error_kWh,EMA_24_Mean_Error_kWh,Prediction_Discrepancy_Max_kWh,Prediction_Discrepancy_Mean_kWh,Equivalence_Status
+336 Hours (14 Days),5.745096132159233e-08,1.0422809282317758e-08,0.0,0.0,PREDICTION_EQUIVALENT (<0.01 kWh diff)
+24 Hours (1 Day),11551.152599690482,899.5518459304852,3612.4870747218956,55.654212836583746,"SEVERE_CORRUPTION (>1,000 kWh diff)"

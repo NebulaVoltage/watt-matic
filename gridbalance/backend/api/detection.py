@@ -47,7 +47,14 @@ def analyze_meter(payload: MeterAnalyzeInput):
 
     service = SGCCService()
     try:
-        res = service.analyze_single_meter(meter_id=payload.meter_id, dates=dates, consumption=consumption)
+        res = service.analyze_single_meter(
+            meter_id=payload.meter_id,
+            dates=dates,
+            consumption=consumption,
+            model_type=payload.model_type,
+            operating_mode=payload.operating_mode,
+            threshold=payload.threshold
+        )
         return res
     except ValueError as ve:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(ve))
@@ -56,7 +63,13 @@ def analyze_meter(payload: MeterAnalyzeInput):
 
 
 @router.post("/batch", summary="Batch Audit Multiple Meters via CSV")
-def analyze_batch(file: UploadFile = File(...), export_csv: bool = Query(False, description="Set to True to download results as CSV")):
+def analyze_batch(
+    file: UploadFile = File(...),
+    export_csv: bool = Query(False, description="Set to True to download results as CSV"),
+    model_type: Optional[str] = Query(None, description="Model type: 'xgboost' (production) or 'lightgbm_focal' (experimental)"),
+    operating_mode: Optional[str] = Query(None, description="Operating mode: 'balanced', 'high_recall', or 'targeted'"),
+    threshold: Optional[float] = Query(None, ge=0.01, le=0.99, description="Explicit threshold override")
+):
     """
     Processes a bulk CSV file containing meter IDs and daily consumption columns.
     Analyzes each meter independently and returns aggregate risk counts and individual assessments.
@@ -75,7 +88,12 @@ def analyze_batch(file: UploadFile = File(...), export_csv: bool = Query(False, 
 
     service = SGCCService()
     try:
-        batch_res = service.analyze_batch_csv(content)
+        batch_res = service.analyze_batch_csv(
+            content,
+            model_type=model_type,
+            operating_mode=operating_mode,
+            threshold=threshold
+        )
     except ValueError as ve:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(ve))
     except Exception as e:

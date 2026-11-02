@@ -2,21 +2,45 @@ import logging
 import joblib
 import numpy as np
 import pandas as pd
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Any, Tuple, Optional
 from pathlib import Path
 
-from backend.config import SGCC_MODEL_PATH
+from backend.config import (
+    SGCC_MODEL_PATH,
+    SGCC_EXPERIMENTAL_MODEL_PATH,
+    SGCC_DEFAULT_MODEL_TYPE,
+    SGCC_OPERATING_MODES,
+    SGCC_DEFAULT_OPERATING_MODE
+)
 
 logger = logging.getLogger("gridbalance.inference.sgcc")
 
 class SGCCPredictor:
     """
-    Inference Engine for SGCC Electricity Theft / Tampering Classification.
-    Loads the frozen 18-feature XGBoost Pipeline ONCE at initialization.
+    Inference Engine for SGCC Electricity Meter Tampering Classification.
+    Loads the frozen 18-feature XGBoost Pipeline (Production Baseline) and
+    the LightGBM Focal Loss Booster (Experimental Candidate) at initialization.
+    Supports controlled model selection and operational threshold modes.
     """
-    def __init__(self, model_path: Path = SGCC_MODEL_PATH):
+    def __init__(
+        self,
+        model_path: Path = SGCC_MODEL_PATH,
+        exp_model_path: Path = SGCC_EXPERIMENTAL_MODEL_PATH,
+        default_model_type: str = SGCC_DEFAULT_MODEL_TYPE
+    ):
         self.model_path = model_path
-        self.model = None
+        self.exp_model_path = exp_model_path
+        self.default_model_type = default_model_type
+        
+        # Production model
+        self.xgb_model = None
+        self.model = None  # Reference to production model for backward compatibility
+        
+        # Experimental model bundle
+        self.lgb_model = None
+        self.lgb_train_medians = None
+        self.lgb_bundle = None
+        
         self.feature_names = [
             'missing_streak_count', 'monthly_std_4', 'monthly_std_3', 
             'mean_abs_daily_change', 'missing_count', 'monthly_mean_10', 
@@ -24,17 +48,39 @@ class SGCCPredictor:
             'monthly_std_10', 'monthly_std_11', 'cv', 'monthly_mean_8', 
             'max', 'monthly_std_8', 'monthly_mean_11', 'monthly_std_1', 'monthly_mean_2'
         ]
-        self._load_model()
+        self._load_models()
 
-    def _load_model(self):
+    def _load_models(self):
+        # 1. Load Baseline XGBoost (Production)
         if not self.model_path.exists():
-            raise FileNotFoundError(f"Frozen SGCC model artifact not found at {self.model_path}")
-        logger.info(f"Loading frozen SGCC model from {self.model_path}")
-        self.model = joblib.load(self.model_path)
-        logger.info("SGCC model loaded successfully.")
+            raise FileNotFoundError(f"Frozen SGCC baseline model artifact not found at {self.model_path}")
+        logger.info(f"Loading frozen SGCC XGBoost model from {self.model_path}")
+        self.xgb_model = joblib.load(self.model_path)
+        self.model = self.xgb_model
+        logger.info("SGCC XGBoost baseline model loaded successfully.")
+
+        # 2. Load Experimental LightGBM Focal Loss (Candidate)
+        if self.exp_model_path.exists():
+            try:
+                logger.info(f"Loading experimental SGCC LightGBM Focal Loss candidate from {self.exp_model_path}")
+                bundle = joblib.load(self.exp_model_path)
+                if isinstance(bundle, dict):
+                    self.lgb_model = bundle.get("model")
+                    self.lgb_train_medians = bundle.get("train_medians")
+                    self.lgb_bundle = bundle
+                else:
+                    self.lgb_model = bundle
+                logger.info("SGCC LightGBM experimental candidate loaded successfully.")
+            except Exception as e:
+                logger.warning(f"Could not load experimental LightGBM model from {self.exp_model_path}: {e}")
+        else:
+            logger.info(f"Experimental SGCC model artifact not found at {self.exp_model_path}; running in baseline-only mode.")
 
     def is_loaded(self) -> bool:
-        return self.model is not None
+        return self.xgb_model is not None
+
+    def is_experimental_loaded(self) -> bool:
+        return self.lgb_model is not None
 
     def _compute_gap_metrics(self, bool_mask: np.ndarray) -> Tuple[int, int]:
         """Calculates longest missing streak and count of streaks."""
@@ -148,29 +194,77 @@ class SGCCPredictor:
         X_df = pd.DataFrame([feat_dict], columns=self.feature_names)
         return X_df, data_quality, history
 
-    def predict(self, dates: List[str], consumption: List[float], meter_id: str) -> Dict[str, Any]:
-        """Executes full SGCC inference pipeline for a single meter."""
+    def predict(
+        self,
+        dates: List[str],
+        consumption: List[float],
+        meter_id: str,
+        model_type: Optional[str] = None,
+        operating_mode: Optional[str] = None,
+        threshold: Optional[float] = None
+    ) -> Dict[str, Any]:
+        """
+        Executes SGCC inference for a single meter.
+        Supports selecting between 'xgboost' and 'lightgbm_focal' models,
+        and configuring operational threshold modes ('balanced', 'high_recall', 'targeted').
+        """
+        # Resolve model type
+        active_model_type = model_type or self.default_model_type
+        if active_model_type not in ["xgboost", "lightgbm_focal"]:
+            raise ValueError(f"Unknown model_type '{active_model_type}'. Choose 'xgboost' or 'lightgbm_focal'.")
+
+        if active_model_type == "lightgbm_focal" and not self.is_experimental_loaded():
+            logger.warning("Experimental LightGBM model requested but not loaded. Falling back to production XGBoost.")
+            active_model_type = "xgboost"
+
+        # Resolve operating threshold
+        active_mode = operating_mode or SGCC_DEFAULT_OPERATING_MODE
+        if active_mode not in SGCC_OPERATING_MODES:
+            raise ValueError(f"Unknown operating_mode '{active_mode}'. Expected one of {list(SGCC_OPERATING_MODES.keys())}.")
+
+        if threshold is not None:
+            active_threshold = float(threshold)
+        else:
+            active_threshold = float(SGCC_OPERATING_MODES[active_mode])
+
         X_df, data_quality, history = self.preprocess_and_extract_features(dates, consumption)
 
-        # Run pipeline (SimpleImputer + XGBClassifier)
-        probs = self.model.predict_proba(X_df)[0]
-        prob_tampering = float(probs[1])
+        # Execute selected model inference
+        if active_model_type == "lightgbm_focal":
+            # Impute using training medians if available
+            if self.lgb_train_medians is not None:
+                X_imp = X_df.fillna(self.lgb_train_medians)
+            else:
+                X_imp = X_df.fillna(0.0)
 
-        threshold = 0.50
-        # Requirement: Use "potential_tampering", NEVER "confirmed_theft"
-        prediction = "potential_tampering" if prob_tampering >= threshold else "normal"
+            raw_logits = self.lgb_model.predict(X_imp, raw_score=True)
+            # Logit to probability conversion via sigmoid
+            prob_tampering = float(1.0 / (1.0 + np.exp(-raw_logits[0])))
+            
+            # Feature importances from LightGBM
+            gain_importances = self.lgb_model.feature_importance(importance_type='gain')
+            total_gain = np.sum(gain_importances) + 1e-9
+            normalized_importances = gain_importances / total_gain
+            importances = normalized_importances
+        else:
+            # XGBoost Pipeline (SimpleImputer + XGBClassifier)
+            probs = self.xgb_model.predict_proba(X_df)[0]
+            prob_tampering = float(probs[1])
 
-        if prob_tampering >= 0.70:
+            xgb_step = self.xgb_model.named_steps.get('xgb', self.xgb_model)
+            importances = getattr(xgb_step, 'feature_importances_', np.zeros(len(self.feature_names)))
+
+        # Operational decision: strictly describe as "potential_tampering", NEVER "confirmed_theft"
+        prediction = "potential_tampering" if prob_tampering >= active_threshold else "normal"
+
+        if prob_tampering >= max(active_threshold, 0.70):
             risk_level = "High"
-        elif prob_tampering >= 0.50:
+        elif prob_tampering >= active_threshold:
             risk_level = "Medium"
         else:
             risk_level = "Low"
 
-        # Feature importance / top features
-        xgb_step = self.model.named_steps.get('xgb', self.model)
-        importances = getattr(xgb_step, 'feature_importances_', np.zeros(len(self.feature_names)))
-
+        # Top 5 influential features
         top_features = []
         for feat, val, imp in zip(self.feature_names, X_df.iloc[0].values, importances):
             val_clean = float(val) if not np.isnan(val) else 0.0
@@ -181,16 +275,17 @@ class SGCCPredictor:
                 "contribution": round(float(imp * val_clean), 4)
             })
 
-        # Sort top features by importance descending
         top_features.sort(key=lambda x: x["importance"], reverse=True)
 
         return {
             "meter_id": meter_id,
             "prediction": prediction,
             "probability": round(prob_tampering, 4),
-            "threshold": threshold,
+            "threshold": round(active_threshold, 4),
             "risk_level": risk_level,
+            "model_type": active_model_type,
+            "operating_mode": active_mode,
             "data_quality": data_quality,
-            "top_features": top_features[:5], # Return top 5 influential features
+            "top_features": top_features[:5],
             "consumption_history": history
         }

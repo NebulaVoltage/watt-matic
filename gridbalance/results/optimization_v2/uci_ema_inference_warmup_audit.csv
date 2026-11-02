@@ -1,0 +1,7 @@
+History_Window_Hours,EMA_6_Max_Error_kWh,EMA_6_Mean_Error_kWh,EMA_24_Max_Error_kWh,EMA_24_Mean_Error_kWh,Warmup_Status
+24,43.1232,15.0933,22286.3331,9802.8509,Warmup Bias Present
+48,0.0139,0.0049,3244.217,1339.2106,Warmup Bias Present
+72,0.0,0.0,430.3958,180.1908,Warmup Bias Present
+120,0.0,0.0,7.391,3.3045,Warmup Bias Present
+168,0.0,0.0,0.1464,0.0611,Warmup Bias Present
+336,0.0,0.0,0.0,0.0,Saturated (<0.01 kWh error)

@@ -1,0 +1,6 @@
+Model,Rising_Period_MAE_kWh,Falling_Period_MAE_kWh,Overall_Test_MAE_kWh
+XGBoost Direct (29 Feat),4321.11,4566.89,4440.05
+XGBoost Difference (Delta),4218.94,4490.05,4350.13
+LightGBM Direct (29 Feat),4246.7,4551.63,4394.26
+LightGBM Difference (Delta),4254.79,4499.17,4373.05
+Ridge Regression (29 Feat),10821.6,8329.53,9615.63

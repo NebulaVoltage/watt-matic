@@ -1,0 +1,16 @@
+Artifact_Type,Path,Size_MB,Status,Description
+Dataset (Raw),data/sgcc_data.csv,26.39,VERIFIED,"Raw SGCC daily electricity consumption (42,372 customers x 1,036 columns)"
+Dataset (Raw),data/uci/LD2011_2014.txt,678.06,VERIFIED,"Raw UCI electricity load diagrams (370 customers x 140,256 15-minute intervals)"
+Dataset (Processed),data/processed/sgcc_features_real_v2.csv,25.12,VERIFIED,"Extracted 42 domain features on 42,367 customers (5 fully-missing dropped)"
+Dataset (Processed),data/processed/uci_hourly_aggregate_load.csv,1.32,VERIFIED,"Resampled and aggregated hourly load series (35,065 hours, 2011-2014)"
+Model Checkpoint,models/sgcc_tuned/xgboost_reduced_best.joblib,1.13,FROZEN_PRODUCTION,"Authoritative frozen SGCC classifier (Pipeline: SimpleImputer + XGBoost, 18 features)"
+Model Checkpoint,models/uci_forecasting/xgb_forecasting_frozen.joblib,0.87,FROZEN_PRODUCTION,"Authoritative frozen UCI regressor (XGBRegressor, 29 causal features)"
+Model Checkpoint,models/optimization_v2/lgbm_focal_loss_best.joblib,0.78,VERIFIED_CANDIDATE,"Focal Loss LightGBM model bundle (gamma=2.0, alpha=0.85, 18 features, t=0.50)"
+Model Checkpoint,models/sgcc_tuned/xgboost_tuned_best.joblib,1.16,HISTORICAL_BENCHMARK,Tuned XGBoost classifier trained on all 42 features
+Model Checkpoint,models/sgcc_stability/xgboost_stability_selected.joblib,1.21,EXPERIMENTAL,Stability-selected XGBoost classifier on 14 features
+Backend Module,backend/main.py,0.002,OPERATIONAL,FastAPI application with lifespan startup model loading and CORS
+Inference Module,backend/inference/sgcc_predictor.py,0.008,OPERATIONAL,"SGCC real-time inference engine (bounded ffill, 18-feature extraction)"
+Inference Module,backend/inference/uci_forecaster.py,0.006,OPERATIONAL,UCI real-time forecasting engine (strict causal lag/rolling feature extraction)
+Frontend Application,frontend/src/App.tsx,0.002,OPERATIONAL,React 19 single-page dashboard application running on Vite 8
+Test Suite,tests/test_api_endpoints.py,0.002,VERIFIED_PASS,"Pytest automated test suite (13/13 passing tests across health, models, detection, forecasting)"
+Executive Report,reports/GRIDBALANCE_FINAL_PROJECT_STATUS_REPORT.md,0.05,AUTHORITATIVE,Comprehensive project status report with faculty evaluation executive summary

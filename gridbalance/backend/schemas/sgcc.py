@@ -10,6 +10,9 @@ class MeterAnalyzeInput(BaseModel):
     readings: Optional[List[ReadingInput]] = Field(None, description="List of date-consumption reading pairs")
     dates: Optional[List[str]] = Field(None, description="Parallel list of dates")
     consumption: Optional[List[float]] = Field(None, description="Parallel list of consumption values")
+    model_type: Optional[str] = Field(None, description="Model architecture: 'xgboost' (production baseline) or 'lightgbm_focal' (experimental candidate)")
+    operating_mode: Optional[str] = Field(None, description="Operating mode: 'balanced' (0.50), 'high_recall' (0.40), or 'targeted' (0.55)")
+    threshold: Optional[float] = Field(None, ge=0.01, le=0.99, description="Custom classification threshold override")
 
     @field_validator('meter_id')
     def validate_meter_id(cls, v):
@@ -40,6 +43,8 @@ class SingleMeterResponse(BaseModel):
     probability: float = Field(..., description="Tampering probability score [0.0 - 1.0]")
     threshold: float = Field(0.50, description="Decision threshold used for classification")
     risk_level: str = Field(..., description="'High', 'Medium', or 'Low'")
+    model_type: Optional[str] = Field("xgboost", description="Model architecture used for inference")
+    operating_mode: Optional[str] = Field("balanced", description="Operational threshold mode applied")
     data_quality: DataQualitySchema
     top_features: List[TopFeatureSchema]
     consumption_history: List[ConsumptionReadingSchema]

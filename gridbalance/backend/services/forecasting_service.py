@@ -19,3 +19,6 @@ class ForecastingService:
 
     def predict_next_hour(self, history: List[Dict[str, Any]]) -> Dict[str, Any]:
         return self.forecaster.predict_next_hour(history)
+
+    def predict_experimental_ema(self, history: List[Dict[str, Any]]) -> Dict[str, Any]:
+        return self.forecaster.predict_experimental_ema(history)

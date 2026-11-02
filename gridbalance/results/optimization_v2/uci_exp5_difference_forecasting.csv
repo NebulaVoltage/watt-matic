@@ -1,0 +1,11 @@
+Model,Split,MAE_kWh,RMSE_kWh,R2,sMAPE_pct
+XGBoost Direct (29 Feat),Validation (H1 2014),3914.41,5778.29,0.9924,1.93
+XGBoost Direct (29 Feat),Sealed Test (H2 2014),4440.05,6686.97,0.9943,1.94
+XGBoost Difference (Delta),Validation (H1 2014),4061.06,6026.82,0.9917,2.0
+XGBoost Difference (Delta),Sealed Test (H2 2014),4350.13,6512.27,0.9946,1.92
+LightGBM Direct (29 Feat),Validation (H1 2014),3869.53,5770.61,0.9924,1.91
+LightGBM Direct (29 Feat),Sealed Test (H2 2014),4394.26,6700.19,0.9943,1.92
+LightGBM Difference (Delta),Validation (H1 2014),3961.96,5926.73,0.992,1.96
+LightGBM Difference (Delta),Sealed Test (H2 2014),4373.05,6550.11,0.9945,1.94
+Ridge Regression (29 Feat),Validation (H1 2014),6749.66,10075.21,0.9768,3.49
+Ridge Regression (29 Feat),Sealed Test (H2 2014),9615.63,13685.42,0.9762,4.44
